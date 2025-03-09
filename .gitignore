@@ -1,0 +1,16 @@
+# Archivos y carpetas generados por Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Carpetas de compilación
+bin/
+obj/
+
+# Paquetes NuGet
+packages/
+
+# Otros archivos temporales
+*.log
