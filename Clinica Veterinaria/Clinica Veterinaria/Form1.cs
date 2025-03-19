@@ -8,6 +8,8 @@ namespace Clinica_Veterinaria
             esconderPaneles();
             formImagen formulario = new formImagen();
             abrirFormulario(formulario);
+            this.Text = "Clinica Veterinaria";
+            
 
         }
 
@@ -15,6 +17,7 @@ namespace Clinica_Veterinaria
         {
             panelClientes.Visible = false;
             panelHumanos.Visible = false;
+            panelInventario.Visible = false;
         }
         void desplegarPanel(Panel panel)
         {
@@ -46,7 +49,12 @@ namespace Clinica_Veterinaria
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            desplegarPanel(panel:panelClientes);
+            desplegarPanel(panel: panelClientes);
+        }
+
+        private void btnInventario_Click(object sender, EventArgs e)
+        {
+            desplegarPanel(panelInventario);
         }
     }
 }
