@@ -10,15 +10,19 @@ using System.Windows.Forms;
 
 namespace Clinica_Veterinaria
 {
-    public partial class formImagen : Form
+    public partial class FormAgMascotas : Form
     {
-        public formImagen()
+        public FormAgMascotas()
         {
             InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.None;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

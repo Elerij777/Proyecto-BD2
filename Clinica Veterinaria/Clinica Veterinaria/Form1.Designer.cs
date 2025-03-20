@@ -112,6 +112,7 @@ namespace Clinica_Veterinaria
             btnVerProductos.Text = "Ver Productos";
             btnVerProductos.TextAlign = ContentAlignment.MiddleLeft;
             btnVerProductos.UseVisualStyleBackColor = true;
+            btnVerProductos.Click += btnVerProductos_Click;
             // 
             // btnAgregarInventario
             // 
@@ -126,6 +127,7 @@ namespace Clinica_Veterinaria
             btnAgregarInventario.Text = "Agregar Producto";
             btnAgregarInventario.TextAlign = ContentAlignment.MiddleLeft;
             btnAgregarInventario.UseVisualStyleBackColor = true;
+            btnAgregarInventario.Click += btnAgregarInventario_Click;
             // 
             // btnInventario
             // 
@@ -167,6 +169,7 @@ namespace Clinica_Veterinaria
             btnAgregarHumano.Text = "Agregar Humanos";
             btnAgregarHumano.TextAlign = ContentAlignment.MiddleLeft;
             btnAgregarHumano.UseVisualStyleBackColor = true;
+            btnAgregarHumano.Click += btnAgregarHumano_Click;
             // 
             // btnVerHumanos
             // 
@@ -181,6 +184,7 @@ namespace Clinica_Veterinaria
             btnVerHumanos.Text = "Ver Humanos";
             btnVerHumanos.TextAlign = ContentAlignment.MiddleLeft;
             btnVerHumanos.UseVisualStyleBackColor = true;
+            btnVerHumanos.Click += btnVerHumanos_Click;
             // 
             // btnHumanos
             // 
@@ -222,6 +226,7 @@ namespace Clinica_Veterinaria
             btnAgregarClientes.Text = "Agregar mascotas";
             btnAgregarClientes.TextAlign = ContentAlignment.MiddleLeft;
             btnAgregarClientes.UseVisualStyleBackColor = true;
+            btnAgregarClientes.Click += btnAgregarClientes_Click;
             // 
             // btnVerClientes
             // 
@@ -236,6 +241,7 @@ namespace Clinica_Veterinaria
             btnVerClientes.Text = "Ver Mascotas";
             btnVerClientes.TextAlign = ContentAlignment.MiddleLeft;
             btnVerClientes.UseVisualStyleBackColor = true;
+            btnVerClientes.Click += btnVerClientes_Click;
             // 
             // panelLogo
             // 
@@ -265,6 +271,7 @@ namespace Clinica_Veterinaria
             panelPrincipal.Name = "panelPrincipal";
             panelPrincipal.Size = new Size(756, 589);
             panelPrincipal.TabIndex = 1;
+            panelPrincipal.Paint += panelPrincipal_Paint;
             // 
             // Form1
             // 
