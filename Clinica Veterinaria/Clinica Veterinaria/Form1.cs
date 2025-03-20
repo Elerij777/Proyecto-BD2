@@ -65,118 +65,38 @@ namespace Clinica_Veterinaria
 
         private void btnAgregarClientes_Click(object sender, EventArgs e)
         {
-            //Limpiamos el panel principal antes de mostrar el form
-            panelPrincipal.Controls.Clear();
-
-            //Creamos la instancia del form
             FormAgMascotas formAgClientes = new FormAgMascotas();
-            formAgClientes.TopLevel = false;
-            formAgClientes.FormBorderStyle = FormBorderStyle.None;
-            formAgClientes.Dock = DockStyle.Fill;
-
-            //Lo mandamos al panel principal
-            panelPrincipal.Controls.Add(formAgClientes);
-            panelPrincipal.Tag = formAgClientes;
-
-            //mostrar el formulario
-            formAgClientes.Show();
+            abrirFormulario(formAgClientes);
         }
 
         private void btnVerClientes_Click(object sender, EventArgs e)
         {
-            //Limpiamos el panel principal antes de mostrar el form
-            panelPrincipal.Controls.Clear();
-
-            //Creamos la instancia del form
             FormVerMascotas formVerMascotas = new FormVerMascotas();
-            formVerMascotas.TopLevel = false;
-            formVerMascotas.FormBorderStyle = FormBorderStyle.None;
-            formVerMascotas.Dock = DockStyle.Fill;
-
-            //Lo mandamos al panel principal
-            panelPrincipal.Controls.Add(formVerMascotas);
-            panelPrincipal.Tag = formVerMascotas;
-
-            //mostrar el formulario
-            formVerMascotas.Show();
-
+            abrirFormulario(formVerMascotas);
         }
 
         private void btnVerHumanos_Click(object sender, EventArgs e)
         {
-            //Limpiamos el panel principal antes de mostrar el form
-            panelPrincipal.Controls.Clear();
-
-            //Creamos la instancia del form
             FormVerHumanos formVerHumanos = new FormVerHumanos();
-            formVerHumanos.TopLevel = false;
-            formVerHumanos.FormBorderStyle = FormBorderStyle.None;
-            formVerHumanos.Dock = DockStyle.Fill;
-
-            //Lo mandamos al panel principal
-            panelPrincipal.Controls.Add(formVerHumanos);
-            panelPrincipal.Tag = formVerHumanos;
-
-            //mostrar el formulario
-            formVerHumanos.Show();
+            abrirFormulario(formVerHumanos);
         }
 
         private void btnAgregarHumano_Click(object sender, EventArgs e)
         {
-            //Limpiamos el panel principal antes de mostrar el form
-            panelPrincipal.Controls.Clear();
-
-            //Creamos la instancia del form
             FormAgHumanos formAgHumanos = new FormAgHumanos();
-            formAgHumanos.TopLevel = false;
-            formAgHumanos.FormBorderStyle = FormBorderStyle.None;
-            formAgHumanos.Dock = DockStyle.Fill;
-
-            //Lo mandamos al panel principal
-            panelPrincipal.Controls.Add(formAgHumanos);
-            panelPrincipal.Tag = formAgHumanos;
-
-            //mostrar el formulario
-            formAgHumanos.Show();
-
+            abrirFormulario(formAgHumanos);
         }
 
         private void btnAgregarInventario_Click(object sender, EventArgs e)
         {
-            // Limpiamos el panel principal antes de mostrar el form
-            panelPrincipal.Controls.Clear();
-
-            //Creamos la instancia del form
             FormAgProducto formAgProducto = new FormAgProducto();
-            formAgProducto.TopLevel = false;
-            formAgProducto.FormBorderStyle = FormBorderStyle.None;
-            formAgProducto.Dock = DockStyle.Fill;
-
-            //Lo mandamos al panel principal
-            panelPrincipal.Controls.Add(formAgProducto);
-            panelPrincipal.Tag = formAgProducto;
-
-            //mostrar el formulario
-            formAgProducto.Show();
+            abrirFormulario(formAgProducto);
         }
 
         private void btnVerProductos_Click(object sender, EventArgs e)
         {
-            // Limpiamos el panel principal antes de mostrar el form
-            panelPrincipal.Controls.Clear();
-
-            //Creamos la instancia del form
             FormVerProducto formVerProducto = new FormVerProducto();
-            formVerProducto.TopLevel = false;
-            formVerProducto.FormBorderStyle = FormBorderStyle.None;
-            formVerProducto.Dock = DockStyle.Fill;
-
-            //Lo mandamos al panel principal
-            panelPrincipal.Controls.Add(formVerProducto);
-            panelPrincipal.Tag = formVerProducto;
-
-            //mostrar el formulario
-            formVerProducto.Show();
+            abrirFormulario(formVerProducto);
         }
     }
 }
