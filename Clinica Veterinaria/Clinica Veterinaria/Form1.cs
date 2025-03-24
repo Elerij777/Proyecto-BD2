@@ -98,5 +98,10 @@ namespace Clinica_Veterinaria
             FormVerProducto formVerProducto = new FormVerProducto();
             abrirFormulario(formVerProducto);
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

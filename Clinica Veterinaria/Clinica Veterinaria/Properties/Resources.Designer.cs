@@ -73,6 +73,16 @@ namespace Clinica_Veterinaria.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BD2logoProyect {
+            get {
+                object obj = ResourceManager.GetObject("BD2logoProyect", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MascotasLogo {
             get {
                 object obj = ResourceManager.GetObject("MascotasLogo", resourceCulture);

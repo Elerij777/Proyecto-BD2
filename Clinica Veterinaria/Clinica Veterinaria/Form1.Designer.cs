@@ -74,7 +74,7 @@ namespace Clinica_Veterinaria
             // panelLateral
             // 
             panelLateral.AutoScroll = true;
-            panelLateral.BackColor = Color.FromArgb(95, 225, 232);
+            panelLateral.BackColor = Color.FromArgb(0, 192, 0);
             panelLateral.Controls.Add(panelInventario);
             panelLateral.Controls.Add(btnInventario);
             panelLateral.Controls.Add(panelHumanos);
@@ -256,13 +256,14 @@ namespace Clinica_Veterinaria
             // 
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.Dock = DockStyle.Fill;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Image = Properties.Resources.BD2logoProyect;
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(228, 153);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // panelPrincipal
             // 
