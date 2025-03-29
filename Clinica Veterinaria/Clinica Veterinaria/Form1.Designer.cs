@@ -74,7 +74,7 @@ namespace Clinica_Veterinaria
             // panelLateral
             // 
             panelLateral.AutoScroll = true;
-            panelLateral.BackColor = Color.FromArgb(0, 192, 0);
+            panelLateral.BackColor = SystemColors.ActiveCaption;
             panelLateral.Controls.Add(panelInventario);
             panelLateral.Controls.Add(btnInventario);
             panelLateral.Controls.Add(panelHumanos);

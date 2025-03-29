@@ -1,7 +1,12 @@
+using System.Data.SqlClient;
+using System.Data;
+
 namespace Clinica_Veterinaria
 {
     public partial class Form1 : Form
     {
+
+        SqlConnection cnx;
         public Form1()
         {
             InitializeComponent();
@@ -9,9 +14,15 @@ namespace Clinica_Veterinaria
             formPrincipal formulario = new formPrincipal();
             abrirFormulario(formulario);
             this.Text = "Clinica Veterinaria";
+            try
+            {
+                String url = "Server=3.128.144.165,1433;Database=DB20212021280;User Id=erick.turcios;Password=ET20212021280;TrustServerCertificate=True;";
+                cnx = new SqlConnection(url);
+            }catch (Exception ex)
+            {
+                MessageBox.Show("Error al conectar la base de datos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-
-
+            }
         }
 
         void esconderPaneles()
@@ -83,7 +94,7 @@ namespace Clinica_Veterinaria
 
         private void btnAgregarHumano_Click(object sender, EventArgs e)
         {
-            FormAgHumanos formAgHumanos = new FormAgHumanos();
+            FormAgHumanos formAgHumanos = new FormAgHumanos(cnx);
             abrirFormulario(formAgHumanos);
         }
 
@@ -103,5 +114,6 @@ namespace Clinica_Veterinaria
         {
 
         }
+
     }
 }
