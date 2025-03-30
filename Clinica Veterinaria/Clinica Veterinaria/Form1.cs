@@ -18,7 +18,8 @@ namespace Clinica_Veterinaria
             {
                 String url = "Server=3.128.144.165,1433;Database=DB20212021280;User Id=erick.turcios;Password=ET20212021280;TrustServerCertificate=True;";
                 cnx = new SqlConnection(url);
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al conectar la base de datos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -30,6 +31,7 @@ namespace Clinica_Veterinaria
             panelClientes.Visible = false;
             panelHumanos.Visible = false;
             panelInventario.Visible = false;
+            panelCitas.Visible = false;
         }
         void desplegarPanel(Panel panel)
         {
@@ -115,5 +117,15 @@ namespace Clinica_Veterinaria
 
         }
 
+        private void btnCitas_Click(object sender, EventArgs e)
+        {
+            desplegarPanel(panel: panelCitas);
+        }
+
+        private void btnClinica_Click(object sender, EventArgs e)
+        {
+            FormClinica formClinica = new FormClinica();
+            abrirFormulario(formClinica);
+        }
     }
 }
