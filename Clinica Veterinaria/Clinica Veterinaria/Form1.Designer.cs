@@ -46,6 +46,7 @@ namespace Clinica_Veterinaria
             panelLogo = new Panel();
             pictureBox1 = new PictureBox();
             panelPrincipal = new Panel();
+            dataGridView1 = new DataGridView();
             btnClientes = new Button();
             panelLateral.SuspendLayout();
             panelInventario.SuspendLayout();
@@ -53,6 +54,8 @@ namespace Clinica_Veterinaria
             panelClientes.SuspendLayout();
             panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panelPrincipal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // btnClientes
@@ -85,7 +88,7 @@ namespace Clinica_Veterinaria
             panelLateral.Dock = DockStyle.Left;
             panelLateral.Location = new Point(0, 0);
             panelLateral.Name = "panelLateral";
-            panelLateral.Size = new Size(228, 589);
+            panelLateral.Size = new Size(228, 698);
             panelLateral.TabIndex = 0;
             // 
             // panelInventario
@@ -267,18 +270,28 @@ namespace Clinica_Veterinaria
             // 
             // panelPrincipal
             // 
+            panelPrincipal.Controls.Add(dataGridView1);
             panelPrincipal.Dock = DockStyle.Fill;
             panelPrincipal.Location = new Point(228, 0);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(756, 589);
+            panelPrincipal.Size = new Size(871, 698);
             panelPrincipal.TabIndex = 1;
             panelPrincipal.Paint += panelPrincipal_Paint;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(613, 74);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(300, 188);
+            dataGridView1.TabIndex = 0;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(984, 589);
+            ClientSize = new Size(1099, 698);
             Controls.Add(panelPrincipal);
             Controls.Add(panelLateral);
             Name = "Form1";
@@ -289,6 +302,8 @@ namespace Clinica_Veterinaria
             panelClientes.ResumeLayout(false);
             panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panelPrincipal.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -311,5 +326,6 @@ namespace Clinica_Veterinaria
         private Panel panelInventario;
         private Button btnVerProductos;
         private Button btnAgregarInventario;
+        private DataGridView dataGridView1;
     }
 }

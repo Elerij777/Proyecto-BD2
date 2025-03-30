@@ -28,33 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            panelPrincipal = new Panel();
+            labelPrincipal = new Label();
+            panelPrincipal.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // panelPrincipal
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(232, 166);
-            label1.Name = "label1";
-            label1.Size = new Size(303, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Hola soy el formulario para ver las mascotas";
-            label1.Click += label1_Click;
+            panelPrincipal.BackColor = SystemColors.ActiveCaption;
+            panelPrincipal.Controls.Add(labelPrincipal);
+            panelPrincipal.Dock = DockStyle.Top;
+            panelPrincipal.Location = new Point(0, 0);
+            panelPrincipal.Name = "panelPrincipal";
+            panelPrincipal.Size = new Size(800, 125);
+            panelPrincipal.TabIndex = 3;
             // 
-            // Form4
+            // labelPrincipal
+            // 
+            labelPrincipal.AutoSize = true;
+            labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelPrincipal.Location = new Point(305, 34);
+            labelPrincipal.Name = "labelPrincipal";
+            labelPrincipal.Size = new Size(192, 43);
+            labelPrincipal.TabIndex = 0;
+            labelPrincipal.Text = "Mascotas";
+            // 
+            // FormVerMascotas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(label1);
-            Name = "Form4";
+            Controls.Add(panelPrincipal);
+            Name = "FormVerMascotas";
             Text = "Form4";
+            panelPrincipal.ResumeLayout(false);
+            panelPrincipal.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
+        private Panel panelPrincipal;
+        private Label labelPrincipal;
     }
 }

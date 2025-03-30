@@ -76,7 +76,7 @@ namespace Clinica_Veterinaria
 
         private void btnAgregarClientes_Click(object sender, EventArgs e)
         {
-            FormAgMascotas formAgClientes = new FormAgMascotas();
+            FormAgMascotas formAgClientes = new FormAgMascotas(cnx);
             abrirFormulario(formAgClientes);
         }
 
