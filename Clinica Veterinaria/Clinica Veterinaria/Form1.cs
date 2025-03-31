@@ -124,7 +124,7 @@ namespace Clinica_Veterinaria
 
         private void btnClinica_Click(object sender, EventArgs e)
         {
-            FormClinica formClinica = new FormClinica();
+            FormClinica formClinica = new FormClinica(cnx);
             abrirFormulario(formClinica);
         }
     }
