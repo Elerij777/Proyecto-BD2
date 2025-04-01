@@ -30,7 +30,9 @@
         {
             panelPrincipal = new Panel();
             labelPrincipal = new Label();
+            dgvProductos = new DataGridView();
             panelPrincipal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
             SuspendLayout();
             // 
             // panelPrincipal
@@ -53,16 +55,27 @@
             labelPrincipal.TabIndex = 0;
             labelPrincipal.Text = "Mascotas";
             // 
+            // dgvProductos
+            // 
+            dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProductos.Location = new Point(12, 148);
+            dgvProductos.Name = "dgvProductos";
+            dgvProductos.RowHeadersWidth = 51;
+            dgvProductos.Size = new Size(764, 290);
+            dgvProductos.TabIndex = 4;
+            // 
             // FormVerMascotas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(dgvProductos);
             Controls.Add(panelPrincipal);
             Name = "FormVerMascotas";
             Text = "Form4";
             panelPrincipal.ResumeLayout(false);
             panelPrincipal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
             ResumeLayout(false);
         }
 
@@ -70,5 +83,6 @@
 
         private Panel panelPrincipal;
         private Label labelPrincipal;
+        private DataGridView dgvProductos;
     }
 }

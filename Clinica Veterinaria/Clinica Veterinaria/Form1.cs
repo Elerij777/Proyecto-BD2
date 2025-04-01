@@ -84,7 +84,7 @@ namespace Clinica_Veterinaria
 
         private void btnVerClientes_Click(object sender, EventArgs e)
         {
-            FormVerMascotas formVerMascotas = new FormVerMascotas();
+            FormVerMascotas formVerMascotas = new FormVerMascotas(cnx);
             abrirFormulario(formVerMascotas);
         }
 
@@ -102,13 +102,13 @@ namespace Clinica_Veterinaria
 
         private void btnAgregarInventario_Click(object sender, EventArgs e)
         {
-            FormAgProducto formAgProducto = new FormAgProducto();
+            FormAgProducto formAgProducto = new FormAgProducto(cnx);
             abrirFormulario(formAgProducto);
         }
 
         private void btnVerProductos_Click(object sender, EventArgs e)
         {
-            FormVerProducto formVerProducto = new FormVerProducto();
+            FormVerProducto formVerProducto = new FormVerProducto(cnx);
             abrirFormulario(formVerProducto);
         }
 
