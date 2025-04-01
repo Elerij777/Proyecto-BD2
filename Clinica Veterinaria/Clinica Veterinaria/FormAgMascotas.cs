@@ -19,6 +19,8 @@ namespace Clinica_Veterinaria
     public partial class FormAgMascotas : Form
     {
         SqlConnection cnx;
+        private Dictionary<string, int> clientesDict = new Dictionary<string, int>();
+
         public FormAgMascotas(SqlConnection cnx)
         {
             InitializeComponent();
@@ -30,11 +32,49 @@ namespace Clinica_Veterinaria
             cbxGenero.Items.Add("Macho");
             cbxGenero.Items.Add("Hembra");
             cbxRaza.Items.Add("Comun Europeo");
-
+            
+            // Cargar clientes al combobox
+            CargarClientes();
         }
+
         public FormAgMascotas()
         {
             InitializeComponent();
+        }
+
+        private void CargarClientes()
+        {
+            try
+            {
+                clientesDict.Clear();
+                cbxClientes.Items.Clear();
+                
+                using (SqlCommand cmd = new SqlCommand("SELECT  Cliente_id, Nombre FROM Clientes ORDER BY Nombre", cnx))
+                {
+                    cnx.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = Convert.ToInt32(reader["Cliente_id"]);
+                            string nombre = reader["Nombre"].ToString();
+                            
+                            // Guardar la relación nombre-id en el diccionario
+                            clientesDict[nombre] = id;
+                            
+                            // Agregar el nombre al combobox
+                            cbxClientes.Items.Add(nombre);
+                        }
+                    }
+                    cnx.Close();
+                }
+                
+                cbxClientes.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los clientes: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -79,9 +119,10 @@ namespace Clinica_Veterinaria
                     cbxRaza.SelectedItem == null ||
                     string.IsNullOrWhiteSpace(txtPeso.Text) ||
                     cbxGenero.SelectedItem == null ||
-                    pictureBoxImagen.Image == null)
+                    pictureBoxImagen.Image == null ||
+                    cbxClientes.SelectedItem == null)
                 {
-                    MessageBox.Show("Por favor, complete todos los campos y seleccione una imagen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Por favor, complete todos los campos y seleccione una imagen y un cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 string nombre = txtNombre.Text;
@@ -90,7 +131,7 @@ namespace Clinica_Veterinaria
                 decimal peso = Convert.ToDecimal(txtPeso.Text);
                 string genero = cbxGenero.SelectedItem.ToString() == "Macho" ? "M" : "F";
                 DateTime fechaNacimiento = dtpFechaNacimiento.SelectionStart;
-                int clienteId = 1;
+                int clienteId = clientesDict[cbxClientes.SelectedItem.ToString()];
 
                 byte[] imagenBytes = null;
                 using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
@@ -99,11 +140,10 @@ namespace Clinica_Veterinaria
                     imagenBytes = ms.ToArray();
                 }
 
-                string query = @"INSERT INTO Mascotas (Cliente_id, Nombre, Especie, Raza, Peso, Genero, Fecha_nacimiento, Foto) 
-                         VALUES (@Cliente_id, @Nombre, @Especie, @Raza, @Peso, @Genero, @Fecha_nacimiento, @Foto)";
-
-                using (SqlCommand cmd = new SqlCommand(query, cnx))
+                using (SqlCommand cmd = new SqlCommand("spInsertarMascota", cnx))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    
                     cmd.Parameters.AddWithValue("@Cliente_id", clienteId);
                     cmd.Parameters.AddWithValue("@Nombre", nombre);
                     cmd.Parameters.AddWithValue("@Especie", especie);
@@ -125,6 +165,7 @@ namespace Clinica_Veterinaria
                     cbxGenero.SelectedIndex = -1;
                     dtpFechaNacimiento.SelectionStart = DateTime.Now;
                     pictureBoxImagen.Image = null;
+                    cbxClientes.SelectedIndex = -1; 
                 }
             }
             catch (Exception ex)

@@ -114,7 +114,7 @@
             BtnRegistrar.Name = "BtnRegistrar";
             BtnRegistrar.Size = new Size(94, 29);
             BtnRegistrar.TabIndex = 10;
-            BtnRegistrar.Text = "Regristrar";
+            BtnRegistrar.Text = "Registrar";
             BtnRegistrar.UseVisualStyleBackColor = true;
             BtnRegistrar.Click += BtnRegistrar_Click;
             // 

@@ -51,10 +51,10 @@ namespace Clinica_Veterinaria
 
             try
             {
-                string query = "INSERT INTO Clientes (Nombre, Telefono, Direccion) VALUES (@nombre, @telefono, @direccion)";
-
-                using (SqlCommand cmd = new SqlCommand(query, cnx))
+                using (SqlCommand cmd = new SqlCommand("spInsertarHumano", cnx))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    
                     cmd.Parameters.AddWithValue("@nombre", nombre);
                     cmd.Parameters.AddWithValue("@telefono", telefono);
                     cmd.Parameters.AddWithValue("@direccion", direccion);

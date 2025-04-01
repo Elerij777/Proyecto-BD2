@@ -46,6 +46,8 @@
             cbxGenero = new ComboBox();
             cbxEspecie = new ComboBox();
             cbxRaza = new ComboBox();
+            label8 = new Label();
+            cbxClientes = new ComboBox();
             panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxImagen).BeginInit();
             SuspendLayout();
@@ -57,7 +59,7 @@
             panelPrincipal.Dock = DockStyle.Top;
             panelPrincipal.Location = new Point(0, 0);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(935, 125);
+            panelPrincipal.Size = new Size(906, 125);
             panelPrincipal.TabIndex = 2;
             // 
             // labelPrincipal
@@ -89,7 +91,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(114, 207);
+            label2.Location = new Point(114, 254);
             label2.Name = "label2";
             label2.Size = new Size(62, 20);
             label2.TabIndex = 10;
@@ -98,7 +100,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(132, 254);
+            label3.Location = new Point(114, 298);
             label3.Name = "label3";
             label3.Size = new Size(44, 20);
             label3.TabIndex = 11;
@@ -148,7 +150,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(126, 293);
+            label7.Location = new Point(114, 342);
             label7.Name = "label7";
             label7.Size = new Size(42, 20);
             label7.TabIndex = 18;
@@ -156,7 +158,7 @@
             // 
             // btnSeleccionarFoto
             // 
-            btnSeleccionarFoto.Location = new Point(182, 293);
+            btnSeleccionarFoto.Location = new Point(182, 333);
             btnSeleccionarFoto.Name = "btnSeleccionarFoto";
             btnSeleccionarFoto.Size = new Size(125, 29);
             btnSeleccionarFoto.TabIndex = 19;
@@ -176,7 +178,7 @@
             // 
             // pictureBoxImagen
             // 
-            pictureBoxImagen.Location = new Point(132, 328);
+            pictureBoxImagen.Location = new Point(132, 385);
             pictureBoxImagen.Name = "pictureBoxImagen";
             pictureBoxImagen.Size = new Size(210, 164);
             pictureBoxImagen.TabIndex = 21;
@@ -193,7 +195,7 @@
             // cbxEspecie
             // 
             cbxEspecie.FormattingEnabled = true;
-            cbxEspecie.Location = new Point(182, 207);
+            cbxEspecie.Location = new Point(182, 246);
             cbxEspecie.Name = "cbxEspecie";
             cbxEspecie.Size = new Size(151, 28);
             cbxEspecie.TabIndex = 23;
@@ -201,16 +203,35 @@
             // cbxRaza
             // 
             cbxRaza.FormattingEnabled = true;
-            cbxRaza.Location = new Point(182, 246);
+            cbxRaza.Location = new Point(182, 290);
             cbxRaza.Name = "cbxRaza";
             cbxRaza.Size = new Size(151, 28);
             cbxRaza.TabIndex = 24;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(114, 207);
+            label8.Name = "label8";
+            label8.Size = new Size(58, 20);
+            label8.TabIndex = 25;
+            label8.Text = "Cliente:";
+            // 
+            // cbxClientes
+            // 
+            cbxClientes.FormattingEnabled = true;
+            cbxClientes.Location = new Point(178, 199);
+            cbxClientes.Name = "cbxClientes";
+            cbxClientes.Size = new Size(151, 28);
+            cbxClientes.TabIndex = 26;
             // 
             // FormAgMascotas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(935, 559);
+            ClientSize = new Size(906, 594);
+            Controls.Add(cbxClientes);
+            Controls.Add(label8);
             Controls.Add(cbxRaza);
             Controls.Add(cbxEspecie);
             Controls.Add(cbxGenero);
@@ -258,5 +279,7 @@
         private ComboBox cbxGenero;
         private ComboBox cbxEspecie;
         private ComboBox cbxRaza;
+        private Label label8;
+        private ComboBox cbxClientes;
     }
 }
