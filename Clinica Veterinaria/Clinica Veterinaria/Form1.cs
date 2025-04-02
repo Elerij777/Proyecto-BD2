@@ -90,7 +90,7 @@ namespace Clinica_Veterinaria
 
         private void btnVerHumanos_Click(object sender, EventArgs e)
         {
-            FormVerHumanos formVerHumanos = new FormVerHumanos();
+            FormVerHumanos formVerHumanos = new FormVerHumanos(cnx);
             abrirFormulario(formVerHumanos);
         }
 
