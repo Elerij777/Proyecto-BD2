@@ -127,5 +127,10 @@ namespace Clinica_Veterinaria
             FormClinica formClinica = new FormClinica(cnx);
             abrirFormulario(formClinica);
         }
+
+        private void btn_Administracion_Click(object sender, EventArgs e)
+        {
+            desplegarPanel(panel_Adm);
+        }
     }
 }
