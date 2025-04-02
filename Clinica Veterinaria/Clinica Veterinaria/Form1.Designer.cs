@@ -200,6 +200,7 @@ namespace Clinica_Veterinaria
             btn_Empleados.Text = "       Empleados";
             btn_Empleados.TextAlign = ContentAlignment.MiddleLeft;
             btn_Empleados.UseVisualStyleBackColor = false;
+            btn_Empleados.Click += btn_Empleados_Click;
             // 
             // btn_Administracion
             // 
@@ -260,6 +261,7 @@ namespace Clinica_Veterinaria
             btnHospedaje.Text = "       Hospedaje";
             btnHospedaje.TextAlign = ContentAlignment.MiddleLeft;
             btnHospedaje.UseVisualStyleBackColor = false;
+            btnHospedaje.Click += btnHospedaje_Click;
             // 
             // btnClinica
             // 

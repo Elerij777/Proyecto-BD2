@@ -132,5 +132,17 @@ namespace Clinica_Veterinaria
         {
             desplegarPanel(panel_Adm);
         }
+
+        private void btnHospedaje_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Empleados_Click(object sender, EventArgs e)
+        {
+            FormEmpleados formEmpleados = new FormEmpleados(cnx);
+            abrirFormulario(formEmpleados);
+
+        }
     }
 }
