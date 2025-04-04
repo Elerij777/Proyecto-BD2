@@ -58,7 +58,6 @@ namespace Clinica_Veterinaria
             panelLogo = new Panel();
             pictureBox1 = new PictureBox();
             panelPrincipal = new Panel();
-            dataGridView1 = new DataGridView();
             btnClientes = new Button();
             panelLateral.SuspendLayout();
             panel_Adm.SuspendLayout();
@@ -68,8 +67,6 @@ namespace Clinica_Veterinaria
             panelClientes.SuspendLayout();
             panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panelPrincipal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // btnClientes
@@ -79,10 +76,9 @@ namespace Clinica_Veterinaria
             btnClientes.FlatStyle = FlatStyle.Flat;
             btnClientes.Image = (Image)resources.GetObject("btnClientes.Image");
             btnClientes.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClientes.Location = new Point(0, 191);
-            btnClientes.Margin = new Padding(4);
+            btnClientes.Location = new Point(0, 153);
             btnClientes.Name = "btnClientes";
-            btnClientes.Size = new Size(259, 36);
+            btnClientes.Size = new Size(207, 29);
             btnClientes.TabIndex = 1;
             btnClientes.Text = "       Mascotas";
             btnClientes.TextAlign = ContentAlignment.MiddleLeft;
@@ -106,9 +102,8 @@ namespace Clinica_Veterinaria
             panelLateral.Controls.Add(panelLogo);
             panelLateral.Dock = DockStyle.Left;
             panelLateral.Location = new Point(0, 0);
-            panelLateral.Margin = new Padding(4);
             panelLateral.Name = "panelLateral";
-            panelLateral.Size = new Size(285, 872);
+            panelLateral.Size = new Size(228, 698);
             panelLateral.TabIndex = 0;
             // 
             // panel_Adm
@@ -120,9 +115,10 @@ namespace Clinica_Veterinaria
             panel_Adm.Controls.Add(btn_Compras);
             panel_Adm.Controls.Add(btn_Empleados);
             panel_Adm.Dock = DockStyle.Top;
-            panel_Adm.Location = new Point(0, 733);
+            panel_Adm.Location = new Point(0, 587);
+            panel_Adm.Margin = new Padding(2, 2, 2, 2);
             panel_Adm.Name = "panel_Adm";
-            panel_Adm.Size = new Size(259, 192);
+            panel_Adm.Size = new Size(207, 154);
             panel_Adm.TabIndex = 1;
             panel_Adm.Visible = false;
             // 
@@ -132,10 +128,10 @@ namespace Clinica_Veterinaria
             btn_proveedores.Dock = DockStyle.Top;
             btn_proveedores.FlatAppearance.BorderSize = 0;
             btn_proveedores.FlatStyle = FlatStyle.Flat;
-            btn_proveedores.Location = new Point(0, 144);
-            btn_proveedores.Margin = new Padding(4);
+            btn_proveedores.Location = new Point(0, 116);
             btn_proveedores.Name = "btn_proveedores";
-            btn_proveedores.Size = new Size(259, 36);
+            btn_proveedores.Padding = new Padding(15, 0, 0, 0);
+            btn_proveedores.Size = new Size(207, 29);
             btn_proveedores.TabIndex = 14;
             btn_proveedores.Text = "       Proveedores";
             btn_proveedores.TextAlign = ContentAlignment.MiddleLeft;
@@ -147,10 +143,10 @@ namespace Clinica_Veterinaria
             btn_bancos.Dock = DockStyle.Top;
             btn_bancos.FlatAppearance.BorderSize = 0;
             btn_bancos.FlatStyle = FlatStyle.Flat;
-            btn_bancos.Location = new Point(0, 108);
-            btn_bancos.Margin = new Padding(4);
+            btn_bancos.Location = new Point(0, 87);
             btn_bancos.Name = "btn_bancos";
-            btn_bancos.Size = new Size(259, 36);
+            btn_bancos.Padding = new Padding(15, 0, 0, 0);
+            btn_bancos.Size = new Size(207, 29);
             btn_bancos.TabIndex = 13;
             btn_bancos.Text = "       Bancos";
             btn_bancos.TextAlign = ContentAlignment.MiddleLeft;
@@ -162,10 +158,10 @@ namespace Clinica_Veterinaria
             btn_servicios.Dock = DockStyle.Top;
             btn_servicios.FlatAppearance.BorderSize = 0;
             btn_servicios.FlatStyle = FlatStyle.Flat;
-            btn_servicios.Location = new Point(0, 72);
-            btn_servicios.Margin = new Padding(4);
+            btn_servicios.Location = new Point(0, 58);
             btn_servicios.Name = "btn_servicios";
-            btn_servicios.Size = new Size(259, 36);
+            btn_servicios.Padding = new Padding(15, 0, 0, 0);
+            btn_servicios.Size = new Size(207, 29);
             btn_servicios.TabIndex = 12;
             btn_servicios.Text = "       Servicios";
             btn_servicios.TextAlign = ContentAlignment.MiddleLeft;
@@ -177,10 +173,10 @@ namespace Clinica_Veterinaria
             btn_Compras.Dock = DockStyle.Top;
             btn_Compras.FlatAppearance.BorderSize = 0;
             btn_Compras.FlatStyle = FlatStyle.Flat;
-            btn_Compras.Location = new Point(0, 36);
-            btn_Compras.Margin = new Padding(4);
+            btn_Compras.Location = new Point(0, 29);
             btn_Compras.Name = "btn_Compras";
-            btn_Compras.Size = new Size(259, 36);
+            btn_Compras.Padding = new Padding(15, 0, 0, 0);
+            btn_Compras.Size = new Size(207, 29);
             btn_Compras.TabIndex = 11;
             btn_Compras.Text = "       Compras";
             btn_Compras.TextAlign = ContentAlignment.MiddleLeft;
@@ -193,9 +189,9 @@ namespace Clinica_Veterinaria
             btn_Empleados.FlatAppearance.BorderSize = 0;
             btn_Empleados.FlatStyle = FlatStyle.Flat;
             btn_Empleados.Location = new Point(0, 0);
-            btn_Empleados.Margin = new Padding(4);
             btn_Empleados.Name = "btn_Empleados";
-            btn_Empleados.Size = new Size(259, 36);
+            btn_Empleados.Padding = new Padding(15, 0, 0, 0);
+            btn_Empleados.Size = new Size(207, 29);
             btn_Empleados.TabIndex = 10;
             btn_Empleados.Text = "       Empleados";
             btn_Empleados.TextAlign = ContentAlignment.MiddleLeft;
@@ -207,10 +203,11 @@ namespace Clinica_Veterinaria
             btn_Administracion.Dock = DockStyle.Top;
             btn_Administracion.FlatAppearance.BorderSize = 0;
             btn_Administracion.FlatStyle = FlatStyle.Flat;
-            btn_Administracion.Location = new Point(0, 697);
-            btn_Administracion.Margin = new Padding(4);
+            btn_Administracion.Image = Properties.Resources._992871;
+            btn_Administracion.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Administracion.Location = new Point(0, 558);
             btn_Administracion.Name = "btn_Administracion";
-            btn_Administracion.Size = new Size(259, 36);
+            btn_Administracion.Size = new Size(207, 29);
             btn_Administracion.TabIndex = 9;
             btn_Administracion.Text = "       Administracion";
             btn_Administracion.TextAlign = ContentAlignment.MiddleLeft;
@@ -224,10 +221,9 @@ namespace Clinica_Veterinaria
             panelCitas.Controls.Add(btnHospedaje);
             panelCitas.Controls.Add(btnClinica);
             panelCitas.Dock = DockStyle.Top;
-            panelCitas.Location = new Point(0, 578);
-            panelCitas.Margin = new Padding(4);
+            panelCitas.Location = new Point(0, 463);
             panelCitas.Name = "panelCitas";
-            panelCitas.Size = new Size(259, 119);
+            panelCitas.Size = new Size(207, 95);
             panelCitas.TabIndex = 1;
             // 
             // btnGrooming
@@ -237,10 +233,10 @@ namespace Clinica_Veterinaria
             btnGrooming.FlatAppearance.BorderSize = 0;
             btnGrooming.FlatStyle = FlatStyle.Flat;
             btnGrooming.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGrooming.Location = new Point(0, 72);
-            btnGrooming.Margin = new Padding(4);
+            btnGrooming.Location = new Point(0, 58);
             btnGrooming.Name = "btnGrooming";
-            btnGrooming.Size = new Size(259, 36);
+            btnGrooming.Padding = new Padding(15, 0, 0, 0);
+            btnGrooming.Size = new Size(207, 29);
             btnGrooming.TabIndex = 11;
             btnGrooming.Text = "       Grooming";
             btnGrooming.TextAlign = ContentAlignment.MiddleLeft;
@@ -253,10 +249,10 @@ namespace Clinica_Veterinaria
             btnHospedaje.FlatAppearance.BorderSize = 0;
             btnHospedaje.FlatStyle = FlatStyle.Flat;
             btnHospedaje.ImageAlign = ContentAlignment.MiddleLeft;
-            btnHospedaje.Location = new Point(0, 36);
-            btnHospedaje.Margin = new Padding(4);
+            btnHospedaje.Location = new Point(0, 29);
             btnHospedaje.Name = "btnHospedaje";
-            btnHospedaje.Size = new Size(259, 36);
+            btnHospedaje.Padding = new Padding(15, 0, 0, 0);
+            btnHospedaje.Size = new Size(207, 29);
             btnHospedaje.TabIndex = 10;
             btnHospedaje.Text = "       Hospedaje";
             btnHospedaje.TextAlign = ContentAlignment.MiddleLeft;
@@ -271,9 +267,9 @@ namespace Clinica_Veterinaria
             btnClinica.FlatStyle = FlatStyle.Flat;
             btnClinica.ImageAlign = ContentAlignment.MiddleLeft;
             btnClinica.Location = new Point(0, 0);
-            btnClinica.Margin = new Padding(4);
             btnClinica.Name = "btnClinica";
-            btnClinica.Size = new Size(259, 36);
+            btnClinica.Padding = new Padding(15, 0, 0, 0);
+            btnClinica.Size = new Size(207, 29);
             btnClinica.TabIndex = 9;
             btnClinica.Text = "       Clinica";
             btnClinica.TextAlign = ContentAlignment.MiddleLeft;
@@ -284,11 +280,12 @@ namespace Clinica_Veterinaria
             // 
             btnCitas.Dock = DockStyle.Top;
             btnCitas.FlatAppearance.BorderSize = 0;
-            btnCitas.FlatStyle = FlatStyle.Flat;
-            btnCitas.Location = new Point(0, 542);
-            btnCitas.Margin = new Padding(4);
+            btnCitas.FlatStyle = FlatStyle.Popup;
+            btnCitas.Image = Properties.Resources._7322265;
+            btnCitas.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCitas.Location = new Point(0, 434);
             btnCitas.Name = "btnCitas";
-            btnCitas.Size = new Size(259, 36);
+            btnCitas.Size = new Size(207, 29);
             btnCitas.TabIndex = 8;
             btnCitas.Text = "       Citas y servicios";
             btnCitas.TextAlign = ContentAlignment.MiddleLeft;
@@ -301,10 +298,9 @@ namespace Clinica_Veterinaria
             panelInventario.Controls.Add(btnVerProductos);
             panelInventario.Controls.Add(btnAgregarInventario);
             panelInventario.Dock = DockStyle.Top;
-            panelInventario.Location = new Point(0, 456);
-            panelInventario.Margin = new Padding(4);
+            panelInventario.Location = new Point(0, 365);
             panelInventario.Name = "panelInventario";
-            panelInventario.Size = new Size(259, 86);
+            panelInventario.Size = new Size(207, 69);
             panelInventario.TabIndex = 7;
             // 
             // btnVerProductos
@@ -312,11 +308,10 @@ namespace Clinica_Veterinaria
             btnVerProductos.Dock = DockStyle.Top;
             btnVerProductos.FlatAppearance.BorderSize = 0;
             btnVerProductos.FlatStyle = FlatStyle.Flat;
-            btnVerProductos.Location = new Point(0, 36);
-            btnVerProductos.Margin = new Padding(4);
+            btnVerProductos.Location = new Point(0, 29);
             btnVerProductos.Name = "btnVerProductos";
-            btnVerProductos.Padding = new Padding(50, 0, 0, 0);
-            btnVerProductos.Size = new Size(259, 36);
+            btnVerProductos.Padding = new Padding(40, 0, 0, 0);
+            btnVerProductos.Size = new Size(207, 29);
             btnVerProductos.TabIndex = 1;
             btnVerProductos.Text = "Ver Productos";
             btnVerProductos.TextAlign = ContentAlignment.MiddleLeft;
@@ -329,10 +324,9 @@ namespace Clinica_Veterinaria
             btnAgregarInventario.FlatAppearance.BorderSize = 0;
             btnAgregarInventario.FlatStyle = FlatStyle.Flat;
             btnAgregarInventario.Location = new Point(0, 0);
-            btnAgregarInventario.Margin = new Padding(4);
             btnAgregarInventario.Name = "btnAgregarInventario";
-            btnAgregarInventario.Padding = new Padding(50, 0, 0, 0);
-            btnAgregarInventario.Size = new Size(259, 36);
+            btnAgregarInventario.Padding = new Padding(40, 0, 0, 0);
+            btnAgregarInventario.Size = new Size(207, 29);
             btnAgregarInventario.TabIndex = 0;
             btnAgregarInventario.Text = "Agregar Producto";
             btnAgregarInventario.TextAlign = ContentAlignment.MiddleLeft;
@@ -346,10 +340,9 @@ namespace Clinica_Veterinaria
             btnInventario.FlatStyle = FlatStyle.Flat;
             btnInventario.Image = (Image)resources.GetObject("btnInventario.Image");
             btnInventario.ImageAlign = ContentAlignment.MiddleLeft;
-            btnInventario.Location = new Point(0, 420);
-            btnInventario.Margin = new Padding(4);
+            btnInventario.Location = new Point(0, 336);
             btnInventario.Name = "btnInventario";
-            btnInventario.Size = new Size(259, 36);
+            btnInventario.Size = new Size(207, 29);
             btnInventario.TabIndex = 6;
             btnInventario.Text = "       Inventario";
             btnInventario.TextAlign = ContentAlignment.MiddleLeft;
@@ -362,10 +355,9 @@ namespace Clinica_Veterinaria
             panelHumanos.Controls.Add(btnAgregarHumano);
             panelHumanos.Controls.Add(btnVerHumanos);
             panelHumanos.Dock = DockStyle.Top;
-            panelHumanos.Location = new Point(0, 342);
-            panelHumanos.Margin = new Padding(4);
+            panelHumanos.Location = new Point(0, 274);
             panelHumanos.Name = "panelHumanos";
-            panelHumanos.Size = new Size(259, 78);
+            panelHumanos.Size = new Size(207, 62);
             panelHumanos.TabIndex = 5;
             // 
             // btnAgregarHumano
@@ -373,11 +365,10 @@ namespace Clinica_Veterinaria
             btnAgregarHumano.Dock = DockStyle.Top;
             btnAgregarHumano.FlatAppearance.BorderSize = 0;
             btnAgregarHumano.FlatStyle = FlatStyle.Flat;
-            btnAgregarHumano.Location = new Point(0, 36);
-            btnAgregarHumano.Margin = new Padding(4);
+            btnAgregarHumano.Location = new Point(0, 29);
             btnAgregarHumano.Name = "btnAgregarHumano";
-            btnAgregarHumano.Padding = new Padding(50, 0, 0, 0);
-            btnAgregarHumano.Size = new Size(259, 36);
+            btnAgregarHumano.Padding = new Padding(40, 0, 0, 0);
+            btnAgregarHumano.Size = new Size(207, 29);
             btnAgregarHumano.TabIndex = 1;
             btnAgregarHumano.Text = "Agregar Humanos";
             btnAgregarHumano.TextAlign = ContentAlignment.MiddleLeft;
@@ -390,10 +381,9 @@ namespace Clinica_Veterinaria
             btnVerHumanos.FlatAppearance.BorderSize = 0;
             btnVerHumanos.FlatStyle = FlatStyle.Flat;
             btnVerHumanos.Location = new Point(0, 0);
-            btnVerHumanos.Margin = new Padding(4);
             btnVerHumanos.Name = "btnVerHumanos";
-            btnVerHumanos.Padding = new Padding(50, 0, 0, 0);
-            btnVerHumanos.Size = new Size(259, 36);
+            btnVerHumanos.Padding = new Padding(40, 0, 0, 0);
+            btnVerHumanos.Size = new Size(207, 29);
             btnVerHumanos.TabIndex = 0;
             btnVerHumanos.Text = "Ver Humanos";
             btnVerHumanos.TextAlign = ContentAlignment.MiddleLeft;
@@ -407,10 +397,9 @@ namespace Clinica_Veterinaria
             btnHumanos.FlatStyle = FlatStyle.Flat;
             btnHumanos.Image = (Image)resources.GetObject("btnHumanos.Image");
             btnHumanos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnHumanos.Location = new Point(0, 306);
-            btnHumanos.Margin = new Padding(4);
+            btnHumanos.Location = new Point(0, 245);
             btnHumanos.Name = "btnHumanos";
-            btnHumanos.Size = new Size(259, 36);
+            btnHumanos.Size = new Size(207, 29);
             btnHumanos.TabIndex = 4;
             btnHumanos.Text = "       Humanos";
             btnHumanos.TextAlign = ContentAlignment.MiddleLeft;
@@ -423,10 +412,9 @@ namespace Clinica_Veterinaria
             panelClientes.Controls.Add(btnAgregarClientes);
             panelClientes.Controls.Add(btnVerClientes);
             panelClientes.Dock = DockStyle.Top;
-            panelClientes.Location = new Point(0, 227);
-            panelClientes.Margin = new Padding(4);
+            panelClientes.Location = new Point(0, 182);
             panelClientes.Name = "panelClientes";
-            panelClientes.Size = new Size(259, 79);
+            panelClientes.Size = new Size(207, 63);
             panelClientes.TabIndex = 2;
             // 
             // btnAgregarClientes
@@ -434,11 +422,10 @@ namespace Clinica_Veterinaria
             btnAgregarClientes.Dock = DockStyle.Top;
             btnAgregarClientes.FlatAppearance.BorderSize = 0;
             btnAgregarClientes.FlatStyle = FlatStyle.Flat;
-            btnAgregarClientes.Location = new Point(0, 36);
-            btnAgregarClientes.Margin = new Padding(4);
+            btnAgregarClientes.Location = new Point(0, 29);
             btnAgregarClientes.Name = "btnAgregarClientes";
-            btnAgregarClientes.Padding = new Padding(50, 0, 0, 0);
-            btnAgregarClientes.Size = new Size(259, 36);
+            btnAgregarClientes.Padding = new Padding(40, 0, 0, 0);
+            btnAgregarClientes.Size = new Size(207, 29);
             btnAgregarClientes.TabIndex = 1;
             btnAgregarClientes.Text = "Agregar mascotas";
             btnAgregarClientes.TextAlign = ContentAlignment.MiddleLeft;
@@ -451,10 +438,9 @@ namespace Clinica_Veterinaria
             btnVerClientes.FlatAppearance.BorderSize = 0;
             btnVerClientes.FlatStyle = FlatStyle.Flat;
             btnVerClientes.Location = new Point(0, 0);
-            btnVerClientes.Margin = new Padding(4);
             btnVerClientes.Name = "btnVerClientes";
-            btnVerClientes.Padding = new Padding(50, 0, 0, 0);
-            btnVerClientes.Size = new Size(259, 36);
+            btnVerClientes.Padding = new Padding(40, 0, 0, 0);
+            btnVerClientes.Size = new Size(207, 29);
             btnVerClientes.TabIndex = 0;
             btnVerClientes.Text = "Ver Mascotas";
             btnVerClientes.TextAlign = ContentAlignment.MiddleLeft;
@@ -466,9 +452,8 @@ namespace Clinica_Veterinaria
             panelLogo.Controls.Add(pictureBox1);
             panelLogo.Dock = DockStyle.Top;
             panelLogo.Location = new Point(0, 0);
-            panelLogo.Margin = new Padding(4);
             panelLogo.Name = "panelLogo";
-            panelLogo.Size = new Size(259, 191);
+            panelLogo.Size = new Size(207, 153);
             panelLogo.TabIndex = 0;
             // 
             // pictureBox1
@@ -477,9 +462,8 @@ namespace Clinica_Veterinaria
             pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Image = Properties.Resources.BD2logoProyect;
             pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Margin = new Padding(4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(259, 191);
+            pictureBox1.Size = new Size(207, 153);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -487,33 +471,20 @@ namespace Clinica_Veterinaria
             // 
             // panelPrincipal
             // 
-            panelPrincipal.Controls.Add(dataGridView1);
             panelPrincipal.Dock = DockStyle.Fill;
-            panelPrincipal.Location = new Point(285, 0);
-            panelPrincipal.Margin = new Padding(4);
+            panelPrincipal.Location = new Point(228, 0);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(1089, 872);
+            panelPrincipal.Size = new Size(871, 698);
             panelPrincipal.TabIndex = 1;
             panelPrincipal.Paint += panelPrincipal_Paint;
             // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(766, 92);
-            dataGridView1.Margin = new Padding(4);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(375, 235);
-            dataGridView1.TabIndex = 0;
-            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1374, 872);
+            ClientSize = new Size(1099, 698);
             Controls.Add(panelPrincipal);
             Controls.Add(panelLateral);
-            Margin = new Padding(4);
             Name = "Form1";
             Text = "Form1";
             panelLateral.ResumeLayout(false);
@@ -524,8 +495,6 @@ namespace Clinica_Veterinaria
             panelClientes.ResumeLayout(false);
             panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panelPrincipal.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -548,7 +517,6 @@ namespace Clinica_Veterinaria
         private Panel panelInventario;
         private Button btnVerProductos;
         private Button btnAgregarInventario;
-        private DataGridView dataGridView1;
         private Button btnHospedaje;
         private Button btnClinica;
         private Panel panelCitas;

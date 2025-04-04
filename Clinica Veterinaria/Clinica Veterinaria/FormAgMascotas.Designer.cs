@@ -130,7 +130,6 @@
             label5.Size = new Size(42, 20);
             label5.TabIndex = 15;
             label5.Text = "Peso:";
-            label5.Click += label5_Click;
             // 
             // dtpFechaNacimiento
             // 
@@ -199,6 +198,7 @@
             cbxEspecie.Name = "cbxEspecie";
             cbxEspecie.Size = new Size(151, 28);
             cbxEspecie.TabIndex = 23;
+            cbxEspecie.SelectedIndexChanged += cbxEspecie_SelectedIndexChanged;
             // 
             // cbxRaza
             // 
@@ -251,7 +251,6 @@
             Controls.Add(panelPrincipal);
             Name = "FormAgMascotas";
             Text = "Form3";
-            Load += Form3_Load;
             panelPrincipal.ResumeLayout(false);
             panelPrincipal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxImagen).EndInit();

@@ -25,22 +25,130 @@ namespace Clinica_Veterinaria
         {
             InitializeComponent();
             this.cnx = cnx;
-            cbxEspecie.Items.Add("Perro");
-            cbxEspecie.Items.Add("Gato");
-            cbxEspecie.Items.Add("Pájaro");
-            cbxEspecie.Items.Add("Conejo");
+            
             cbxGenero.Items.Add("Macho");
             cbxGenero.Items.Add("Hembra");
             cbxRaza.Items.Add("Comun Europeo");
-            
+
             // Cargar clientes al combobox
             CargarClientes();
+            CargarEspecies();
         }
 
         public FormAgMascotas()
         {
             InitializeComponent();
         }
+        public void CargarEspecies()
+        {
+            try
+            {
+
+                {
+                    if (cnx.State != ConnectionState.Open)
+                    {
+                        cnx.Open();
+                    }
+
+                    SqlCommand cmd = new SqlCommand("Sp_Leer_Razas", cnx);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+
+                    DataTable uniqueSpecies = dt.DefaultView.ToTable(true, "especie");
+
+                    cbxEspecie.DataSource = uniqueSpecies;
+                    cbxEspecie.DisplayMember = "especie";
+                    cbxEspecie.ValueMember = "especie";
+
+                    int index = cbxEspecie.FindStringExact("Gato");
+                    cbxEspecie.SelectedIndex = index >= 0 ? index : 0;
+                    cnx.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar especies: " + ex.Message);
+            }
+        }
+        private void cbxEspecie_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (cbxEspecie.SelectedItem != null)
+            {
+                string especieSeleccionada = cbxEspecie.Text.ToString();
+
+                CargarRazasPorEspecie(especieSeleccionada);
+            }
+        }
+
+        private void CargarRazasPorEspecie(string especie)
+        {
+            if (string.IsNullOrEmpty(especie))
+            {
+                MessageBox.Show("Por favor, seleccione una especie.");
+                return;
+            }
+
+            SqlCommand cmd = new SqlCommand("Sp_Leer_RazasPorEspecie", cnx);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Especie", especie);
+
+            try
+            {
+                if (cnx.State != ConnectionState.Open)
+                {
+                    cnx.Open();
+                }
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                cbxRaza.Items.Clear();
+
+                bool razasEncontradas = false;
+                while (reader.Read())
+                {
+                    string raza = reader["raza"].ToString();
+                    cbxRaza.Items.Add(raza);
+                    razasEncontradas = true;
+                }
+
+                if (!razasEncontradas)
+                {
+                    cbxRaza.Items.Add("No hay razas disponibles");
+                }
+
+                if (cbxRaza.Items.Count > 0)
+                {
+                    cbxRaza.SelectedIndex = 0;
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las razas: " + ex.Message);
+            }
+            finally
+            {
+                if (cnx.State == ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
+            }
+        }
+
+
+
+
+
+
+
+
 
         private void CargarClientes()
         {
@@ -48,27 +156,31 @@ namespace Clinica_Veterinaria
             {
                 clientesDict.Clear();
                 cbxClientes.Items.Clear();
-                
+
                 using (SqlCommand cmd = new SqlCommand("SELECT  Cliente_id, Nombre FROM Clientes ORDER BY Nombre", cnx))
                 {
-                    cnx.Open();
+                    if (cnx.State != ConnectionState.Open)
+                    {
+                        cnx.Open();
+                    }
+
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             int id = Convert.ToInt32(reader["Cliente_id"]);
                             string nombre = reader["Nombre"].ToString();
-                            
+
                             // Guardar la relación nombre-id en el diccionario
                             clientesDict[nombre] = id;
-                            
+
                             // Agregar el nombre al combobox
                             cbxClientes.Items.Add(nombre);
                         }
                     }
                     cnx.Close();
                 }
-                
+
                 cbxClientes.SelectedIndex = -1;
             }
             catch (Exception ex)
@@ -76,21 +188,9 @@ namespace Clinica_Veterinaria
                 MessageBox.Show("Error al cargar los clientes: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
 
-        private void Form3_Load(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnSeleccionarFoto_Click(object sender, EventArgs e)
         {
@@ -143,7 +243,7 @@ namespace Clinica_Veterinaria
                 using (SqlCommand cmd = new SqlCommand("spInsertarMascota", cnx))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    
+
                     cmd.Parameters.AddWithValue("@Cliente_id", clienteId);
                     cmd.Parameters.AddWithValue("@Nombre", nombre);
                     cmd.Parameters.AddWithValue("@Especie", especie);
@@ -153,7 +253,11 @@ namespace Clinica_Veterinaria
                     cmd.Parameters.AddWithValue("@Fecha_nacimiento", fechaNacimiento);
                     cmd.Parameters.AddWithValue("@Foto", imagenBytes);
 
-                    cnx.Open();
+                    if (cnx.State != ConnectionState.Open)
+                    {
+                        cnx.Open();
+                    }
+
                     cmd.ExecuteNonQuery();
                     cnx.Close();
 
@@ -165,7 +269,7 @@ namespace Clinica_Veterinaria
                     cbxGenero.SelectedIndex = -1;
                     dtpFechaNacimiento.SelectionStart = DateTime.Now;
                     pictureBoxImagen.Image = null;
-                    cbxClientes.SelectedIndex = -1; 
+                    cbxClientes.SelectedIndex = -1;
                 }
             }
             catch (Exception ex)
@@ -173,6 +277,7 @@ namespace Clinica_Veterinaria
                 MessageBox.Show("Error al agregar la mascota: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
     }
 }
