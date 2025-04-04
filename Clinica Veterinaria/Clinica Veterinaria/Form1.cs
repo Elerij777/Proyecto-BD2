@@ -7,10 +7,13 @@ namespace Clinica_Veterinaria
     {
 
         SqlConnection cnx;
+        public int MascotaId = 0;
+        public int HabitacionId = 0;
         public Form1()
         {
             InitializeComponent();
             esconderPaneles();
+            
             formPrincipal formulario = new formPrincipal();
             abrirFormulario(formulario);
             this.Text = "Clinica Veterinaria";
@@ -143,6 +146,12 @@ namespace Clinica_Veterinaria
             FormEmpleados formEmpleados = new FormEmpleados(cnx);
             abrirFormulario(formEmpleados);
 
+        }
+
+        private void BtnAgregarHospedaje_Click(object sender, EventArgs e)
+        {
+            FormAgHospedaje form = new FormAgHospedaje(cnx);
+            abrirFormulario(form);
         }
     }
 }

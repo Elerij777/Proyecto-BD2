@@ -33,10 +33,7 @@
             label1 = new Label();
             txtBuscar = new TextBox();
             dataGridView1 = new DataGridView();
-            btnAgregar = new Button();
-            btnEditar = new Button();
-            btnEliminar = new Button();
-            btnSalir = new Button();
+            btnGuardar = new Button();
             panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -47,102 +44,69 @@
             panelPrincipal.Controls.Add(labelPrincipal);
             panelPrincipal.Dock = DockStyle.Top;
             panelPrincipal.Location = new Point(0, 0);
-            panelPrincipal.Margin = new Padding(4);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(1000, 79);
+            panelPrincipal.Size = new Size(800, 73);
             panelPrincipal.TabIndex = 3;
             // 
             // labelPrincipal
             // 
             labelPrincipal.AutoSize = true;
             labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(386, 18);
-            labelPrincipal.Margin = new Padding(4, 0, 4, 0);
+            labelPrincipal.Location = new Point(309, 14);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(213, 50);
+            labelPrincipal.Size = new Size(183, 43);
             labelPrincipal.TabIndex = 0;
             labelPrincipal.Text = "Humanos";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(43, 100);
+            label1.Location = new Point(34, 80);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(67, 25);
+            label1.Size = new Size(55, 20);
             label1.TabIndex = 4;
             label1.Text = "Buscar:";
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(129, 97);
+            txtBuscar.Location = new Point(103, 78);
+            txtBuscar.Margin = new Padding(2);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(283, 31);
+            txtBuscar.Size = new Size(227, 27);
             txtBuscar.TabIndex = 5;
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(71, 147);
+            dataGridView1.Location = new Point(57, 118);
+            dataGridView1.Margin = new Padding(2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(553, 322);
+            dataGridView1.Size = new Size(541, 258);
             dataGridView1.TabIndex = 6;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // btnAgregar
+            // btnGuardar
             // 
-            btnAgregar.Location = new Point(71, 504);
-            btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(112, 34);
-            btnAgregar.TabIndex = 7;
-            btnAgregar.Text = "Agregar";
-            btnAgregar.UseVisualStyleBackColor = true;
-            btnAgregar.Click += btnAgregar_Click;
-            // 
-            // btnEditar
-            // 
-            btnEditar.Location = new Point(253, 504);
-            btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(112, 34);
-            btnEditar.TabIndex = 8;
-            btnEditar.Text = "Editar";
-            btnEditar.UseVisualStyleBackColor = true;
-            btnEditar.Click += btnEditar_Click;
-            // 
-            // btnEliminar
-            // 
-            btnEliminar.Location = new Point(452, 504);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(112, 34);
-            btnEliminar.TabIndex = 9;
-            btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = true;
-            btnEliminar.Click += btnEliminar_Click;
-            // 
-            // btnSalir
-            // 
-            btnSalir.Location = new Point(650, 504);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(112, 34);
-            btnSalir.TabIndex = 10;
-            btnSalir.Text = "Salir";
-            btnSalir.UseVisualStyleBackColor = true;
-            btnSalir.Click += btnSalir_Click;
+            btnGuardar.Location = new Point(57, 403);
+            btnGuardar.Margin = new Padding(2);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(148, 27);
+            btnGuardar.TabIndex = 7;
+            btnGuardar.Text = "Guardar Cambios";
+            btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // FormVerHumanos
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1000, 562);
-            Controls.Add(btnSalir);
-            Controls.Add(btnEliminar);
-            Controls.Add(btnEditar);
-            Controls.Add(btnAgregar);
+            ClientSize = new Size(800, 450);
+            Controls.Add(btnGuardar);
             Controls.Add(dataGridView1);
             Controls.Add(txtBuscar);
             Controls.Add(label1);
             Controls.Add(panelPrincipal);
-            Margin = new Padding(4);
             Name = "FormVerHumanos";
             Text = "FormVerHumanos";
             Load += FormVerHumanos_Load;
@@ -160,9 +124,6 @@
         private Label label1;
         private TextBox txtBuscar;
         private DataGridView dataGridView1;
-        private Button btnAgregar;
-        private Button btnEditar;
-        private Button btnEliminar;
-        private Button btnSalir;
+        private Button btnGuardar;
     }
 }

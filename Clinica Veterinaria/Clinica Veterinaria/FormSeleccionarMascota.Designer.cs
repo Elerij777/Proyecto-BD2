@@ -1,6 +1,6 @@
 ﻿namespace Clinica_Veterinaria
 {
-    partial class FormVerMascotas
+    partial class FormSeleccionarMascota
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +31,7 @@
             panelPrincipal = new Panel();
             labelPrincipal = new Label();
             dgvMascotas = new DataGridView();
+            btnSeleccionar = new Button();
             panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMascotas).BeginInit();
             SuspendLayout();
@@ -43,37 +44,47 @@
             panelPrincipal.Location = new Point(0, 0);
             panelPrincipal.Name = "panelPrincipal";
             panelPrincipal.Size = new Size(800, 125);
-            panelPrincipal.TabIndex = 3;
+            panelPrincipal.TabIndex = 5;
             // 
             // labelPrincipal
             // 
             labelPrincipal.AutoSize = true;
             labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(305, 34);
+            labelPrincipal.Location = new Point(200, 42);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(192, 43);
+            labelPrincipal.Size = new Size(398, 43);
             labelPrincipal.TabIndex = 0;
-            labelPrincipal.Text = "Mascotas";
+            labelPrincipal.Text = "Seleccionar Mascota";
             // 
             // dgvMascotas
             // 
             dgvMascotas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMascotas.Location = new Point(12, 148);
+            dgvMascotas.Location = new Point(21, 144);
             dgvMascotas.Name = "dgvMascotas";
             dgvMascotas.RowHeadersWidth = 51;
-            dgvMascotas.Size = new Size(764, 290);
-            dgvMascotas.TabIndex = 4;
-            dgvMascotas.CellContentClick += dgvProductos_CellContentClick;
+            dgvMascotas.Size = new Size(748, 281);
+            dgvMascotas.TabIndex = 6;
             // 
-            // FormVerMascotas
+            // btnSeleccionar
+            // 
+            btnSeleccionar.Location = new Point(21, 449);
+            btnSeleccionar.Name = "btnSeleccionar";
+            btnSeleccionar.Size = new Size(94, 29);
+            btnSeleccionar.TabIndex = 7;
+            btnSeleccionar.Text = "Seleccionar";
+            btnSeleccionar.UseVisualStyleBackColor = true;
+            btnSeleccionar.Click += btnSeleccionar_Click;
+            // 
+            // FormSeleccionarMascota
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 486);
+            ClientSize = new Size(800, 490);
+            Controls.Add(btnSeleccionar);
             Controls.Add(dgvMascotas);
             Controls.Add(panelPrincipal);
-            Name = "FormVerMascotas";
-            Text = "Form4";
+            Name = "FormSeleccionarMascota";
+            Text = "FormSeleccionarMascota";
             panelPrincipal.ResumeLayout(false);
             panelPrincipal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMascotas).EndInit();
@@ -85,5 +96,6 @@
         private Panel panelPrincipal;
         private Label labelPrincipal;
         private DataGridView dgvMascotas;
+        private Button btnSeleccionar;
     }
 }

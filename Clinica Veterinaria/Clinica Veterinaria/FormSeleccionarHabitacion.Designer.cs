@@ -1,6 +1,6 @@
 ﻿namespace Clinica_Veterinaria
 {
-    partial class FormVerMascotas
+    partial class FormSeleccionarHabitacion
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            dgvHabitaciones = new DataGridView();
             panelPrincipal = new Panel();
             labelPrincipal = new Label();
-            dgvMascotas = new DataGridView();
+            btnSeleccionar = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvHabitaciones).BeginInit();
             panelPrincipal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvMascotas).BeginInit();
             SuspendLayout();
+            // 
+            // dgvHabitaciones
+            // 
+            dgvHabitaciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvHabitaciones.Location = new Point(21, 157);
+            dgvHabitaciones.Name = "dgvHabitaciones";
+            dgvHabitaciones.RowHeadersWidth = 51;
+            dgvHabitaciones.Size = new Size(748, 281);
+            dgvHabitaciones.TabIndex = 8;
             // 
             // panelPrincipal
             // 
@@ -43,47 +53,49 @@
             panelPrincipal.Location = new Point(0, 0);
             panelPrincipal.Name = "panelPrincipal";
             panelPrincipal.Size = new Size(800, 125);
-            panelPrincipal.TabIndex = 3;
+            panelPrincipal.TabIndex = 7;
             // 
             // labelPrincipal
             // 
             labelPrincipal.AutoSize = true;
             labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(305, 34);
+            labelPrincipal.Location = new Point(170, 41);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(192, 43);
+            labelPrincipal.Size = new Size(448, 43);
             labelPrincipal.TabIndex = 0;
-            labelPrincipal.Text = "Mascotas";
+            labelPrincipal.Text = "Seleccionar Habitacion";
             // 
-            // dgvMascotas
+            // btnSeleccionar
             // 
-            dgvMascotas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMascotas.Location = new Point(12, 148);
-            dgvMascotas.Name = "dgvMascotas";
-            dgvMascotas.RowHeadersWidth = 51;
-            dgvMascotas.Size = new Size(764, 290);
-            dgvMascotas.TabIndex = 4;
-            dgvMascotas.CellContentClick += dgvProductos_CellContentClick;
+            btnSeleccionar.Location = new Point(58, 444);
+            btnSeleccionar.Name = "btnSeleccionar";
+            btnSeleccionar.Size = new Size(94, 29);
+            btnSeleccionar.TabIndex = 9;
+            btnSeleccionar.Text = "Seleccionar";
+            btnSeleccionar.UseVisualStyleBackColor = true;
+            btnSeleccionar.Click += btnSeleccionar_Click;
             // 
-            // FormVerMascotas
+            // FormSeleccionarHabitacion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 486);
-            Controls.Add(dgvMascotas);
+            ClientSize = new Size(800, 492);
+            Controls.Add(btnSeleccionar);
+            Controls.Add(dgvHabitaciones);
             Controls.Add(panelPrincipal);
-            Name = "FormVerMascotas";
-            Text = "Form4";
+            Name = "FormSeleccionarHabitacion";
+            Text = "Seleccionar Habitacion ";
+            ((System.ComponentModel.ISupportInitialize)dgvHabitaciones).EndInit();
             panelPrincipal.ResumeLayout(false);
             panelPrincipal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvMascotas).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
+        private DataGridView dgvHabitaciones;
         private Panel panelPrincipal;
         private Label labelPrincipal;
-        private DataGridView dgvMascotas;
+        private Button btnSeleccionar;
     }
 }

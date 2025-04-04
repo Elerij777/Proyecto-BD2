@@ -2,24 +2,26 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace Clinica_Veterinaria
 {
-    public partial class FormVerMascotas : Form
+    public partial class FormSeleccionarMascota : Form
     {
         SqlConnection cnx;
-
-        public FormVerMascotas(SqlConnection cnx)
+        FormAgHospedaje formAgHospedaje;
+        public FormSeleccionarMascota(SqlConnection cnx, FormAgHospedaje formAgHospedaje)
         {
             InitializeComponent();
             this.cnx = cnx;
+            this.formAgHospedaje = formAgHospedaje;
             CargarMascotas();
+
         }
 
         private void CargarMascotas()
@@ -58,14 +60,26 @@ namespace Clinica_Veterinaria
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void btnSeleccionar_Click(object sender, EventArgs e)
         {
+            if (dgvMascotas.CurrentRow != null)
+            {
+                int idMascota = Convert.ToInt32(dgvMascotas.CurrentRow.Cells["Mascota_ID"].Value);
+                string nombreMascota = dgvMascotas.CurrentRow.Cells["NombreMascota"].Value.ToString();
+                string EspecieMascota = dgvMascotas.CurrentRow.Cells["Especie"].Value.ToString();
+                formAgHospedaje.especieMascota = EspecieMascota;
+                formAgHospedaje.MascotaId = idMascota;
+                formAgHospedaje.txtMascotaSetText(nombreMascota);
 
+
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una mascota.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
-        private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
