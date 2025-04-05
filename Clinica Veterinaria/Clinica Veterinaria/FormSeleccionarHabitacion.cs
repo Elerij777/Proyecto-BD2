@@ -55,12 +55,10 @@ namespace Clinica_Veterinaria
         {
             if (dgvHabitaciones.CurrentRow != null)
             {
-                int idMascota = Convert.ToInt32(dgvHabitaciones.CurrentRow.Cells["Habitacion_id"].Value);
+                int idHabitacion = Convert.ToInt32(dgvHabitaciones.CurrentRow.Cells["Habitacion_id"].Value);
 
                 string EspecieHabitacion = dgvHabitaciones.CurrentRow.Cells["Animal"].Value.ToString();
-                formAgHospedaje.especieHabitacion = EspecieHabitacion;
-                formAgHospedaje.MascotaId = idMascota;
-                formAgHospedaje.txtHabitacionSetText(idMascota.ToString());
+                formAgHospedaje.txtHabitacionSetText(idHabitacion.ToString());
 
 
 

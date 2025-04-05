@@ -67,7 +67,6 @@ namespace Clinica_Veterinaria
                 int idMascota = Convert.ToInt32(dgvMascotas.CurrentRow.Cells["Mascota_ID"].Value);
                 string nombreMascota = dgvMascotas.CurrentRow.Cells["NombreMascota"].Value.ToString();
                 string EspecieMascota = dgvMascotas.CurrentRow.Cells["Especie"].Value.ToString();
-                formAgHospedaje.especieMascota = EspecieMascota;
                 formAgHospedaje.MascotaId = idMascota;
                 formAgHospedaje.txtMascotaSetText(nombreMascota);
 

@@ -41,10 +41,13 @@
             dateIngreso = new DateTimePicker();
             dateSalida = new DateTimePicker();
             txtMascota = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
+            txtAlimento = new TextBox();
+            txtIndicaciones = new TextBox();
             BtnElegirMascota = new Button();
             BtnElegirHabitacion = new Button();
+            label7 = new Label();
+            cmbEstado = new ComboBox();
+            button1 = new Button();
             panelPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -71,11 +74,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(74, 181);
+            label1.Location = new Point(51, 182);
             label1.Name = "label1";
-            label1.Size = new Size(85, 20);
+            label1.Size = new Size(104, 20);
             label1.TabIndex = 5;
-            label1.Text = "Habitacion:";
+            label1.Text = "Habitacion ID:";
             // 
             // label2
             // 
@@ -106,7 +109,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(305, 381);
+            btnAgregar.Location = new Point(358, 438);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(94, 29);
             btnAgregar.TabIndex = 9;
@@ -164,20 +167,22 @@
             txtMascota.Size = new Size(93, 27);
             txtMascota.TabIndex = 17;
             // 
-            // textBox3
+            // txtAlimento
             // 
-            textBox3.Location = new Point(537, 224);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(134, 27);
-            textBox3.TabIndex = 18;
+            txtAlimento.Enabled = false;
+            txtAlimento.Location = new Point(537, 224);
+            txtAlimento.Name = "txtAlimento";
+            txtAlimento.Size = new Size(40, 27);
+            txtAlimento.TabIndex = 18;
+            txtAlimento.Text = "11";
             // 
-            // textBox4
+            // txtIndicaciones
             // 
-            textBox4.Location = new Point(546, 268);
-            textBox4.Multiline = true;
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(233, 125);
-            textBox4.TabIndex = 19;
+            txtIndicaciones.Location = new Point(546, 268);
+            txtIndicaciones.Multiline = true;
+            txtIndicaciones.Name = "txtIndicaciones";
+            txtIndicaciones.Size = new Size(233, 125);
+            txtIndicaciones.TabIndex = 19;
             // 
             // BtnElegirMascota
             // 
@@ -199,15 +204,44 @@
             BtnElegirHabitacion.UseVisualStyleBackColor = true;
             BtnElegirHabitacion.Click += BtnElegirHabitacion_Click;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(94, 321);
+            label7.Name = "label7";
+            label7.Size = new Size(57, 20);
+            label7.TabIndex = 22;
+            label7.Text = "Estado:";
+            // 
+            // cmbEstado
+            // 
+            cmbEstado.FormattingEnabled = true;
+            cmbEstado.Location = new Point(165, 318);
+            cmbEstado.Name = "cmbEstado";
+            cmbEstado.Size = new Size(151, 28);
+            cmbEstado.TabIndex = 23;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(609, 223);
+            button1.Name = "button1";
+            button1.Size = new Size(170, 29);
+            button1.TabIndex = 26;
+            button1.Text = "Elegir Habitacion";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // FormAgHospedaje
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(850, 450);
+            ClientSize = new Size(850, 508);
+            Controls.Add(button1);
+            Controls.Add(cmbEstado);
+            Controls.Add(label7);
             Controls.Add(BtnElegirHabitacion);
             Controls.Add(BtnElegirMascota);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
+            Controls.Add(txtIndicaciones);
+            Controls.Add(txtAlimento);
             Controls.Add(txtMascota);
             Controls.Add(dateSalida);
             Controls.Add(dateIngreso);
@@ -243,9 +277,12 @@
         private DateTimePicker dateIngreso;
         private DateTimePicker dateSalida;
         private TextBox txtMascota;
-        private TextBox textBox3;
-        private TextBox textBox4;
+        private TextBox txtAlimento;
+        private TextBox txtIndicaciones;
         private Button BtnElegirMascota;
         private Button BtnElegirHabitacion;
+        private Label label7;
+        private ComboBox cmbEstado;
+        private Button button1;
     }
 }
