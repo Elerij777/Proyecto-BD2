@@ -24,100 +24,130 @@ namespace Clinica_Veterinaria
         {
             InitializeComponent();
             cnx = conexion;
+            ConfigurarDataAdapter();
             CargarHumanos();
         }
 
-        private void CargarHumanos()
+        public void ConfigurarDataAdapter()
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("spObtenerHumanos", cnx))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    dtHumanos = new DataTable();
-                    da.Fill(dtHumanos);
+                adpHumanos = new SqlDataAdapter("SELECT Cliente_id, Nombre, Telefono, Direccion FROM Clientes", cnx);
 
-                    dataGridView1.DataSource = dtHumanos;
-                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar humanos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void FormVerHumanos_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                /*
-                adpHumanos = new SqlDataAdapter("SELECT * FROM Humanos", cnx);
-
-                // Insert
                 adpHumanos.InsertCommand = new SqlCommand("spInsertarHumanos", cnx);
                 adpHumanos.InsertCommand.CommandType = CommandType.StoredProcedure;
                 adpHumanos.InsertCommand.Parameters.Add("@nombre", SqlDbType.VarChar, 50, "Nombre");
                 adpHumanos.InsertCommand.Parameters.Add("@telefono", SqlDbType.VarChar, 20, "Telefono");
                 adpHumanos.InsertCommand.Parameters.Add("@direccion", SqlDbType.VarChar, 100, "Direccion");
-                adpHumanos.InsertCommand.Parameters.Add("@email", SqlDbType.VarChar, 100, "Email");
 
-                // Update
                 adpHumanos.UpdateCommand = new SqlCommand("spActualizarHumano", cnx);
                 adpHumanos.UpdateCommand.CommandType = CommandType.StoredProcedure;
-                adpHumanos.UpdateCommand.Parameters.Add("@id", SqlDbType.Int, 4, "HumanoID");
+                adpHumanos.UpdateCommand.Parameters.Add("@id", SqlDbType.Int, 4, "Cliente_id");
                 adpHumanos.UpdateCommand.Parameters.Add("@nombre", SqlDbType.VarChar, 50, "Nombre");
                 adpHumanos.UpdateCommand.Parameters.Add("@telefono", SqlDbType.VarChar, 20, "Telefono");
                 adpHumanos.UpdateCommand.Parameters.Add("@direccion", SqlDbType.VarChar, 100, "Direccion");
-                adpHumanos.UpdateCommand.Parameters.Add("@email", SqlDbType.VarChar, 100, "Email");
 
-                // Load data
-                dtHumanos = new DataTable();
-                adpHumanos.Fill(dtHumanos);
-
-                dataGridView1.DataSource = dtHumanos;
-                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                */
+                adpHumanos.DeleteCommand = new SqlCommand("spEliminarHumano", cnx);
+                adpHumanos.DeleteCommand.CommandType = CommandType.StoredProcedure;
+                adpHumanos.DeleteCommand.Parameters.Add("@id", SqlDbType.Int, 4, "Cliente_id");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar humanos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al configurar el DataAdapter: " + ex.Message,
+                              "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void CargarHumanos()
+        {
+            try
+            {
+                dtHumanos = new DataTable();
+                adpHumanos.Fill(dtHumanos);
+                dataGridView1.AllowUserToAddRows = true;
+                dataGridView1.DataSource = dtHumanos;
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                if (dataGridView1.Columns.Contains("Cliente_id"))
+                {
+                    dataGridView1.Columns["Cliente_id"].ReadOnly = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar humanos: " + ex.Message,
+                              "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+            
+        private void FormVerHumanos_Load(object sender, EventArgs e)
+        {
+            CargarHumanos();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-                bool errores = false;
-
                 foreach (DataRow row in dtHumanos.Rows)
                 {
                     if (row.RowState == DataRowState.Deleted) continue;
 
-                    if (string.IsNullOrWhiteSpace(row["Nombre"].ToString()))
+                    if (string.IsNullOrWhiteSpace(row["Nombre"]?.ToString()))
                     {
                         MessageBox.Show("El nombre no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        errores = true;
-                        break;
+                        return;
                     }
 
-                    if (string.IsNullOrWhiteSpace(row["Email"].ToString()))
+                    if (string.IsNullOrWhiteSpace(row["Telefono"]?.ToString()))
                     {
-                        MessageBox.Show("El correo electrónico no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        errores = true;
-                        break;
+                        MessageBox.Show("El teléfono no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
                 }
 
-                if (errores) return;
+                int registrosAfectados = adpHumanos.Update(dtHumanos);
+                dtHumanos.Clear();
+                adpHumanos.Fill(dtHumanos);
 
-                adpHumanos.Update(dtHumanos);
-                MessageBox.Show("Cambios guardados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+             //   MessageBox.Show($"Se guardaron {registrosAfectados} registros correctamente.","Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al guardar: " + ex.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_Eliminar_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null && !dataGridView1.CurrentRow.IsNewRow)
+            {
+                if (MessageBox.Show("¿Estás segura que deseas eliminar este registro?", "Confirmar eliminación",
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        dtHumanos.Rows[dataGridView1.CurrentRow.Index].Delete();
+
+                        int registrosAfectados = adpHumanos.Update(dtHumanos);
+
+                        if (registrosAfectados > 0)
+                        {
+                            dtHumanos.Clear();
+                            adpHumanos.Fill(dtHumanos);
+                         //   MessageBox.Show("Registro eliminado correctamente.", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al eliminar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        dtHumanos.RejectChanges();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay una fila seleccionada válida para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
