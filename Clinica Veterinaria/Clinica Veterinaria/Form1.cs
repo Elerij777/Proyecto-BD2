@@ -1,10 +1,25 @@
 using System.Data.SqlClient;
 using System.Data;
+using System.Runtime.InteropServices;
 
 namespace Clinica_Veterinaria
 {
     public partial class Form1 : Form
     {
+
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+
+        private static extern IntPtr CreateRoundRectRgn
+            (
+            int nLeftRect,
+            int nTopRect,
+            int nRightRect,
+            int nBottomRect,
+            int nWidthEllipse,
+            int nHeightEllipse
+            );
+
+
 
         SqlConnection cnx;
         public int MascotaId = 0;
@@ -13,7 +28,8 @@ namespace Clinica_Veterinaria
         {
             InitializeComponent();
             esconderPaneles();
-            
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
+
             formPrincipal formulario = new formPrincipal();
             abrirFormulario(formulario);
             this.Text = "Clinica Veterinaria";
@@ -27,6 +43,7 @@ namespace Clinica_Veterinaria
                 MessageBox.Show("Error al conectar la base de datos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             }
+ 
         }
 
         void esconderPaneles()
@@ -35,6 +52,7 @@ namespace Clinica_Veterinaria
             panelHumanos.Visible = false;
             panelInventario.Visible = false;
             panelCitas.Visible = false;
+            panel_Adm.Visible = false;
         }
         void desplegarPanel(Panel panel)
         {
@@ -50,7 +68,10 @@ namespace Clinica_Veterinaria
         }
         private void btnHumanos_Click(object sender, EventArgs e)
         {
+
+            btnHumanos.BackColor = Color.FromArgb(217, 237, 255);
             desplegarPanel(panel: panelHumanos);
+
         }
         void abrirFormulario(Form form)
         {
@@ -71,6 +92,8 @@ namespace Clinica_Veterinaria
 
         private void btnInventario_Click(object sender, EventArgs e)
         {
+
+            btnInventario.BackColor = Color.FromArgb(217, 237, 255);
             desplegarPanel(panelInventario);
         }
 
@@ -122,6 +145,7 @@ namespace Clinica_Veterinaria
 
         private void btnCitas_Click(object sender, EventArgs e)
         {
+            btnCitas.BackColor = Color.FromArgb(217, 237, 255);
             desplegarPanel(panel: panelCitas);
         }
 
@@ -133,6 +157,7 @@ namespace Clinica_Veterinaria
 
         private void btn_Administracion_Click(object sender, EventArgs e)
         {
+            btn_Administracion.BackColor = Color.FromArgb(217, 237, 255);
             desplegarPanel(panel_Adm);
         }
 
@@ -152,6 +177,31 @@ namespace Clinica_Veterinaria
         {
             FormAgHospedaje form = new FormAgHospedaje(cnx);
             abrirFormulario(form);
+        }
+
+        private void btnClientes_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnHumanos_Leave(object sender, EventArgs e)
+        {
+            btnHumanos.BackColor = Color.FromArgb(207, 226, 243);
+        }
+
+        private void btnInventario_Leave(object sender, EventArgs e)
+        {
+            btnInventario.BackColor = Color.FromArgb(207, 226, 243);
+        }
+
+        private void btnCitas_Leave(object sender, EventArgs e)
+        {
+            btnCitas.BackColor = Color.FromArgb(207, 226, 243);
+        }
+
+        private void btn_Administracion_Leave(object sender, EventArgs e)
+        {
+            btn_Administracion.BackColor = Color.FromArgb(207, 226, 243);
         }
     }
 }
