@@ -12,6 +12,7 @@ using System.Data;
 using AForge.Video;
 using AForge.Video.DirectShow;
 using System.Data.Common;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace Clinica_Veterinaria
@@ -25,7 +26,7 @@ namespace Clinica_Veterinaria
         {
             InitializeComponent();
             this.cnx = cnx;
-            
+
             cbxGenero.Items.Add("Macho");
             cbxGenero.Items.Add("Hembra");
             cbxRaza.Items.Add("Comun Europeo");
@@ -209,10 +210,12 @@ namespace Clinica_Veterinaria
             }
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private async void btnAgregar_Click(object sender, EventArgs e)
         {
             try
             {
+                btnAgregar.Enabled = false;
+
                 // Validar que todos los campos estén llenos
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                     cbxEspecie.SelectedItem == null ||
@@ -225,9 +228,10 @@ namespace Clinica_Veterinaria
                     MessageBox.Show("Por favor, complete todos los campos y seleccione una imagen y un cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
                 string nombre = txtNombre.Text;
-                string especie = cbxEspecie.SelectedItem.ToString();
-                string raza = cbxRaza.SelectedItem.ToString();
+                string especie = cbxEspecie.Text;
+                string raza = cbxRaza.Text;
                 decimal peso = Convert.ToDecimal(txtPeso.Text);
                 string genero = cbxGenero.SelectedItem.ToString() == "Macho" ? "M" : "F";
                 DateTime fechaNacimiento = dtpFechaNacimiento.SelectionStart;
@@ -240,43 +244,51 @@ namespace Clinica_Veterinaria
                     imagenBytes = ms.ToArray();
                 }
 
-                using (SqlCommand cmd = new SqlCommand("spInsertarMascota", cnx))
+                await Task.Run(() =>
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@Cliente_id", clienteId);
-                    cmd.Parameters.AddWithValue("@Nombre", nombre);
-                    cmd.Parameters.AddWithValue("@Especie", especie);
-                    cmd.Parameters.AddWithValue("@Raza", raza);
-                    cmd.Parameters.AddWithValue("@Peso", peso);
-                    cmd.Parameters.AddWithValue("@Genero", genero);
-                    cmd.Parameters.AddWithValue("@Fecha_nacimiento", fechaNacimiento);
-                    cmd.Parameters.AddWithValue("@Foto", imagenBytes);
-
-                    if (cnx.State != ConnectionState.Open)
+                    using (SqlCommand cmd = new SqlCommand("spInsertarMascota", cnx))
                     {
-                        cnx.Open();
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@Cliente_id", clienteId);
+                        cmd.Parameters.AddWithValue("@Nombre", nombre);
+                        cmd.Parameters.AddWithValue("@Especie", especie);
+                        cmd.Parameters.AddWithValue("@Raza", raza);
+                        cmd.Parameters.AddWithValue("@Peso", peso);
+                        cmd.Parameters.AddWithValue("@Genero", genero);
+                        cmd.Parameters.AddWithValue("@Fecha_nacimiento", fechaNacimiento);
+                        cmd.Parameters.AddWithValue("@Foto", imagenBytes);
+
+                        if (cnx.State != ConnectionState.Open)
+                            cnx.Open();
+
+                        cmd.ExecuteNonQuery();
+                        cnx.Close();
                     }
+                });
 
-                    cmd.ExecuteNonQuery();
-                    cnx.Close();
+                MessageBox.Show("Mascota agregada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    MessageBox.Show("Mascota agregada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtNombre.Clear();
-                    cbxEspecie.SelectedIndex = -1;
-                    cbxRaza.SelectedIndex = -1;
-                    txtPeso.Clear();
-                    cbxGenero.SelectedIndex = -1;
-                    dtpFechaNacimiento.SelectionStart = DateTime.Now;
-                    pictureBoxImagen.Image = null;
-                    cbxClientes.SelectedIndex = -1;
-                }
+                // Limpiar controles
+                txtNombre.Clear();
+                cbxEspecie.SelectedIndex = -1;
+                cbxRaza.SelectedIndex = -1;
+                txtPeso.Clear();
+                cbxGenero.SelectedIndex = -1;
+                dtpFechaNacimiento.SelectionStart = DateTime.Now;
+                pictureBoxImagen.Image = null;
+                cbxClientes.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al agregar la mascota: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                btnAgregar.Enabled = true;
+            }
         }
+
 
 
     }
