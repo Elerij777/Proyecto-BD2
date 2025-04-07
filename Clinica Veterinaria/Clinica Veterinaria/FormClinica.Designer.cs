@@ -31,18 +31,20 @@
             panelPrincipal = new Panel();
             labelPrincipal = new Label();
             labelMascota = new Label();
-            cMascota = new ComboBox();
             label1 = new Label();
             tbDescripcion = new TextBox();
             tbDiagnostico = new TextBox();
             tbTratamiento = new TextBox();
-            cEmpleado = new ComboBox();
             labelDiagnostico = new Label();
             labelTratamiento = new Label();
             labelEmpleado = new Label();
             labelFecha = new Label();
             btnAgregar = new Button();
             dtpCita = new DateTimePicker();
+            btn_AgregarMascota = new Button();
+            txtMascota = new TextBox();
+            txtEmpleado = new TextBox();
+            btn_Empleado = new Button();
             panelPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -75,14 +77,6 @@
             labelMascota.TabIndex = 1;
             labelMascota.Text = "Mascota";
             // 
-            // cMascota
-            // 
-            cMascota.FormattingEnabled = true;
-            cMascota.Location = new Point(248, 145);
-            cMascota.Name = "cMascota";
-            cMascota.Size = new Size(182, 33);
-            cMascota.TabIndex = 2;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -112,14 +106,6 @@
             tbTratamiento.Name = "tbTratamiento";
             tbTratamiento.Size = new Size(182, 31);
             tbTratamiento.TabIndex = 6;
-            // 
-            // cEmpleado
-            // 
-            cEmpleado.FormattingEnabled = true;
-            cEmpleado.Location = new Point(248, 465);
-            cEmpleado.Name = "cEmpleado";
-            cEmpleado.Size = new Size(182, 33);
-            cEmpleado.TabIndex = 7;
             // 
             // labelDiagnostico
             // 
@@ -151,7 +137,7 @@
             // labelFecha
             // 
             labelFecha.AutoSize = true;
-            labelFecha.Location = new Point(556, 145);
+            labelFecha.Location = new Point(590, 145);
             labelFecha.Name = "labelFecha";
             labelFecha.Size = new Size(57, 25);
             labelFecha.TabIndex = 11;
@@ -174,23 +160,61 @@
             dtpCita.Size = new Size(300, 31);
             dtpCita.TabIndex = 14;
             // 
+            // btn_AgregarMascota
+            // 
+            btn_AgregarMascota.Location = new Point(366, 145);
+            btn_AgregarMascota.Name = "btn_AgregarMascota";
+            btn_AgregarMascota.Size = new Size(190, 33);
+            btn_AgregarMascota.TabIndex = 15;
+            btn_AgregarMascota.Text = "Seleccionar Mascota";
+            btn_AgregarMascota.UseVisualStyleBackColor = true;
+            btn_AgregarMascota.Click += btn_AgregarMascota_Click;
+            // 
+            // txtMascota
+            // 
+            txtMascota.Enabled = false;
+            txtMascota.Location = new Point(248, 147);
+            txtMascota.Name = "txtMascota";
+            txtMascota.Size = new Size(94, 31);
+            txtMascota.TabIndex = 16;
+            // 
+            // txtEmpleado
+            // 
+            txtEmpleado.Enabled = false;
+            txtEmpleado.Location = new Point(253, 456);
+            txtEmpleado.Name = "txtEmpleado";
+            txtEmpleado.Size = new Size(89, 31);
+            txtEmpleado.TabIndex = 17;
+            // 
+            // btn_Empleado
+            // 
+            btn_Empleado.Location = new Point(366, 456);
+            btn_Empleado.Name = "btn_Empleado";
+            btn_Empleado.Size = new Size(205, 33);
+            btn_Empleado.TabIndex = 18;
+            btn_Empleado.Text = "Seleccionar Empleado";
+            btn_Empleado.UseVisualStyleBackColor = true;
+            btn_Empleado.Click += btn_Empleado_Click;
+            // 
             // FormClinica
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1000, 562);
+            Controls.Add(btn_Empleado);
+            Controls.Add(txtEmpleado);
+            Controls.Add(txtMascota);
+            Controls.Add(btn_AgregarMascota);
             Controls.Add(dtpCita);
             Controls.Add(btnAgregar);
             Controls.Add(labelFecha);
             Controls.Add(labelEmpleado);
             Controls.Add(labelTratamiento);
             Controls.Add(labelDiagnostico);
-            Controls.Add(cEmpleado);
             Controls.Add(tbTratamiento);
             Controls.Add(tbDiagnostico);
             Controls.Add(tbDescripcion);
             Controls.Add(label1);
-            Controls.Add(cMascota);
             Controls.Add(labelMascota);
             Controls.Add(panelPrincipal);
             Name = "FormClinica";
@@ -212,12 +236,15 @@
         private TextBox tbDescripcion;
         private TextBox tbDiagnostico;
         private TextBox tbTratamiento;
-        private ComboBox cEmpleado;
         private Label labelDiagnostico;
         private Label labelTratamiento;
         private Label labelEmpleado;
         private Label labelFecha;
         private Button btnAgregar;
         private DateTimePicker dtpCita;
+        private Button btn_AgregarMascota;
+        private TextBox txtMascota;
+        private TextBox txtEmpleado;
+        private Button btn_Empleado;
     }
 }

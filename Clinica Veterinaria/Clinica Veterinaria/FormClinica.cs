@@ -15,101 +15,62 @@ namespace Clinica_Veterinaria
     {
         private SqlConnection cnx;
         private const int TIPO_SERVICIO_CLINICA = 1; // Valor fijo para servicios clínicos
+        public int MascotaId = 0;
+        public int EmpleadoId = 0;
 
-        public FormClinica(SqlConnection conexion)
+        public FormClinica(SqlConnection cnx)
         {
             InitializeComponent();
-            cnx = conexion;
-            CargarDatosIniciales();
+            this.cnx = cnx;
         }
 
-        private void CargarDatosIniciales()
-        {
-            try
-            {
-                CargarComboBox(cMascota, "SELECT Mascota_id, Nombre FROM Mascotas", "Nombre", "Mascota_id");
-                CargarComboBox(cEmpleado, "SELECT Empleado_id, Nombre FROM Empleados", "Nombre", "Empleado_id");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al cargar datos iniciales: {ex.Message}", "Error",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void CargarComboBox(ComboBox comboBox, string query, string displayMember, string valueMember)
-        {
-            var dt = new DataTable();
-            using (var da = new SqlDataAdapter(query, cnx))
-            {
-                da.Fill(dt);
-            }
-
-            comboBox.DataSource = dt;
-            comboBox.DisplayMember = displayMember;
-            comboBox.ValueMember = valueMember;
-            comboBox.SelectedIndex = -1;
-        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (!ValidarCampos())
-                return;
-
             try
             {
-                RegistrarCitaClinica();
-                LimpiarFormulario();
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al registrar la cita: {ex.Message}", "Error",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (cnx.State == ConnectionState.Open)
-                    cnx.Close();
-            }
-        }
+                if (MascotaId == 0)
+                {
+                    MessageBox.Show("Seleccione una mascota.");
+                    return;
+                }
 
-        private bool ValidarCampos()
-        {
-            if (string.IsNullOrWhiteSpace(tbDescripcion.Text) ||
-                cMascota.SelectedIndex == -1 ||
-                cEmpleado.SelectedIndex == -1 ||
-                string.IsNullOrWhiteSpace(tbDiagnostico.Text) ||
-                string.IsNullOrWhiteSpace(tbTratamiento.Text))
-            {
-                MessageBox.Show("Por favor, complete todos los campos", "Advertencia",
-                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            return true;
-        }
+                if (EmpleadoId == 0)
+                {
+                    MessageBox.Show("Seleccione un empleado.");
+                    return;
+                }
 
-        private void RegistrarCitaClinica()
-        {
-            string query = @"INSERT INTO Cita (
-                                Mascota_id, Descripcion, Fecha, 
-                                Diagnostico, Tratamiento, Empleado_id, Servicio_id
-                             ) VALUES (
-                                @Mascota_id, @Descripcion, @Fecha, 
-                                @Diagnostico, @Tratamiento, @EmpleadoID, @Servicio_id
-                             )";
+                if (string.IsNullOrWhiteSpace(tbDescripcion.Text) ||
+                    string.IsNullOrWhiteSpace(tbDiagnostico.Text) ||
+                    string.IsNullOrWhiteSpace(tbTratamiento.Text))
+                {
+                    MessageBox.Show("Por favor, complete todos los campos", "Advertencia",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            using (var cmd = new SqlCommand(query, cnx))
-            {
-                cmd.Parameters.Add("@Mascota_id", SqlDbType.Int).Value = Convert.ToInt32(cMascota.SelectedValue);
-                cmd.Parameters.Add("@Descripcion", SqlDbType.Text).Value = tbDescripcion.Text;
-                cmd.Parameters.Add("@Fecha", SqlDbType.DateTime).Value = dtpCita.Value;
-                cmd.Parameters.Add("@Diagnostico", SqlDbType.Text).Value = tbDiagnostico.Text;
-                cmd.Parameters.Add("@Tratamiento", SqlDbType.Text).Value = tbTratamiento.Text;
-                cmd.Parameters.Add("@EmpleadoID", SqlDbType.Int).Value = Convert.ToInt32(cEmpleado.SelectedValue);
-                cmd.Parameters.Add("@Servicio_id", SqlDbType.Int).Value = TIPO_SERVICIO_CLINICA;
+                SqlCommand cmd = new SqlCommand("SpInsertarCitaClinica", cnx);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Mascota_id", MascotaId);
+                cmd.Parameters.AddWithValue("@Descripcion", tbDescripcion.Text);
+                cmd.Parameters.AddWithValue("@Fecha", dtpCita.Value);
+                cmd.Parameters.AddWithValue("@Diagnostico", tbDiagnostico.Text);
+                cmd.Parameters.AddWithValue("@Tratamiento", tbTratamiento.Text);
+                cmd.Parameters.AddWithValue("@EmpleadoID", EmpleadoId);
+                cmd.Parameters.AddWithValue("@Servicio_id", TIPO_SERVICIO_CLINICA);
 
                 cnx.Open();
                 cmd.ExecuteNonQuery();
+                cnx.Close();
+
+                LimpiarFormulario();
+            }
+            catch (SqlException ex)
+            {
+                cnx.Close();
+                MessageBox.Show($"Error al registrar la cita: {ex.Message}", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -118,14 +79,38 @@ namespace Clinica_Veterinaria
             tbDescripcion.Clear();
             tbDiagnostico.Clear();
             tbTratamiento.Clear();
-            cMascota.SelectedIndex = -1;
-            cEmpleado.SelectedIndex = -1;
+            txtMascota.Clear();
+            txtEmpleado.Clear();
+            MascotaId = 0;
+            EmpleadoId = 0;
             dtpCita.Value = DateTime.Now;
         }
 
         private void FormClinica_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_AgregarMascota_Click(object sender, EventArgs e)
+        {
+            FormSeleccionarMascota formSeleccionarMascota = new FormSeleccionarMascota(cnx, this);
+            formSeleccionarMascota.ShowDialog();
+        }
+
+        public void txtMascotaSetText(string text)
+        {
+            txtMascota.Text = text;
+        }
+
+        public void txtEmpleadoSetText(string text)
+        {
+            txtEmpleado.Text = text;
+        }
+
+        private void btn_Empleado_Click(object sender, EventArgs e)
+        {
+            FormSeleccionarEmpleado formSeleccionarEmpleado = new FormSeleccionarEmpleado(cnx, this);
+            formSeleccionarEmpleado.ShowDialog();
         }
     }
 }

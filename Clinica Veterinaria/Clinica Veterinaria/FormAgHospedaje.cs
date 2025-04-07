@@ -91,8 +91,10 @@ namespace Clinica_Veterinaria
 
         private void BtnElegirMascota_Click(object sender, EventArgs e)
         {
-            FormSeleccionarMascota formSeleccionarMascota = new FormSeleccionarMascota(cnx,this);
-            formSeleccionarMascota.Visible = true;
+            FormSeleccionarMascota formSeleccionarMascota = new FormSeleccionarMascota(cnx, this);
+            formSeleccionarMascota.ShowDialog();
+            //FormSeleccionarMascota formSeleccionarMascota = new FormSeleccionarMascota(cnx,this);
+            //formSeleccionarMascota.Visible = true;
         }
         public void txtMascotaSetText(string text)
         {

@@ -25,7 +25,7 @@ namespace Clinica_Veterinaria
             InitializeComponent();
             cnx = conexion;
             ConfigurarDataAdapter();
-            CargarHumanos();
+            CargarHumanos("");
         }
 
         public void ConfigurarDataAdapter()
@@ -57,15 +57,31 @@ namespace Clinica_Veterinaria
                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void CargarHumanos()
+        private void CargarHumanos(string nombre)
         {
             try
             {
+                string query = "SELECT Cliente_id, Nombre, Telefono, Direccion FROM Clientes";
+
+                // Si se proporciona un nombre, agregamos un filtro
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    query += " WHERE Nombre LIKE @Nombre";
+                }
+
+                // Configuramos el DataAdapter con la nueva consulta
+                adpHumanos.SelectCommand = new SqlCommand(query, cnx);
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    adpHumanos.SelectCommand.Parameters.AddWithValue("@Nombre", "%" + nombre + "%");
+                }
+
                 dtHumanos = new DataTable();
                 adpHumanos.Fill(dtHumanos);
-                dataGridView1.AllowUserToAddRows = true;
+
                 dataGridView1.DataSource = dtHumanos;
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridView1.AllowUserToAddRows = false; // No permitir agregar filas manualmente
 
                 if (dataGridView1.Columns.Contains("Cliente_id"))
                 {
@@ -78,10 +94,10 @@ namespace Clinica_Veterinaria
                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-            
+
         private void FormVerHumanos_Load(object sender, EventArgs e)
         {
-            CargarHumanos();
+            CargarHumanos("");
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -109,7 +125,7 @@ namespace Clinica_Veterinaria
                 dtHumanos.Clear();
                 adpHumanos.Fill(dtHumanos);
 
-             //   MessageBox.Show($"Se guardaron {registrosAfectados} registros correctamente.","Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //   MessageBox.Show($"Se guardaron {registrosAfectados} registros correctamente.","Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -135,7 +151,7 @@ namespace Clinica_Veterinaria
                         {
                             dtHumanos.Clear();
                             adpHumanos.Fill(dtHumanos);
-                         //   MessageBox.Show("Registro eliminado correctamente.", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //   MessageBox.Show("Registro eliminado correctamente.", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     catch (Exception ex)
@@ -149,6 +165,11 @@ namespace Clinica_Veterinaria
             {
                 MessageBox.Show("No hay una fila seleccionada válida para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            CargarHumanos(txtBuscar.Text.Trim());
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Clinica_Veterinaria
 {
-    partial class FormVerHumanos
+    partial class FormSeleccionarEmpleado
     {
         /// <summary>
         /// Required designer variable.
@@ -28,16 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            dgvEmpleados = new DataGridView();
+            btn_Seleccionar = new Button();
             panelPrincipal = new Panel();
             labelPrincipal = new Label();
             label1 = new Label();
             txtBuscar = new TextBox();
-            dataGridView1 = new DataGridView();
-            btnGuardar = new Button();
-            btn_Eliminar = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvEmpleados).BeginInit();
             panelPrincipal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
+            // 
+            // dgvEmpleados
+            // 
+            dgvEmpleados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvEmpleados.Location = new Point(86, 252);
+            dgvEmpleados.Name = "dgvEmpleados";
+            dgvEmpleados.RowHeadersWidth = 62;
+            dgvEmpleados.Size = new Size(801, 213);
+            dgvEmpleados.TabIndex = 0;
+            // 
+            // btn_Seleccionar
+            // 
+            btn_Seleccionar.Location = new Point(86, 494);
+            btn_Seleccionar.Name = "btn_Seleccionar";
+            btn_Seleccionar.Size = new Size(112, 34);
+            btn_Seleccionar.TabIndex = 1;
+            btn_Seleccionar.Text = "Seleccionar";
+            btn_Seleccionar.UseVisualStyleBackColor = true;
+            btn_Seleccionar.Click += btn_Seleccionar_Click;
             // 
             // panelPrincipal
             // 
@@ -47,100 +65,63 @@
             panelPrincipal.Location = new Point(0, 0);
             panelPrincipal.Margin = new Padding(4);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(1000, 91);
-            panelPrincipal.TabIndex = 3;
+            panelPrincipal.Size = new Size(1000, 156);
+            panelPrincipal.TabIndex = 6;
             // 
             // labelPrincipal
             // 
             labelPrincipal.AutoSize = true;
             labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(386, 18);
+            labelPrincipal.Location = new Point(250, 52);
             labelPrincipal.Margin = new Padding(4, 0, 4, 0);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(213, 50);
+            labelPrincipal.Size = new Size(489, 50);
             labelPrincipal.TabIndex = 0;
-            labelPrincipal.Text = "Humanos";
+            labelPrincipal.Text = "Seleccionar Empleado";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(42, 100);
-            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Location = new Point(100, 195);
             label1.Name = "label1";
-            label1.Size = new Size(67, 25);
-            label1.TabIndex = 4;
-            label1.Text = "Buscar:";
+            label1.Size = new Size(63, 25);
+            label1.TabIndex = 7;
+            label1.Text = "Buscar";
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(129, 98);
-            txtBuscar.Margin = new Padding(2);
+            txtBuscar.Location = new Point(220, 197);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(283, 31);
-            txtBuscar.TabIndex = 5;
+            txtBuscar.Size = new Size(314, 31);
+            txtBuscar.TabIndex = 8;
             txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(71, 148);
-            dataGridView1.Margin = new Padding(2);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(676, 322);
-            dataGridView1.TabIndex = 6;
-            // 
-            // btnGuardar
-            // 
-            btnGuardar.Location = new Point(71, 504);
-            btnGuardar.Margin = new Padding(2);
-            btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(185, 34);
-            btnGuardar.TabIndex = 7;
-            btnGuardar.Text = "Guardar Cambios";
-            btnGuardar.UseVisualStyleBackColor = true;
-            btnGuardar.Click += btnGuardar_Click;
-            // 
-            // btn_Eliminar
-            // 
-            btn_Eliminar.Location = new Point(604, 504);
-            btn_Eliminar.Name = "btn_Eliminar";
-            btn_Eliminar.Size = new Size(143, 34);
-            btn_Eliminar.TabIndex = 8;
-            btn_Eliminar.Text = "Eliminar";
-            btn_Eliminar.UseVisualStyleBackColor = true;
-            btn_Eliminar.Click += btn_Eliminar_Click;
-            // 
-            // FormVerHumanos
+            // FormSeleccionarEmpleado
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1000, 562);
-            Controls.Add(btn_Eliminar);
-            Controls.Add(btnGuardar);
-            Controls.Add(dataGridView1);
+            ClientSize = new Size(1000, 612);
             Controls.Add(txtBuscar);
             Controls.Add(label1);
             Controls.Add(panelPrincipal);
-            Margin = new Padding(4);
-            Name = "FormVerHumanos";
-            Text = "FormVerHumanos";
-            Load += FormVerHumanos_Load;
+            Controls.Add(btn_Seleccionar);
+            Controls.Add(dgvEmpleados);
+            Name = "FormSeleccionarEmpleado";
+            Text = "FormSeleccionarEmpleado";
+            ((System.ComponentModel.ISupportInitialize)dgvEmpleados).EndInit();
             panelPrincipal.ResumeLayout(false);
             panelPrincipal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
+        private DataGridView dgvEmpleados;
+        private Button btn_Seleccionar;
         private Panel panelPrincipal;
         private Label labelPrincipal;
         private Label label1;
         private TextBox txtBuscar;
-        private DataGridView dataGridView1;
-        private Button btnGuardar;
-        private Button btn_Eliminar;
     }
 }
