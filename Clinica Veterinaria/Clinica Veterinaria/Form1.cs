@@ -43,7 +43,7 @@ namespace Clinica_Veterinaria
                 MessageBox.Show("Error al conectar la base de datos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             }
- 
+
         }
 
         void esconderPaneles()
@@ -202,6 +202,12 @@ namespace Clinica_Veterinaria
         private void btn_Administracion_Leave(object sender, EventArgs e)
         {
             btn_Administracion.BackColor = Color.FromArgb(207, 226, 243);
+        }
+
+        private void btn_Historial_Click(object sender, EventArgs e)
+        {
+            FormHistorial formHistorial = new FormHistorial(cnx);
+            abrirFormulario(formHistorial);
         }
     }
 }
