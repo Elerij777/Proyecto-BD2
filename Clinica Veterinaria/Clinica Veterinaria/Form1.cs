@@ -1,6 +1,14 @@
 using System.Data.SqlClient;
 using System.Data;
 using System.Runtime.InteropServices;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.IO.Image;
+using System.Drawing;
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
+using System.Diagnostics;
 
 namespace Clinica_Veterinaria
 {
@@ -27,6 +35,7 @@ namespace Clinica_Veterinaria
         public Form1()
         {
             InitializeComponent();
+
             esconderPaneles();
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
 

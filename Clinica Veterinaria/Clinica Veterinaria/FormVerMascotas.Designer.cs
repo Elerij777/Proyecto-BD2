@@ -31,6 +31,9 @@
             panelPrincipal = new Panel();
             labelPrincipal = new Label();
             dgvMascotas = new DataGridView();
+            label2 = new Label();
+            txtBuscador = new TextBox();
+            txtPdf = new Button();
             panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMascotas).BeginInit();
             SuspendLayout();
@@ -58,18 +61,47 @@
             // dgvMascotas
             // 
             dgvMascotas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMascotas.Location = new Point(12, 148);
+            dgvMascotas.Location = new Point(12, 195);
             dgvMascotas.Name = "dgvMascotas";
             dgvMascotas.RowHeadersWidth = 51;
-            dgvMascotas.Size = new Size(764, 290);
+            dgvMascotas.Size = new Size(772, 232);
             dgvMascotas.TabIndex = 4;
-            dgvMascotas.CellContentClick += dgvProductos_CellContentClick;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(462, 150);
+            label2.Name = "label2";
+            label2.Size = new Size(52, 20);
+            label2.TabIndex = 6;
+            label2.Text = "Buscar";
+            // 
+            // txtBuscador
+            // 
+            txtBuscador.Location = new Point(520, 143);
+            txtBuscador.Name = "txtBuscador";
+            txtBuscador.Size = new Size(264, 27);
+            txtBuscador.TabIndex = 8;
+            txtBuscador.TextChanged += txtBuscador_TextChanged;
+            // 
+            // txtPdf
+            // 
+            txtPdf.Location = new Point(557, 437);
+            txtPdf.Name = "txtPdf";
+            txtPdf.Size = new Size(140, 37);
+            txtPdf.TabIndex = 9;
+            txtPdf.Text = "Generar DNI";
+            txtPdf.UseVisualStyleBackColor = true;
+            txtPdf.Click += txtPdf_Click;
             // 
             // FormVerMascotas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 486);
+            Controls.Add(txtPdf);
+            Controls.Add(txtBuscador);
+            Controls.Add(label2);
             Controls.Add(dgvMascotas);
             Controls.Add(panelPrincipal);
             Name = "FormVerMascotas";
@@ -78,6 +110,7 @@
             panelPrincipal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMascotas).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -85,5 +118,10 @@
         private Panel panelPrincipal;
         private Label labelPrincipal;
         private DataGridView dgvMascotas;
+        private Label label1;
+        private Label label2;
+        private TextBox textBox1;
+        private TextBox txtBuscador;
+        private Button txtPdf;
     }
 }
