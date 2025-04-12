@@ -145,6 +145,7 @@ namespace Clinica_Veterinaria
             btn_proveedores.Text = "       Proveedores";
             btn_proveedores.TextAlign = ContentAlignment.MiddleLeft;
             btn_proveedores.UseVisualStyleBackColor = false;
+            btn_proveedores.Click += btn_proveedores_Click;
             // 
             // btn_bancos
             // 

@@ -218,5 +218,11 @@ namespace Clinica_Veterinaria
             FormHistorial formHistorial = new FormHistorial(cnx);
             abrirFormulario(formHistorial);
         }
+
+        private void btn_proveedores_Click(object sender, EventArgs e)
+        {
+            FormProveedores formProveedores = new FormProveedores(cnx);
+            abrirFormulario(formProveedores);
+        }
     }
 }
