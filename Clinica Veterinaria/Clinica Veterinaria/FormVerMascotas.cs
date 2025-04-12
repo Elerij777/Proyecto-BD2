@@ -43,8 +43,6 @@ namespace Clinica_Veterinaria
 
                    
                     dgvMascotas.DataSource = dt;
-
-                    /
                     dgvMascotas.Columns["Mascota_ID"].HeaderText = "ID";
                     dgvMascotas.Columns["NombreMascota"].HeaderText = "Nombre de la Mascota";
                     dgvMascotas.Columns["Especie"].HeaderText = "Especie";
