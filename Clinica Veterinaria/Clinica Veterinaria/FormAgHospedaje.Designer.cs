@@ -174,7 +174,6 @@
             txtAlimento.Name = "txtAlimento";
             txtAlimento.Size = new Size(40, 27);
             txtAlimento.TabIndex = 18;
-            txtAlimento.Text = "11";
             // 
             // txtIndicaciones
             // 
@@ -229,6 +228,7 @@
             button1.TabIndex = 26;
             button1.Text = "Elegir Habitacion";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
             // 
             // FormAgHospedaje
             // 

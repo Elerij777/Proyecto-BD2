@@ -57,7 +57,6 @@ namespace Clinica_Veterinaria
 
         private void txtBuscador_TextChanged(object sender, EventArgs e)
         {
-            // Llamar a CargarProductos con el texto del buscador
             CargarProductos(txtBuscador.Text.Trim());
         }
     }

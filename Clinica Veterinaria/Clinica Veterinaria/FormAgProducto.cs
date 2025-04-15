@@ -30,6 +30,7 @@ namespace Clinica_Veterinaria
                 cbxTipoProduc.Items.Clear();
                 cbxTipoProduc.Items.Add("Producto");
                 cbxTipoProduc.Items.Add("Inventario");
+                cbxTipoProduc.Items.Add("Alimento");
 
                 cbxTipoProduc.SelectedIndex = -1; // Sin selección inicial
             }

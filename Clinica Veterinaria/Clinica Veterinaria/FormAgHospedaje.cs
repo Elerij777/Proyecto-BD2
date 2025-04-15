@@ -16,6 +16,7 @@ namespace Clinica_Veterinaria
     {
         SqlConnection cnx;
         public int MascotaId = 0;
+        public int AlimentoId = 0;
         public FormAgHospedaje(SqlConnection cnx)
         {
             InitializeComponent();
@@ -57,7 +58,7 @@ namespace Clinica_Veterinaria
                 cmd.Parameters.AddWithValue("@FechaSalida", dateSalida.Value.Date);
                 if (!string.IsNullOrWhiteSpace(txtAlimento.Text))
                 {
-                    cmd.Parameters.AddWithValue("@Producto_id", Convert.ToInt32(txtAlimento.Text));
+                    cmd.Parameters.AddWithValue("@Producto_id", AlimentoId);
                 }
                 else
                 {
@@ -85,7 +86,7 @@ namespace Clinica_Veterinaria
 
         private void BtnElegirHabitacion_Click(object sender, EventArgs e)
         {
-            FormSeleccionarHabitacion formSeleccionarHabitacion = new FormSeleccionarHabitacion(cnx,this);
+            FormSeleccionarHabitacion formSeleccionarHabitacion = new FormSeleccionarHabitacion(cnx, this);
             formSeleccionarHabitacion.Visible = true;
         }
 
@@ -103,6 +104,17 @@ namespace Clinica_Veterinaria
         public void txtHabitacionSetText(string text)
         {
             txtHabitacion.Text = text;
+        }
+
+        public void txtAlimentoSetText(string text)
+        {
+            txtAlimento.Text = text;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            FormSeleccionarAlimento form = new FormSeleccionarAlimento(cnx, this);
+            form.Visible = true;
         }
     }
 }
