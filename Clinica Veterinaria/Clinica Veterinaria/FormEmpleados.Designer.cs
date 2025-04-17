@@ -30,7 +30,6 @@
         {
             dgvEmpleados = new DataGridView();
             btn_Salvar = new Button();
-            btn_Eliminar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvEmpleados).BeginInit();
             SuspendLayout();
             // 
@@ -53,22 +52,11 @@
             btn_Salvar.UseVisualStyleBackColor = true;
             btn_Salvar.Click += btn_Salvar_Click;
             // 
-            // btn_Eliminar
-            // 
-            btn_Eliminar.Location = new Point(546, 463);
-            btn_Eliminar.Name = "btn_Eliminar";
-            btn_Eliminar.Size = new Size(131, 62);
-            btn_Eliminar.TabIndex = 2;
-            btn_Eliminar.Text = "Eliminar";
-            btn_Eliminar.UseVisualStyleBackColor = true;
-            btn_Eliminar.Click += btn_Eliminar_Click;
-            // 
             // FormEmpleados
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1000, 562);
-            Controls.Add(btn_Eliminar);
             Controls.Add(btn_Salvar);
             Controls.Add(dgvEmpleados);
             Name = "FormEmpleados";
@@ -82,6 +70,5 @@
 
         private DataGridView dgvEmpleados;
         private Button btn_Salvar;
-        private Button btn_Eliminar;
     }
 }

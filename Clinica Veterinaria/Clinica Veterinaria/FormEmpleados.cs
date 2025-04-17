@@ -129,35 +129,5 @@ namespace Clinica_Veterinaria
             }
         }
 
-        private void btn_Eliminar_Click(object sender, EventArgs e)
-        {
-
-            if (dgvEmpleados.CurrentRow == null)
-            {
-                MessageBox.Show("Seleccione un empleado para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            var confirmacion = MessageBox.Show(
-                "¿Está seguro de eliminar este empleado?",
-                "Confirmar Eliminación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (confirmacion == DialogResult.Yes)
-            {
-                try
-                {
-                    tabEmpleados.Rows[dgvEmpleados.CurrentRow.Index].Delete();
-                    adpEmpleados.Update(tabEmpleados);
-                    MessageBox.Show("Empleado eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarDatos();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error al eliminar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
     }
 }
