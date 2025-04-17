@@ -18,6 +18,20 @@ namespace Clinica_Veterinaria
         {
             this.cnx = cnx;
             InitializeComponent();
+            txtFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            cbEstado.Items.Add("Pagado");
+            cbEstado.Items.Add("Pendiente");
+            cbEstado.Items.Add("Cancelado");
+            cbMetodoPago.Items.Add("Tarjeta");
+            cbMetodoPago.Items.Add("Efectivo");
+            cbMetodoPago.Items.Add("Cheque");
+
+        }
+
+        private void BtnElegirCliente_Click(object sender, EventArgs e)
+        {
+            FormSeleccionarCliente_Ventas formSeleccionarCliente = new FormSeleccionarCliente_Ventas(this,cnx);
+            formSeleccionarCliente.Visible = true;
         }
     }
 }

@@ -555,11 +555,12 @@ namespace Clinica_Veterinaria
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             ClientSize = new Size(1099, 500);
             Controls.Add(panelPrincipal);
             Controls.Add(panelLateral);
             Name = "Form1";
-            Text = "Form1";
+            Text = "RinTinTin Pet Center";
             panelLateral.ResumeLayout(false);
             panel_Adm.ResumeLayout(false);
             panelCitas.ResumeLayout(false);
