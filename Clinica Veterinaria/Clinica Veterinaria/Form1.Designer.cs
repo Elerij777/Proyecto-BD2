@@ -33,6 +33,7 @@ namespace Clinica_Veterinaria
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panelLateral = new Panel();
             panel_Adm = new Panel();
+            btnVentas = new Button();
             btn_proveedores = new Button();
             btn_bancos = new Button();
             btn_servicios = new Button();
@@ -42,7 +43,6 @@ namespace Clinica_Veterinaria
             panelCitas = new Panel();
             btn_Historial = new Button();
             BtnAgregarHospedaje = new Button();
-            btnGrooming = new Button();
             btnHospedaje = new Button();
             btnClinica = new Button();
             btnCitas = new Button();
@@ -109,24 +109,41 @@ namespace Clinica_Veterinaria
             panelLateral.Dock = DockStyle.Left;
             panelLateral.Location = new Point(0, 0);
             panelLateral.Name = "panelLateral";
-            panelLateral.Size = new Size(229, 583);
+            panelLateral.Size = new Size(229, 500);
             panelLateral.TabIndex = 0;
             // 
             // panel_Adm
             // 
             panel_Adm.BackColor = Color.FromArgb(62, 98, 148);
+            panel_Adm.Controls.Add(btnVentas);
             panel_Adm.Controls.Add(btn_proveedores);
             panel_Adm.Controls.Add(btn_bancos);
             panel_Adm.Controls.Add(btn_servicios);
             panel_Adm.Controls.Add(btn_Compras);
             panel_Adm.Controls.Add(btn_Empleados);
             panel_Adm.Dock = DockStyle.Top;
-            panel_Adm.Location = new Point(0, 796);
+            panel_Adm.Location = new Point(0, 767);
             panel_Adm.Margin = new Padding(2, 3, 2, 3);
             panel_Adm.Name = "panel_Adm";
-            panel_Adm.Size = new Size(208, 155);
+            panel_Adm.Size = new Size(208, 184);
             panel_Adm.TabIndex = 1;
             panel_Adm.Visible = false;
+            // 
+            // btnVentas
+            // 
+            btnVentas.BackColor = Color.FromArgb(62, 98, 148);
+            btnVentas.Dock = DockStyle.Top;
+            btnVentas.FlatAppearance.BorderSize = 0;
+            btnVentas.FlatStyle = FlatStyle.Flat;
+            btnVentas.Location = new Point(0, 145);
+            btnVentas.Name = "btnVentas";
+            btnVentas.Padding = new Padding(15, 0, 0, 0);
+            btnVentas.Size = new Size(208, 29);
+            btnVentas.TabIndex = 15;
+            btnVentas.Text = "       Ventas";
+            btnVentas.TextAlign = ContentAlignment.MiddleLeft;
+            btnVentas.UseVisualStyleBackColor = false;
+            btnVentas.Click += btnVentas_Click;
             // 
             // btn_proveedores
             // 
@@ -214,7 +231,7 @@ namespace Clinica_Veterinaria
             btn_Administracion.FlatStyle = FlatStyle.Flat;
             btn_Administracion.Image = Properties.Resources._992871;
             btn_Administracion.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Administracion.Location = new Point(0, 737);
+            btn_Administracion.Location = new Point(0, 708);
             btn_Administracion.Name = "btn_Administracion";
             btn_Administracion.Size = new Size(208, 59);
             btn_Administracion.TabIndex = 9;
@@ -230,13 +247,12 @@ namespace Clinica_Veterinaria
             panelCitas.BackColor = Color.FromArgb(62, 98, 148);
             panelCitas.Controls.Add(btn_Historial);
             panelCitas.Controls.Add(BtnAgregarHospedaje);
-            panelCitas.Controls.Add(btnGrooming);
             panelCitas.Controls.Add(btnHospedaje);
             panelCitas.Controls.Add(btnClinica);
             panelCitas.Dock = DockStyle.Top;
             panelCitas.Location = new Point(0, 582);
             panelCitas.Name = "panelCitas";
-            panelCitas.Size = new Size(208, 155);
+            panelCitas.Size = new Size(208, 126);
             panelCitas.TabIndex = 1;
             // 
             // btn_Historial
@@ -246,7 +262,7 @@ namespace Clinica_Veterinaria
             btn_Historial.FlatAppearance.BorderSize = 0;
             btn_Historial.FlatStyle = FlatStyle.Flat;
             btn_Historial.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Historial.Location = new Point(0, 116);
+            btn_Historial.Location = new Point(0, 87);
             btn_Historial.Name = "btn_Historial";
             btn_Historial.Padding = new Padding(15, 0, 0, 0);
             btn_Historial.Size = new Size(208, 29);
@@ -263,7 +279,7 @@ namespace Clinica_Veterinaria
             BtnAgregarHospedaje.FlatAppearance.BorderSize = 0;
             BtnAgregarHospedaje.FlatStyle = FlatStyle.Flat;
             BtnAgregarHospedaje.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnAgregarHospedaje.Location = new Point(0, 87);
+            BtnAgregarHospedaje.Location = new Point(0, 58);
             BtnAgregarHospedaje.Name = "BtnAgregarHospedaje";
             BtnAgregarHospedaje.Padding = new Padding(15, 0, 0, 0);
             BtnAgregarHospedaje.Size = new Size(208, 29);
@@ -272,22 +288,6 @@ namespace Clinica_Veterinaria
             BtnAgregarHospedaje.TextAlign = ContentAlignment.MiddleLeft;
             BtnAgregarHospedaje.UseVisualStyleBackColor = false;
             BtnAgregarHospedaje.Click += BtnAgregarHospedaje_Click;
-            // 
-            // btnGrooming
-            // 
-            btnGrooming.BackColor = Color.FromArgb(62, 98, 148);
-            btnGrooming.Dock = DockStyle.Top;
-            btnGrooming.FlatAppearance.BorderSize = 0;
-            btnGrooming.FlatStyle = FlatStyle.Flat;
-            btnGrooming.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGrooming.Location = new Point(0, 58);
-            btnGrooming.Name = "btnGrooming";
-            btnGrooming.Padding = new Padding(15, 0, 0, 0);
-            btnGrooming.Size = new Size(208, 29);
-            btnGrooming.TabIndex = 11;
-            btnGrooming.Text = "       Grooming";
-            btnGrooming.TextAlign = ContentAlignment.MiddleLeft;
-            btnGrooming.UseVisualStyleBackColor = false;
             // 
             // btnHospedaje
             // 
@@ -547,7 +547,7 @@ namespace Clinica_Veterinaria
             panelPrincipal.Dock = DockStyle.Fill;
             panelPrincipal.Location = new Point(229, 0);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(870, 583);
+            panelPrincipal.Size = new Size(870, 500);
             panelPrincipal.TabIndex = 1;
             panelPrincipal.Paint += panelPrincipal_Paint;
             // 
@@ -555,7 +555,7 @@ namespace Clinica_Veterinaria
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1099, 583);
+            ClientSize = new Size(1099, 500);
             Controls.Add(panelPrincipal);
             Controls.Add(panelLateral);
             Name = "Form1";
@@ -594,7 +594,6 @@ namespace Clinica_Veterinaria
         private Button btnClinica;
         private Panel panelCitas;
         private Button btnCitas;
-        private Button btnGrooming;
         private Panel panel_Adm;
         private Button btn_servicios;
         private Button btn_Compras;
@@ -605,5 +604,6 @@ namespace Clinica_Veterinaria
         private Button BtnAgregarHospedaje;
         private Panel pnlNav;
         private Button btn_Historial;
+        private Button btnVentas;
     }
 }

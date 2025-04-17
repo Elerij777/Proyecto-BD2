@@ -230,5 +230,11 @@ namespace Clinica_Veterinaria
             FormBanco formBanco = new FormBanco(cnx);
             abrirFormulario(formBanco);
         }
+
+        private void btnVentas_Click(object sender, EventArgs e)
+        {
+            FormVentas formVentas = new FormVentas(cnx);
+            abrirFormulario(formVentas);
+        }
     }
 }

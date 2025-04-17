@@ -101,7 +101,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(446, 181);
+            label4.Location = new Point(472, 178);
             label4.Name = "label4";
             label4.Size = new Size(68, 20);
             label4.TabIndex = 8;
@@ -120,7 +120,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(458, 224);
+            label5.Location = new Point(467, 229);
             label5.Name = "label5";
             label5.Size = new Size(73, 20);
             label5.TabIndex = 10;
@@ -162,17 +162,17 @@
             // txtMascota
             // 
             txtMascota.Enabled = false;
-            txtMascota.Location = new Point(537, 178);
+            txtMascota.Location = new Point(546, 178);
             txtMascota.Name = "txtMascota";
-            txtMascota.Size = new Size(93, 27);
+            txtMascota.Size = new Size(153, 27);
             txtMascota.TabIndex = 17;
             // 
             // txtAlimento
             // 
             txtAlimento.Enabled = false;
-            txtAlimento.Location = new Point(537, 224);
+            txtAlimento.Location = new Point(546, 224);
             txtAlimento.Name = "txtAlimento";
-            txtAlimento.Size = new Size(40, 27);
+            txtAlimento.Size = new Size(153, 27);
             txtAlimento.TabIndex = 18;
             // 
             // txtIndicaciones
@@ -185,21 +185,21 @@
             // 
             // BtnElegirMascota
             // 
-            BtnElegirMascota.Location = new Point(641, 178);
+            BtnElegirMascota.Image = Properties.Resources.lupa;
+            BtnElegirMascota.Location = new Point(715, 172);
             BtnElegirMascota.Name = "BtnElegirMascota";
-            BtnElegirMascota.Size = new Size(174, 29);
+            BtnElegirMascota.Size = new Size(39, 39);
             BtnElegirMascota.TabIndex = 20;
-            BtnElegirMascota.Text = "Seleccionar Mascota";
             BtnElegirMascota.UseVisualStyleBackColor = true;
             BtnElegirMascota.Click += BtnElegirMascota_Click;
             // 
             // BtnElegirHabitacion
             // 
-            BtnElegirHabitacion.Location = new Point(227, 178);
+            BtnElegirHabitacion.Image = Properties.Resources.lupa;
+            BtnElegirHabitacion.Location = new Point(236, 175);
             BtnElegirHabitacion.Name = "BtnElegirHabitacion";
-            BtnElegirHabitacion.Size = new Size(170, 29);
+            BtnElegirHabitacion.Size = new Size(39, 36);
             BtnElegirHabitacion.TabIndex = 21;
-            BtnElegirHabitacion.Text = "Elegir Habitacion";
             BtnElegirHabitacion.UseVisualStyleBackColor = true;
             BtnElegirHabitacion.Click += BtnElegirHabitacion_Click;
             // 
@@ -222,11 +222,11 @@
             // 
             // button1
             // 
-            button1.Location = new Point(609, 223);
+            button1.Image = Properties.Resources.lupa;
+            button1.Location = new Point(715, 218);
             button1.Name = "button1";
-            button1.Size = new Size(170, 29);
+            button1.Size = new Size(39, 39);
             button1.TabIndex = 26;
-            button1.Text = "Elegir Habitacion";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_1;
             // 
