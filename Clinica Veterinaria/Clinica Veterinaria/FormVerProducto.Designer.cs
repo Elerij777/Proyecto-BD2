@@ -33,6 +33,8 @@
             dataGridView1 = new DataGridView();
             txtBuscador = new TextBox();
             label1 = new Label();
+            btnEliminar = new Button();
+            btnGuardar = new Button();
             panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -72,6 +74,7 @@
             txtBuscador.Name = "txtBuscador";
             txtBuscador.Size = new Size(439, 27);
             txtBuscador.TabIndex = 5;
+            txtBuscador.TextChanged += txtBuscador_TextChanged;
             // 
             // label1
             // 
@@ -82,11 +85,33 @@
             label1.TabIndex = 6;
             label1.Text = "Buscar";
             // 
+            // btnEliminar
+            // 
+            btnEliminar.Location = new Point(530, 449);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(139, 36);
+            btnEliminar.TabIndex = 7;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
+            // 
+            // btnGuardar
+            // 
+            btnGuardar.Location = new Point(82, 449);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(139, 36);
+            btnGuardar.TabIndex = 8;
+            btnGuardar.Text = "Guardar cambios";
+            btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
+            // 
             // FormVerProducto
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(827, 507);
+            Controls.Add(btnGuardar);
+            Controls.Add(btnEliminar);
             Controls.Add(label1);
             Controls.Add(txtBuscador);
             Controls.Add(dataGridView1);
@@ -95,7 +120,6 @@
             Text = "FormVerProducto";
             panelPrincipal.ResumeLayout(false);
             panelPrincipal.PerformLayout();
-            this.txtBuscador.TextChanged += new System.EventHandler(this.txtBuscador_TextChanged);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -109,5 +133,7 @@
         private DataGridView dataGridView1;
         private TextBox txtBuscador;
         private Label label1;
+        private Button btnEliminar;
+        private Button btnGuardar;
     }
 }
