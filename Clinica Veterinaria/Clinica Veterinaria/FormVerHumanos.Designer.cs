@@ -34,7 +34,6 @@
             txtBuscar = new TextBox();
             dataGridView1 = new DataGridView();
             btnGuardar = new Button();
-            btn_Eliminar = new Button();
             panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -101,22 +100,11 @@
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
-            // btn_Eliminar
-            // 
-            btn_Eliminar.Location = new Point(604, 504);
-            btn_Eliminar.Name = "btn_Eliminar";
-            btn_Eliminar.Size = new Size(143, 34);
-            btn_Eliminar.TabIndex = 8;
-            btn_Eliminar.Text = "Eliminar";
-            btn_Eliminar.UseVisualStyleBackColor = true;
-            btn_Eliminar.Click += btn_Eliminar_Click;
-            // 
             // FormVerHumanos
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1000, 562);
-            Controls.Add(btn_Eliminar);
             Controls.Add(btnGuardar);
             Controls.Add(dataGridView1);
             Controls.Add(txtBuscar);
@@ -141,6 +129,5 @@
         private TextBox txtBuscar;
         private DataGridView dataGridView1;
         private Button btnGuardar;
-        private Button btn_Eliminar;
     }
 }

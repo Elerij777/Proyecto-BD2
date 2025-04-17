@@ -81,7 +81,7 @@ namespace Clinica_Veterinaria
 
                 dataGridView1.DataSource = dtHumanos;
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                dataGridView1.AllowUserToAddRows = false; // No permitir agregar filas manualmente
+                dataGridView1.AllowUserToAddRows = true;
 
                 if (dataGridView1.Columns.Contains("Cliente_id"))
                 {
@@ -131,39 +131,6 @@ namespace Clinica_Veterinaria
             {
                 MessageBox.Show("Error al guardar: " + ex.Message,
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btn_Eliminar_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.CurrentRow != null && !dataGridView1.CurrentRow.IsNewRow)
-            {
-                if (MessageBox.Show("¿Estás segura que deseas eliminar este registro?", "Confirmar eliminación",
-                                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                {
-                    try
-                    {
-                        dtHumanos.Rows[dataGridView1.CurrentRow.Index].Delete();
-
-                        int registrosAfectados = adpHumanos.Update(dtHumanos);
-
-                        if (registrosAfectados > 0)
-                        {
-                            dtHumanos.Clear();
-                            adpHumanos.Fill(dtHumanos);
-                            //   MessageBox.Show("Registro eliminado correctamente.", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al eliminar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        dtHumanos.RejectChanges();
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("No hay una fila seleccionada válida para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
