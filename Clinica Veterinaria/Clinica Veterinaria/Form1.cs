@@ -224,5 +224,11 @@ namespace Clinica_Veterinaria
             FormProveedores formProveedores = new FormProveedores(cnx);
             abrirFormulario(formProveedores);
         }
+
+        private void btn_bancos_Click(object sender, EventArgs e)
+        {
+            FormBanco formBanco = new FormBanco(cnx);
+            abrirFormulario(formBanco);
+        }
     }
 }
