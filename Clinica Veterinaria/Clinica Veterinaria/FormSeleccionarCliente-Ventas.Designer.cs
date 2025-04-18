@@ -45,6 +45,7 @@
             panelPrincipal.Name = "panelPrincipal";
             panelPrincipal.Size = new Size(849, 125);
             panelPrincipal.TabIndex = 6;
+            panelPrincipal.Paint += panelPrincipal_Paint;
             // 
             // labelPrincipal
             // 

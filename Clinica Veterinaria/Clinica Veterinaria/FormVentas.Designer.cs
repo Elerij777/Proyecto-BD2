@@ -42,6 +42,9 @@
             cbMetodoPago = new ComboBox();
             BtnAgregarProducto = new Button();
             btnAgregarServivcio = new Button();
+            BtnCancelar = new Button();
+            BtnGuardarFactura = new Button();
+            BtnCotizacion = new Button();
             panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFactura).BeginInit();
             SuspendLayout();
@@ -53,14 +56,14 @@
             panelPrincipal.Dock = DockStyle.Top;
             panelPrincipal.Location = new Point(0, 0);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(870, 125);
+            panelPrincipal.Size = new Size(990, 125);
             panelPrincipal.TabIndex = 5;
             // 
             // labelPrincipal
             // 
             labelPrincipal.AutoSize = true;
             labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(351, 38);
+            labelPrincipal.Location = new Point(466, 38);
             labelPrincipal.Name = "labelPrincipal";
             labelPrincipal.Size = new Size(143, 43);
             labelPrincipal.TabIndex = 0;
@@ -113,10 +116,10 @@
             // dgvFactura
             // 
             dgvFactura.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFactura.Location = new Point(21, 263);
+            dgvFactura.Location = new Point(23, 283);
             dgvFactura.Name = "dgvFactura";
             dgvFactura.RowHeadersWidth = 51;
-            dgvFactura.Size = new Size(827, 251);
+            dgvFactura.Size = new Size(827, 314);
             dgvFactura.TabIndex = 25;
             // 
             // label3
@@ -161,6 +164,7 @@
             BtnAgregarProducto.TabIndex = 30;
             BtnAgregarProducto.Text = "Agregar Producto";
             BtnAgregarProducto.UseVisualStyleBackColor = true;
+            BtnAgregarProducto.Click += BtnAgregarProducto_Click;
             // 
             // btnAgregarServivcio
             // 
@@ -171,11 +175,41 @@
             btnAgregarServivcio.Text = "Agregar Servicio";
             btnAgregarServivcio.UseVisualStyleBackColor = true;
             // 
+            // BtnCancelar
+            // 
+            BtnCancelar.Location = new Point(871, 568);
+            BtnCancelar.Name = "BtnCancelar";
+            BtnCancelar.Size = new Size(94, 29);
+            BtnCancelar.TabIndex = 32;
+            BtnCancelar.Text = "Cancelar";
+            BtnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // BtnGuardarFactura
+            // 
+            BtnGuardarFactura.Location = new Point(871, 283);
+            BtnGuardarFactura.Name = "BtnGuardarFactura";
+            BtnGuardarFactura.Size = new Size(94, 29);
+            BtnGuardarFactura.TabIndex = 33;
+            BtnGuardarFactura.Text = "Guardar";
+            BtnGuardarFactura.UseVisualStyleBackColor = true;
+            // 
+            // BtnCotizacion
+            // 
+            BtnCotizacion.Location = new Point(871, 318);
+            BtnCotizacion.Name = "BtnCotizacion";
+            BtnCotizacion.Size = new Size(94, 29);
+            BtnCotizacion.TabIndex = 34;
+            BtnCotizacion.Text = "Cotizacion";
+            BtnCotizacion.UseVisualStyleBackColor = true;
+            // 
             // FormVentas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(870, 539);
+            ClientSize = new Size(990, 622);
+            Controls.Add(BtnCotizacion);
+            Controls.Add(BtnGuardarFactura);
+            Controls.Add(BtnCancelar);
             Controls.Add(btnAgregarServivcio);
             Controls.Add(BtnAgregarProducto);
             Controls.Add(cbMetodoPago);
@@ -214,5 +248,8 @@
         private ComboBox cbMetodoPago;
         private Button BtnAgregarProducto;
         private Button btnAgregarServivcio;
+        private Button BtnCancelar;
+        private Button BtnGuardarFactura;
+        private Button BtnCotizacion;
     }
 }

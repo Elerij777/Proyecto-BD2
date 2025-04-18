@@ -149,7 +149,8 @@ namespace Clinica_Veterinaria
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            FormEasterEgg formEasterEgg = new FormEasterEgg();
+            abrirFormulario(formEasterEgg);
         }
 
         private void btnCitas_Click(object sender, EventArgs e)
