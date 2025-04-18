@@ -76,6 +76,7 @@
             // txtNombre
             // 
             txtNombre.BackColor = Color.FromArgb(182, 207, 250);
+            txtNombre.BorderStyle = BorderStyle.FixedSingle;
             txtNombre.Location = new Point(159, 119);
             txtNombre.Margin = new Padding(3, 2, 3, 2);
             txtNombre.Name = "txtNombre";
@@ -112,6 +113,7 @@
             // txtPeso
             // 
             txtPeso.BackColor = Color.FromArgb(182, 207, 250);
+            txtPeso.BorderStyle = BorderStyle.FixedSingle;
             txtPeso.Location = new Point(460, 155);
             txtPeso.Margin = new Padding(3, 2, 3, 2);
             txtPeso.Name = "txtPeso";
@@ -176,13 +178,15 @@
             // 
             btnAgregar.BackColor = Color.FromArgb(207, 226, 243);
             btnAgregar.FlatStyle = FlatStyle.Flat;
+            btnAgregar.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAgregar.Image = Properties.Resources.add__1_;
             btnAgregar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAgregar.Location = new Point(537, 382);
+            btnAgregar.Location = new Point(587, 382);
             btnAgregar.Margin = new Padding(3, 2, 3, 2);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(150, 44);
+            btnAgregar.Size = new Size(100, 44);
             btnAgregar.TabIndex = 20;
-            btnAgregar.Text = "Agregar";
+            btnAgregar.Text = " Agregar";
             btnAgregar.TextAlign = ContentAlignment.MiddleLeft;
             btnAgregar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAgregar.UseVisualStyleBackColor = false;
