@@ -44,7 +44,7 @@
             // 
             // btn_Salvar
             // 
-            btn_Salvar.Location = new Point(256, 463);
+            btn_Salvar.Location = new Point(415, 458);
             btn_Salvar.Name = "btn_Salvar";
             btn_Salvar.Size = new Size(143, 62);
             btn_Salvar.TabIndex = 1;
