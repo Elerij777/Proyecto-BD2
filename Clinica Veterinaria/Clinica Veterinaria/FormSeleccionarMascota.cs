@@ -137,7 +137,11 @@ namespace Clinica_Veterinaria
                     formClinica.MascotaId = idMascota;
                     formClinica.txtMascotaSetText(nombreMascota);
                 }
-
+                else if (formOrigen is FormGrooming formGrooming)
+                {
+                    formGrooming.MascotaId = idMascota;
+                    formGrooming.txtMascotaSetText(nombreMascota);
+                }
                 this.Close();
             }
             else

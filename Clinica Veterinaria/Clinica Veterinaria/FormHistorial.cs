@@ -33,7 +33,10 @@ namespace Clinica_Veterinaria
 
             List<string> servicios = new List<string>();
             if (chkClinica.Checked) servicios.Add("'Clínica'");
-            if (chkGrooming.Checked) servicios.Add("'Grooming'");
+            if (chkGrooming.Checked) {
+                servicios.Add("'Grooming Clasico'");
+                servicios.Add("'Grooming Completo'");
+            }
             if (chkHospedaje.Checked) servicios.Add("'Hospedaje'");
 
             if (servicios.Count > 0)

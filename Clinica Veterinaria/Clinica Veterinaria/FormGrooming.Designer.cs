@@ -31,17 +31,17 @@
             panelPrincipal = new Panel();
             labelPrincipal = new Label();
             label1 = new Label();
-            textBox1 = new TextBox();
+            txtMascota = new TextBox();
             btn_Seleccionar = new Button();
             label2 = new Label();
-            textBox2 = new TextBox();
+            txtEmpleado = new TextBox();
             btn_Empleado = new Button();
             label3 = new Label();
             ckb_Corte = new CheckBox();
             label4 = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            dtpFecha = new DateTimePicker();
             label5 = new Label();
-            textBox3 = new TextBox();
+            txtObservaciones = new TextBox();
             btn_guardar = new Button();
             panelPrincipal.SuspendLayout();
             SuspendLayout();
@@ -77,12 +77,14 @@
             label1.TabIndex = 6;
             label1.Text = "Mascota:";
             // 
-            // textBox1
+            // txtMascota
             // 
-            textBox1.Location = new Point(208, 147);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(79, 31);
-            textBox1.TabIndex = 7;
+            txtMascota.Enabled = false;
+            txtMascota.Location = new Point(208, 147);
+            txtMascota.Name = "txtMascota";
+            txtMascota.Size = new Size(79, 31);
+            txtMascota.TabIndex = 7;
+            txtMascota.TextChanged += txtMascota_TextChanged;
             // 
             // btn_Seleccionar
             // 
@@ -92,6 +94,7 @@
             btn_Seleccionar.TabIndex = 8;
             btn_Seleccionar.Text = "Seleccionar Mascota";
             btn_Seleccionar.UseVisualStyleBackColor = true;
+            btn_Seleccionar.Click += btn_Seleccionar_Click;
             // 
             // label2
             // 
@@ -102,12 +105,13 @@
             label2.TabIndex = 9;
             label2.Text = "Empleado:";
             // 
-            // textBox2
+            // txtEmpleado
             // 
-            textBox2.Location = new Point(208, 218);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(81, 31);
-            textBox2.TabIndex = 10;
+            txtEmpleado.Enabled = false;
+            txtEmpleado.Location = new Point(208, 218);
+            txtEmpleado.Name = "txtEmpleado";
+            txtEmpleado.Size = new Size(81, 31);
+            txtEmpleado.TabIndex = 10;
             // 
             // btn_Empleado
             // 
@@ -117,6 +121,7 @@
             btn_Empleado.TabIndex = 11;
             btn_Empleado.Text = "Seleccionar Empleado";
             btn_Empleado.UseVisualStyleBackColor = true;
+            btn_Empleado.Click += btn_Empleado_Click;
             // 
             // label3
             // 
@@ -146,12 +151,12 @@
             label4.TabIndex = 15;
             label4.Text = "Fecha:";
             // 
-            // dateTimePicker1
+            // dtpFecha
             // 
-            dateTimePicker1.Location = new Point(665, 137);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(300, 31);
-            dateTimePicker1.TabIndex = 16;
+            dtpFecha.Location = new Point(665, 137);
+            dtpFecha.Name = "dtpFecha";
+            dtpFecha.Size = new Size(300, 31);
+            dtpFecha.TabIndex = 16;
             // 
             // label5
             // 
@@ -162,12 +167,12 @@
             label5.TabIndex = 17;
             label5.Text = "Observaciones:";
             // 
-            // textBox3
+            // txtObservaciones
             // 
-            textBox3.Location = new Point(208, 361);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(280, 31);
-            textBox3.TabIndex = 18;
+            txtObservaciones.Location = new Point(208, 361);
+            txtObservaciones.Name = "txtObservaciones";
+            txtObservaciones.Size = new Size(280, 31);
+            txtObservaciones.TabIndex = 18;
             // 
             // btn_guardar
             // 
@@ -177,6 +182,7 @@
             btn_guardar.TabIndex = 19;
             btn_guardar.Text = "Guardar Registro";
             btn_guardar.UseVisualStyleBackColor = true;
+            btn_guardar.Click += btn_guardar_Click;
             // 
             // FormGrooming
             // 
@@ -184,21 +190,22 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1000, 562);
             Controls.Add(btn_guardar);
-            Controls.Add(textBox3);
+            Controls.Add(txtObservaciones);
             Controls.Add(label5);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dtpFecha);
             Controls.Add(label4);
             Controls.Add(ckb_Corte);
             Controls.Add(label3);
             Controls.Add(btn_Empleado);
-            Controls.Add(textBox2);
+            Controls.Add(txtEmpleado);
             Controls.Add(label2);
             Controls.Add(btn_Seleccionar);
-            Controls.Add(textBox1);
+            Controls.Add(txtMascota);
             Controls.Add(label1);
             Controls.Add(panelPrincipal);
             Name = "FormGrooming";
             Text = "FormGrooming";
+            Load += FormGrooming_Load;
             panelPrincipal.ResumeLayout(false);
             panelPrincipal.PerformLayout();
             ResumeLayout(false);
@@ -210,17 +217,17 @@
         private Panel panelPrincipal;
         private Label labelPrincipal;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txtMascota;
         private Button btn_Seleccionar;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox txtEmpleado;
         private Button btn_Empleado;
         private Label label3;
         private CheckBox ckb_Corte;
         private Label label4;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpFecha;
         private Label label5;
-        private TextBox textBox3;
+        private TextBox txtObservaciones;
         private Button btn_guardar;
     }
 }
