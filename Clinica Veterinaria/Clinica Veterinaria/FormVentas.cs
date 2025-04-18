@@ -50,7 +50,6 @@ namespace Clinica_Veterinaria
             {
                 Name = "Tipo",
                 HeaderText = "Tipo",
-                DataSource = new string[] { "Producto", "Servicio" },
                 ReadOnly = true,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             };
@@ -133,15 +132,51 @@ namespace Clinica_Veterinaria
         }
         public void AgregarProducto(string descripcion, int cantidad, decimal costoUnitario, decimal impuesto, int id)
         {
-            decimal subtotal = (costoUnitario * cantidad) * (1 + (impuesto / 100));
+            foreach (DataGridViewRow fila in dgvFactura.Rows)
+            {
+                if (fila.Cells["Id"].Value != null && (int)fila.Cells["Id"].Value == id && fila.Cells["Tipo"].Value.ToString() == "Producto")
+                {
+  
+                    int cantidadExistente = Convert.ToInt32(fila.Cells["Cantidad"].Value);
+                    int nuevaCantidad = cantidadExistente + cantidad;
 
-            dgvFactura.Rows.Add(id,"Producto", descripcion, cantidad, costoUnitario, impuesto, null, null, subtotal);
+                    decimal nuevoSubtotal = Math.Round((costoUnitario * nuevaCantidad) * (1 + (impuesto / 100)), 2);
+
+                    fila.Cells["Cantidad"].Value = nuevaCantidad;
+                    fila.Cells["Subtotal"].Value = nuevoSubtotal;
+
+                    return;
+                }
+            }
+            decimal subtotal = Math.Round((costoUnitario * cantidad) * (1 + (impuesto)), 2);
+
+            dgvFactura.Rows.Add(id, "Producto", descripcion, cantidad, costoUnitario, impuesto, null, null, subtotal);
         }
+
         public void AgregarServicio(string descripcion, int cantidad, decimal costoUnitario, decimal impuesto, string empleado, decimal comision, int id)
         {
-            decimal subtotal = (costoUnitario * cantidad) * (1 + (impuesto / 100));
+            foreach (DataGridViewRow fila in dgvFactura.Rows)
+            {
+                if (fila.Cells["Id"].Value != null
+                    && (int)fila.Cells["Id"].Value == id
+                    && fila.Cells["Tipo"].Value.ToString() == "Servicio"
+                    && fila.Cells["Empleado"].Value?.ToString() == empleado)
+                {
+                    int cantidadExistente = Convert.ToInt32(fila.Cells["Cantidad"].Value);
+                    int nuevaCantidad = cantidadExistente + cantidad;
 
-            int rowIndex = dgvFactura.Rows.Add(id,"Servicio", descripcion, cantidad, costoUnitario, impuesto, empleado, comision, subtotal);
+                    decimal nuevoSubtotal = Math.Round((costoUnitario * nuevaCantidad) * (1 + (impuesto / 100)), 2);
+
+                    fila.Cells["Cantidad"].Value = nuevaCantidad;
+                    fila.Cells["Subtotal"].Value = nuevoSubtotal;
+
+                    return;
+                }
+            }
+
+            decimal subtotal = Math.Round((costoUnitario * cantidad) * (1 + (impuesto / 100)), 2);
+
+            int rowIndex = dgvFactura.Rows.Add(id, "Servicio", descripcion, cantidad, costoUnitario, impuesto, empleado, comision, subtotal);
 
             dgvFactura.Rows[rowIndex].Cells["Empleado"].Value = empleado;
             dgvFactura.Rows[rowIndex].Cells["Comision"].Value = comision;
@@ -149,9 +184,11 @@ namespace Clinica_Veterinaria
 
 
 
+
         private void BtnAgregarProducto_Click(object sender, EventArgs e)
         {
-
+            FormSeleccionarProducto_Ventas formSeleccionarProducto_Ventas = new FormSeleccionarProducto_Ventas(cnx,this);
+            formSeleccionarProducto_Ventas.Visible = true;
         }
     }
 }

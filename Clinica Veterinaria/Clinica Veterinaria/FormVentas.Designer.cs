@@ -88,10 +88,10 @@
             // 
             // BtnElegirCliente
             // 
-            BtnElegirCliente.Image = Properties.Resources.lupa;
+            BtnElegirCliente.Image = Properties.Resources.lupa1;
             BtnElegirCliente.Location = new Point(257, 164);
             BtnElegirCliente.Name = "BtnElegirCliente";
-            BtnElegirCliente.Size = new Size(39, 36);
+            BtnElegirCliente.Size = new Size(39, 37);
             BtnElegirCliente.TabIndex = 22;
             BtnElegirCliente.UseVisualStyleBackColor = true;
             BtnElegirCliente.Click += BtnElegirCliente_Click;
@@ -158,21 +158,27 @@
             // 
             // BtnAgregarProducto
             // 
-            BtnAgregarProducto.Location = new Point(683, 169);
+            BtnAgregarProducto.Image = Properties.Resources.add__1_;
+            BtnAgregarProducto.ImageAlign = ContentAlignment.MiddleRight;
+            BtnAgregarProducto.Location = new Point(683, 155);
             BtnAgregarProducto.Name = "BtnAgregarProducto";
-            BtnAgregarProducto.Size = new Size(147, 29);
+            BtnAgregarProducto.Size = new Size(167, 43);
             BtnAgregarProducto.TabIndex = 30;
             BtnAgregarProducto.Text = "Agregar Producto";
+            BtnAgregarProducto.TextAlign = ContentAlignment.MiddleLeft;
             BtnAgregarProducto.UseVisualStyleBackColor = true;
             BtnAgregarProducto.Click += BtnAgregarProducto_Click;
             // 
             // btnAgregarServivcio
             // 
-            btnAgregarServivcio.Location = new Point(683, 213);
+            btnAgregarServivcio.Image = Properties.Resources.add__1_;
+            btnAgregarServivcio.ImageAlign = ContentAlignment.MiddleRight;
+            btnAgregarServivcio.Location = new Point(683, 210);
             btnAgregarServivcio.Name = "btnAgregarServivcio";
-            btnAgregarServivcio.Size = new Size(147, 29);
+            btnAgregarServivcio.Size = new Size(167, 41);
             btnAgregarServivcio.TabIndex = 31;
             btnAgregarServivcio.Text = "Agregar Servicio";
+            btnAgregarServivcio.TextAlign = ContentAlignment.MiddleLeft;
             btnAgregarServivcio.UseVisualStyleBackColor = true;
             // 
             // BtnCancelar

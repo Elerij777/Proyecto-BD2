@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace Clinica_Veterinaria
 {
@@ -15,6 +16,9 @@ namespace Clinica_Veterinaria
     {
         SqlConnection cnx;
         FormVentas formVentas;
+        int numero = 0;
+        string input = "";
+
         public FormSeleccionarProducto_Ventas(SqlConnection cnx, FormVentas formVentas)
         {
             InitializeComponent();
@@ -50,12 +54,26 @@ namespace Clinica_Veterinaria
 
         private void BtnAcceptar_Click(object sender, EventArgs e)
         {
+            while (true)
+            {
+                input = Interaction.InputBox("Ingrese La cantidad del producto que se va a vender", "Cantidad del producto", "");
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    return;
+                }
+                if (int.TryParse(input, out numero) && numero > 0)
+                    break;
+                else
+                    MessageBox.Show("Debe ingresar un número entero válido mayor a 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             if (dgvProducto.CurrentRow != null)
             {
-                int id = Convert.ToInt32(dgvProducto.CurrentRow.Cells["Cliente_id"].Value?.ToString());
+                int id = Convert.ToInt32(dgvProducto.CurrentRow.Cells["Producto_id"].Value?.ToString());
                 string Nombre = dgvProducto.CurrentRow.Cells["Nombre"].Value?.ToString();
-                formVentas.clienteId = id;
-                formVentas.setTxtCliente(Nombre);
+                decimal costo = Convert.ToDecimal(dgvProducto.CurrentRow.Cells["Costo"].Value?.ToString());
+                formVentas.AgregarProducto(Nombre,numero,costo,0.15m , id);
                 this.Close();
             }
             else
