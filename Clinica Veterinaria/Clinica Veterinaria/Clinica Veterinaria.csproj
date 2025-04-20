@@ -10,6 +10,36 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Sounds\Ave.wav" />
+    <None Remove="Sounds\Conejo.wav" />
+    <None Remove="Sounds\Gato.wav" />
+    <None Remove="Sounds\Perro.wav" />
+    <None Remove="Sounds\Reptil.wav" />
+    <None Remove="Sounds\Roedor.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Sounds\Ave.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Conejo.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Gato.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Perro.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Reptil.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Roedor.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

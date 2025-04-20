@@ -13,6 +13,7 @@ using AForge.Video;
 using AForge.Video.DirectShow;
 using System.Data.Common;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Media;
 
 
 namespace Clinica_Veterinaria
@@ -144,10 +145,26 @@ namespace Clinica_Veterinaria
         }
 
 
-
-
-
-
+        private void PlayAnimalSound(string animalType)
+        {
+            try
+            {
+                string path = Path.Combine(Application.StartupPath, "Sounds", $"{animalType}.wav");
+                if (File.Exists(path))
+                {
+                    SoundPlayer player = new SoundPlayer(path);
+                    player.Play(); 
+                }
+                else
+                {
+                    MessageBox.Show($"Sound file not found for animal: {animalType}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error playing sound: " + ex.Message);
+            }
+        }
 
 
 
@@ -268,6 +285,8 @@ namespace Clinica_Veterinaria
                 });
 
                 MessageBox.Show("Mascota agregada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                PlayAnimalSound(especie);
 
                 // Limpiar controles
                 txtNombre.Clear();
