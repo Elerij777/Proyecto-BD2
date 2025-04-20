@@ -73,13 +73,18 @@ namespace Clinica_Veterinaria
                 int id = Convert.ToInt32(dgvProducto.CurrentRow.Cells["Producto_id"].Value?.ToString());
                 string Nombre = dgvProducto.CurrentRow.Cells["Nombre"].Value?.ToString();
                 decimal costo = Convert.ToDecimal(dgvProducto.CurrentRow.Cells["Costo"].Value?.ToString());
-                formVentas.AgregarProducto(Nombre,numero,costo,0.15m , id);
+                formVentas.AgregarProducto(Nombre, numero, costo, 0.15m, id);
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Debe seleccionar un Cliente.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void panelPrincipal_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

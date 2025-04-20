@@ -36,15 +36,19 @@
             txtFecha = new TextBox();
             label2 = new Label();
             dgvFactura = new DataGridView();
-            label3 = new Label();
             label4 = new Label();
-            cbEstado = new ComboBox();
-            cbMetodoPago = new ComboBox();
             BtnAgregarProducto = new Button();
             btnAgregarServivcio = new Button();
             BtnCancelar = new Button();
             BtnGuardarFactura = new Button();
             BtnCotizacion = new Button();
+            txtSubTotal = new TextBox();
+            label5 = new Label();
+            txtImpuesto = new TextBox();
+            label6 = new Label();
+            txtTotal = new TextBox();
+            label7 = new Label();
+            cbMetodoPago = new ComboBox();
             panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFactura).BeginInit();
             SuspendLayout();
@@ -122,39 +126,14 @@
             dgvFactura.Size = new Size(827, 314);
             dgvFactura.TabIndex = 25;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(407, 176);
-            label3.Name = "label3";
-            label3.Size = new Size(57, 20);
-            label3.TabIndex = 26;
-            label3.Text = "Estado:";
-            // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(337, 218);
+            label4.Location = new Point(337, 172);
             label4.Name = "label4";
             label4.Size = new Size(127, 20);
             label4.TabIndex = 27;
             label4.Text = "Metodo De pago:";
-            // 
-            // cbEstado
-            // 
-            cbEstado.FormattingEnabled = true;
-            cbEstado.Location = new Point(479, 173);
-            cbEstado.Name = "cbEstado";
-            cbEstado.Size = new Size(151, 28);
-            cbEstado.TabIndex = 28;
-            // 
-            // cbMetodoPago
-            // 
-            cbMetodoPago.FormattingEnabled = true;
-            cbMetodoPago.Location = new Point(479, 210);
-            cbMetodoPago.Name = "cbMetodoPago";
-            cbMetodoPago.Size = new Size(151, 28);
-            cbMetodoPago.TabIndex = 29;
             // 
             // BtnAgregarProducto
             // 
@@ -180,6 +159,7 @@
             btnAgregarServivcio.Text = "Agregar Servicio";
             btnAgregarServivcio.TextAlign = ContentAlignment.MiddleLeft;
             btnAgregarServivcio.UseVisualStyleBackColor = true;
+            btnAgregarServivcio.Click += btnAgregarServivcio_Click_1;
             // 
             // BtnCancelar
             // 
@@ -198,6 +178,7 @@
             BtnGuardarFactura.TabIndex = 33;
             BtnGuardarFactura.Text = "Guardar";
             BtnGuardarFactura.UseVisualStyleBackColor = true;
+            BtnGuardarFactura.Click += BtnGuardarFactura_Click;
             // 
             // BtnCotizacion
             // 
@@ -208,20 +189,83 @@
             BtnCotizacion.Text = "Cotizacion";
             BtnCotizacion.UseVisualStyleBackColor = true;
             // 
+            // txtSubTotal
+            // 
+            txtSubTotal.Enabled = false;
+            txtSubTotal.Location = new Point(114, 611);
+            txtSubTotal.Name = "txtSubTotal";
+            txtSubTotal.Size = new Size(125, 27);
+            txtSubTotal.TabIndex = 36;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(38, 614);
+            label5.Name = "label5";
+            label5.Size = new Size(70, 20);
+            label5.TabIndex = 35;
+            label5.Text = "SubTotal:";
+            // 
+            // txtImpuesto
+            // 
+            txtImpuesto.Enabled = false;
+            txtImpuesto.Location = new Point(368, 611);
+            txtImpuesto.Name = "txtImpuesto";
+            txtImpuesto.Size = new Size(125, 27);
+            txtImpuesto.TabIndex = 38;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(292, 614);
+            label6.Name = "label6";
+            label6.Size = new Size(74, 20);
+            label6.TabIndex = 37;
+            label6.Text = "Impuesto:";
+            // 
+            // txtTotal
+            // 
+            txtTotal.Enabled = false;
+            txtTotal.Location = new Point(632, 615);
+            txtTotal.Name = "txtTotal";
+            txtTotal.Size = new Size(125, 27);
+            txtTotal.TabIndex = 40;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(556, 618);
+            label7.Name = "label7";
+            label7.Size = new Size(45, 20);
+            label7.TabIndex = 39;
+            label7.Text = "Total:";
+            // 
+            // cbMetodoPago
+            // 
+            cbMetodoPago.FormattingEnabled = true;
+            cbMetodoPago.Location = new Point(479, 164);
+            cbMetodoPago.Name = "cbMetodoPago";
+            cbMetodoPago.Size = new Size(151, 28);
+            cbMetodoPago.TabIndex = 29;
+            // 
             // FormVentas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(990, 622);
+            ClientSize = new Size(990, 652);
+            Controls.Add(txtTotal);
+            Controls.Add(label7);
+            Controls.Add(txtImpuesto);
+            Controls.Add(label6);
+            Controls.Add(txtSubTotal);
+            Controls.Add(label5);
             Controls.Add(BtnCotizacion);
             Controls.Add(BtnGuardarFactura);
             Controls.Add(BtnCancelar);
             Controls.Add(btnAgregarServivcio);
             Controls.Add(BtnAgregarProducto);
             Controls.Add(cbMetodoPago);
-            Controls.Add(cbEstado);
             Controls.Add(label4);
-            Controls.Add(label3);
             Controls.Add(dgvFactura);
             Controls.Add(txtFecha);
             Controls.Add(label2);
@@ -248,14 +292,18 @@
         private TextBox txtFecha;
         private Label label2;
         private DataGridView dgvFactura;
-        private Label label3;
         private Label label4;
-        private ComboBox cbEstado;
-        private ComboBox cbMetodoPago;
         private Button BtnAgregarProducto;
         private Button btnAgregarServivcio;
         private Button BtnCancelar;
         private Button BtnGuardarFactura;
         private Button BtnCotizacion;
+        private TextBox txtSubTotal;
+        private Label label5;
+        private TextBox txtImpuesto;
+        private Label label6;
+        private TextBox txtTotal;
+        private Label label7;
+        private ComboBox cbMetodoPago;
     }
 }
