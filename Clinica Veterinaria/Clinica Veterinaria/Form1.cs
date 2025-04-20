@@ -249,5 +249,11 @@ namespace Clinica_Veterinaria
             FormRegister formRegister = new FormRegister(cnx);
             abrirFormulario(formRegister);
         }
+
+        private void btnArqueo_Click(object sender, EventArgs e)
+        {
+            FormArqueo formArqueo = new FormArqueo(cnx);
+            abrirFormulario(formArqueo);
+        }
     }
 }

@@ -22,6 +22,7 @@ namespace Clinica_Veterinaria
         {
             InitializeComponent();
             this.cnx = cnx;
+            ObtenerArqueoDeHoy();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -102,5 +103,5 @@ namespace Clinica_Veterinaria
             }
         }
             
-        }
     }
+}
