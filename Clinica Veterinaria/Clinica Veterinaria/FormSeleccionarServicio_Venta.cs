@@ -37,6 +37,7 @@ namespace Clinica_Veterinaria
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@ClienteId", ClienteId);
+                        cmd.Parameters.AddWithValue("@Fecha", DateTime.Now);
 
 
                         SqlDataAdapter adapter = new SqlDataAdapter(cmd);
