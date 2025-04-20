@@ -243,5 +243,11 @@ namespace Clinica_Veterinaria
             FormGrooming formGrooming = new FormGrooming(cnx);
             abrirFormulario(formGrooming);
         }
+
+        private void btn_Compras_Click(object sender, EventArgs e)
+        {
+            FormCompras formCompras = new FormCompras(cnx);
+            abrirFormulario(formCompras);
+        }
     }
 }
