@@ -116,5 +116,25 @@ namespace Clinica_Veterinaria
             FormSeleccionarAlimento form = new FormSeleccionarAlimento(cnx, this);
             form.Visible = true;
         }
+
+        private void txtAlimento_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtIndicaciones_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormAgHospedaje_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

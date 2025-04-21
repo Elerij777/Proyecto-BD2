@@ -22,7 +22,7 @@ namespace Clinica_Veterinaria
             InitializeComponent();
             this.cnx = cnx;
             ConfigurarDataAdapter();
-            CargarProductos(""); 
+            CargarProductos("");
         }
 
         public void ConfigurarDataAdapter()
@@ -156,6 +156,11 @@ namespace Clinica_Veterinaria
         private void txtBuscador_TextChanged(object sender, EventArgs e)
         {
             CargarProductos(txtBuscador.Text.Trim());
+        }
+
+        private void labelPrincipal_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -48,135 +48,159 @@
             // 
             // panelPrincipal
             // 
-            panelPrincipal.BackColor = SystemColors.ActiveCaption;
+            panelPrincipal.BackColor = Color.FromArgb(207, 226, 243);
             panelPrincipal.Controls.Add(labelPrincipal);
             panelPrincipal.Dock = DockStyle.Top;
             panelPrincipal.Location = new Point(0, 0);
+            panelPrincipal.Margin = new Padding(3, 2, 3, 2);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(838, 125);
+            panelPrincipal.Size = new Size(793, 94);
             panelPrincipal.TabIndex = 3;
             // 
             // labelPrincipal
             // 
             labelPrincipal.AutoSize = true;
-            labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(236, 35);
+            labelPrincipal.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelPrincipal.Location = new Point(206, 26);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(363, 43);
+            labelPrincipal.Size = new Size(226, 31);
             labelPrincipal.TabIndex = 0;
             labelPrincipal.Text = "Agregar Producto";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(29, 149);
+            label1.Location = new Point(25, 112);
             label1.Name = "label1";
-            label1.Size = new Size(64, 20);
+            label1.Size = new Size(51, 15);
             label1.TabIndex = 4;
             label1.Text = "Nombre";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(29, 204);
+            label2.Location = new Point(25, 153);
             label2.Name = "label2";
-            label2.Size = new Size(80, 20);
+            label2.Size = new Size(64, 15);
             label2.TabIndex = 5;
             label2.Text = "Existencias";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(29, 252);
+            label3.Location = new Point(25, 189);
             label3.Name = "label3";
-            label3.Size = new Size(47, 20);
+            label3.Size = new Size(38, 15);
             label3.TabIndex = 6;
             label3.Text = "Costo";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(29, 296);
+            label4.Location = new Point(25, 222);
             label4.Name = "label4";
-            label4.Size = new Size(50, 20);
+            label4.Size = new Size(40, 15);
             label4.TabIndex = 7;
             label4.Text = "Precio";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(370, 149);
+            label5.Location = new Point(324, 112);
             label5.Name = "label5";
-            label5.Size = new Size(99, 20);
+            label5.Size = new Size(79, 15);
             label5.TabIndex = 8;
             label5.Text = "TipoProducto";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(370, 204);
+            label6.Location = new Point(324, 153);
             label6.Name = "label6";
-            label6.Size = new Size(143, 20);
+            label6.Size = new Size(114, 15);
             label6.TabIndex = 9;
             label6.Text = "Fecha de Caducidad";
             // 
             // dtpFechaCaducidad
             // 
-            dtpFechaCaducidad.Location = new Point(481, 225);
+            dtpFechaCaducidad.Location = new Point(449, 153);
+            dtpFechaCaducidad.Margin = new Padding(8, 7, 8, 7);
             dtpFechaCaducidad.Name = "dtpFechaCaducidad";
             dtpFechaCaducidad.TabIndex = 17;
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(302, 444);
+            btnAgregar.BackColor = Color.FromArgb(207, 226, 243);
+            btnAgregar.FlatStyle = FlatStyle.Flat;
+            btnAgregar.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            btnAgregar.Image = Properties.Resources.add__1_;
+            btnAgregar.Location = new Point(581, 340);
+            btnAgregar.Margin = new Padding(3, 2, 3, 2);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(109, 36);
+            btnAgregar.Size = new Size(100, 44);
             btnAgregar.TabIndex = 18;
-            btnAgregar.Text = "Agregar";
-            btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Text = " Agregar";
+            btnAgregar.TextAlign = ContentAlignment.MiddleLeft;
+            btnAgregar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnAgregar.UseVisualStyleBackColor = false;
             btnAgregar.Click += btnAgregar_Click;
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(124, 146);
+            txtNombre.BackColor = Color.FromArgb(182, 207, 250);
+            txtNombre.BorderStyle = BorderStyle.None;
+            txtNombre.Location = new Point(108, 110);
+            txtNombre.Margin = new Padding(3, 2, 3, 2);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(188, 27);
+            txtNombre.Size = new Size(165, 16);
             txtNombre.TabIndex = 20;
             // 
             // txtExistencias
             // 
-            txtExistencias.Location = new Point(124, 197);
+            txtExistencias.BackColor = Color.FromArgb(182, 207, 250);
+            txtExistencias.BorderStyle = BorderStyle.None;
+            txtExistencias.Location = new Point(108, 148);
+            txtExistencias.Margin = new Padding(3, 2, 3, 2);
             txtExistencias.Name = "txtExistencias";
-            txtExistencias.Size = new Size(188, 27);
+            txtExistencias.Size = new Size(165, 16);
             txtExistencias.TabIndex = 21;
             // 
             // txtCosto
             // 
-            txtCosto.Location = new Point(124, 245);
+            txtCosto.BackColor = Color.FromArgb(182, 207, 250);
+            txtCosto.BorderStyle = BorderStyle.None;
+            txtCosto.Location = new Point(108, 184);
+            txtCosto.Margin = new Padding(3, 2, 3, 2);
             txtCosto.Name = "txtCosto";
-            txtCosto.Size = new Size(188, 27);
+            txtCosto.Size = new Size(165, 16);
             txtCosto.TabIndex = 22;
             // 
             // txtPrecio
             // 
-            txtPrecio.Location = new Point(124, 293);
+            txtPrecio.BackColor = Color.FromArgb(182, 207, 250);
+            txtPrecio.BorderStyle = BorderStyle.None;
+            txtPrecio.Location = new Point(108, 220);
+            txtPrecio.Margin = new Padding(3, 2, 3, 2);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(188, 27);
+            txtPrecio.Size = new Size(165, 16);
             txtPrecio.TabIndex = 23;
             // 
             // cbxTipoProduc
             // 
+            cbxTipoProduc.BackColor = Color.FromArgb(182, 207, 250);
             cbxTipoProduc.FormattingEnabled = true;
-            cbxTipoProduc.Location = new Point(481, 145);
+            cbxTipoProduc.Location = new Point(449, 109);
+            cbxTipoProduc.Margin = new Padding(3, 2, 3, 2);
             cbxTipoProduc.Name = "cbxTipoProduc";
-            cbxTipoProduc.Size = new Size(190, 28);
+            cbxTipoProduc.Size = new Size(167, 23);
             cbxTipoProduc.TabIndex = 24;
             // 
             // FormAgProducto
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(838, 505);
+            BackColor = Color.FromArgb(182, 207, 230);
+            ClientSize = new Size(793, 446);
             Controls.Add(cbxTipoProduc);
             Controls.Add(txtPrecio);
             Controls.Add(txtCosto);
@@ -191,6 +215,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(panelPrincipal);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormAgProducto";
             Text = "FormAgProducto";
             panelPrincipal.ResumeLayout(false);
