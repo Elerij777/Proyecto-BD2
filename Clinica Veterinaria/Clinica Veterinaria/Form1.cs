@@ -249,5 +249,17 @@ namespace Clinica_Veterinaria
             FormCompras formCompras = new FormCompras(cnx);
             abrirFormulario(formCompras);
         }
+
+        private void btn_agregarUsuario_Click(object sender, EventArgs e)
+        {
+            FormRegister formRegister = new FormRegister(cnx);
+            abrirFormulario(formRegister);
+        }
+
+        private void btnArqueo_Click(object sender, EventArgs e)
+        {
+            FormArqueo formArqueo = new FormArqueo(cnx);
+            abrirFormulario(formArqueo);
+        }
     }
 }

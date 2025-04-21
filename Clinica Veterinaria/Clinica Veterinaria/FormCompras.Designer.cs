@@ -51,6 +51,7 @@ namespace Clinica_Veterinaria
             btnInsertar = new Button();
             btn_existente = new Button();
             dgvCompras = new DataGridView();
+            btnEditar = new Button();
             panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCompras).BeginInit();
             SuspendLayout();
@@ -70,7 +71,7 @@ namespace Clinica_Veterinaria
             // 
             labelPrincipal.AutoSize = true;
             labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(582, 48);
+            labelPrincipal.Location = new Point(556, 48);
             labelPrincipal.Margin = new Padding(4, 0, 4, 0);
             labelPrincipal.Name = "labelPrincipal";
             labelPrincipal.Size = new Size(207, 50);
@@ -150,7 +151,7 @@ namespace Clinica_Veterinaria
             // BtnElegirProveedor
             // 
             BtnElegirProveedor.Image = Properties.Resources.lupa1;
-            BtnElegirProveedor.Location = new Point(420, 194);
+            BtnElegirProveedor.Location = new Point(434, 194);
             BtnElegirProveedor.Margin = new Padding(4);
             BtnElegirProveedor.Name = "BtnElegirProveedor";
             BtnElegirProveedor.Size = new Size(49, 46);
@@ -170,9 +171,9 @@ namespace Clinica_Veterinaria
             // 
             // txtDetalle
             // 
-            txtDetalle.Location = new Point(666, 199);
+            txtDetalle.Location = new Point(703, 194);
             txtDetalle.Name = "txtDetalle";
-            txtDetalle.Size = new Size(150, 31);
+            txtDetalle.Size = new Size(300, 31);
             txtDetalle.TabIndex = 25;
             // 
             // label6
@@ -207,7 +208,7 @@ namespace Clinica_Veterinaria
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(666, 247);
+            dateTimePicker1.Location = new Point(703, 246);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(300, 31);
             dateTimePicker1.TabIndex = 29;
@@ -215,7 +216,7 @@ namespace Clinica_Veterinaria
             // comboTipoProducto
             // 
             comboTipoProducto.FormattingEnabled = true;
-            comboTipoProducto.Location = new Point(692, 299);
+            comboTipoProducto.Location = new Point(703, 299);
             comboTipoProducto.Name = "comboTipoProducto";
             comboTipoProducto.Size = new Size(182, 33);
             comboTipoProducto.TabIndex = 30;
@@ -223,7 +224,7 @@ namespace Clinica_Veterinaria
             // 
             // txtPrecio
             // 
-            txtPrecio.Location = new Point(703, 354);
+            txtPrecio.Location = new Point(703, 349);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(150, 31);
             txtPrecio.TabIndex = 31;
@@ -240,7 +241,7 @@ namespace Clinica_Veterinaria
             // 
             // btn_existente
             // 
-            btn_existente.Location = new Point(296, 456);
+            btn_existente.Location = new Point(296, 453);
             btn_existente.Name = "btn_existente";
             btn_existente.Size = new Size(209, 34);
             btn_existente.TabIndex = 33;
@@ -257,11 +258,22 @@ namespace Clinica_Veterinaria
             dgvCompras.Size = new Size(978, 225);
             dgvCompras.TabIndex = 34;
             // 
+            // btnEditar
+            // 
+            btnEditar.Location = new Point(573, 453);
+            btnEditar.Name = "btnEditar";
+            btnEditar.Size = new Size(112, 34);
+            btnEditar.TabIndex = 35;
+            btnEditar.Text = "Editar";
+            btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
+            // 
             // FormCompras
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1248, 815);
+            Controls.Add(btnEditar);
             Controls.Add(dgvCompras);
             Controls.Add(btn_existente);
             Controls.Add(btnInsertar);
@@ -318,5 +330,6 @@ namespace Clinica_Veterinaria
         private Button btnInsertar;
         private Button btn_existente;
         private DataGridView dgvCompras;
+        private Button btnEditar;
     }
 }

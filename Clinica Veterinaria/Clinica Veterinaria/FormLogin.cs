@@ -25,7 +25,7 @@ namespace Clinica_Veterinaria
         private void btnInicioSesion_Click(object sender, EventArgs e)
         {
             string usuario = txtUsuario.Text;
-            string password = txtPassword.Text;
+            string password = Encriptar.GetSHA256(txtPassword.Text);
 
             try
             {

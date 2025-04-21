@@ -72,7 +72,6 @@ namespace Clinica_Veterinaria
                     cmd.Parameters.AddWithValue("@Fecha", dateTimePicker1.Value);
                     cmd.Parameters.AddWithValue("@Producto_id", ProductoId);
                     cmd.Parameters.AddWithValue("@Cantidad", cantidad);
-                    cmd.Parameters.AddWithValue("@Costo", costo);
                     cmd.Parameters.AddWithValue("@Precio", precio);
 
                     SqlDataReader reader = cmd.ExecuteReader();

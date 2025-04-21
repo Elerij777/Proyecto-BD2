@@ -63,6 +63,7 @@ namespace Clinica_Veterinaria
             pnlNav = new Panel();
             pictureBox1 = new PictureBox();
             panelPrincipal = new Panel();
+            btnArqueo = new Button();
             btnClientes = new Button();
             panelLateral.SuspendLayout();
             panel_Adm.SuspendLayout();
@@ -119,6 +120,7 @@ namespace Clinica_Veterinaria
             // panel_Adm
             // 
             panel_Adm.BackColor = Color.FromArgb(62, 98, 148);
+            panel_Adm.Controls.Add(btnArqueo);
             panel_Adm.Controls.Add(btn_agregarUsuario);
             panel_Adm.Controls.Add(btnVentas);
             panel_Adm.Controls.Add(btn_proveedores);
@@ -131,6 +133,7 @@ namespace Clinica_Veterinaria
             panel_Adm.Margin = new Padding(1, 4, 1, 4);
             panel_Adm.Name = "panel_Adm";
             panel_Adm.Size = new Size(260, 279);
+            panel_Adm.Size = new Size(208, 243);
             panel_Adm.TabIndex = 1;
             panel_Adm.Visible = false;
             // 
@@ -149,6 +152,7 @@ namespace Clinica_Veterinaria
             btn_agregarUsuario.Text = "       Agregar Usuario";
             btn_agregarUsuario.TextAlign = ContentAlignment.MiddleLeft;
             btn_agregarUsuario.UseVisualStyleBackColor = false;
+            btn_agregarUsuario.Click += btn_agregarUsuario_Click;
             // 
             // btnVentas
             // 
@@ -619,6 +623,22 @@ namespace Clinica_Veterinaria
             panelPrincipal.TabIndex = 1;
             panelPrincipal.Paint += panelPrincipal_Paint;
             // 
+            // btnArqueo
+            // 
+            btnArqueo.BackColor = Color.FromArgb(62, 98, 148);
+            btnArqueo.Dock = DockStyle.Top;
+            btnArqueo.FlatAppearance.BorderSize = 0;
+            btnArqueo.FlatStyle = FlatStyle.Flat;
+            btnArqueo.Location = new Point(0, 205);
+            btnArqueo.Name = "btnArqueo";
+            btnArqueo.Padding = new Padding(15, 0, 0, 0);
+            btnArqueo.Size = new Size(208, 31);
+            btnArqueo.TabIndex = 17;
+            btnArqueo.Text = "       Arqueo";
+            btnArqueo.TextAlign = ContentAlignment.MiddleLeft;
+            btnArqueo.UseVisualStyleBackColor = false;
+            btnArqueo.Click += btnArqueo_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -677,5 +697,6 @@ namespace Clinica_Veterinaria
         private Button btnVentas;
         private Button btn_Grooming;
         private Button btn_agregarUsuario;
+        private Button btnArqueo;
     }
 }

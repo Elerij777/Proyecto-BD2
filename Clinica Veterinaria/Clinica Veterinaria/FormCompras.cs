@@ -84,7 +84,7 @@ namespace Clinica_Veterinaria
             dgvCompras.AutoGenerateColumns = false;
             dgvCompras.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCompras.MultiSelect = false;
-            dgvCompras.ReadOnly = true;
+            dgvCompras.ReadOnly = false;
 
             dgvCompras.Columns.Clear();
 
@@ -99,6 +99,12 @@ namespace Clinica_Veterinaria
             colProveedor.HeaderText = "Proveedor_id";
             colProveedor.DataPropertyName = "Proveedor_id";
             dgvCompras.Columns.Add(colProveedor);
+
+            DataGridViewTextBoxColumn colProducto = new DataGridViewTextBoxColumn();
+            colProducto.Name = "Producto_id";
+            colProducto.HeaderText = "Producto_id";
+            colProducto.DataPropertyName = "Producto_id";
+            dgvCompras.Columns.Add(colProducto);
 
             DataGridViewTextBoxColumn colDetalle = new DataGridViewTextBoxColumn();
             colDetalle.Name = "Detalle";
@@ -215,6 +221,7 @@ namespace Clinica_Veterinaria
 
                     // Clear form fields after successful insertion
                     LimpiarFormulario();
+                    CargarDatos();
                 }
             }
             catch (Exception ex)
@@ -262,6 +269,11 @@ namespace Clinica_Veterinaria
         {
             FormCompraExistente formCompraExistente = new FormCompraExistente(cnx);
             formCompraExistente.ShowDialog();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }
