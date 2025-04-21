@@ -26,31 +26,67 @@ namespace Clinica_Veterinaria
         {
             string usuario = txtUsuario.Text;
             string password = Encriptar.GetSHA256(txtPassword.Text);
-
             try
             {
                 cnx.Open();
-                SqlCommand cmd = new SqlCommand("SELECT Usuario, Rol FROM Usuarios WHERE Usuario = @usuario AND Contraseña = @password", cnx);
+                SqlCommand cmd = new SqlCommand("SELECT dbo.FInicioSesion(@usuario)", cnx);
                 cmd.Parameters.AddWithValue("@usuario", usuario);
-                cmd.Parameters.AddWithValue("@password", password);
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+
+                object result = cmd.ExecuteScalar();
+                if (result != null)
                 {
-                    string rol = reader["Rol"].ToString();
-                    this.DialogResult = DialogResult.OK; // Indica que el login fue exitoso
+                    int inicioSesion = Convert.ToInt32(result);
+
+                    if (inicioSesion == 0)
+                    {
+                        FormNuevaContra formNuevaContra = new FormNuevaContra(cnx, usuario);
+                        formNuevaContra.ShowDialog();
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    else if (inicioSesion == 1)
+                    {
+                        // Validar el login con SPLogin
+                        SqlCommand cmd2 = new SqlCommand("SPLogin", cnx);
+                        cmd2.CommandType = CommandType.StoredProcedure;
+                        cmd2.Parameters.AddWithValue("@usuario", usuario);
+                        cmd2.Parameters.AddWithValue("@password", password);
+
+                        SqlDataReader reader2 = cmd2.ExecuteReader();
+                        if (reader2.Read())
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Usuario o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtUsuario.Clear();
+                            txtPassword.Clear();
+                            txtUsuario.Focus();
+                        }
+                        reader2.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Estado de inicio de sesión desconocido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Usuario o contraseña incorrectos.");
+                    MessageBox.Show("Usuario no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                reader.Close();
-                cnx.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                cnx.Close();
+            }
         }
+
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {

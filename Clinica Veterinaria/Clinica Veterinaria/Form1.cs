@@ -106,11 +106,6 @@ namespace Clinica_Veterinaria
             desplegarPanel(panelInventario);
         }
 
-        private void panelPrincipal_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void btnAgregarClientes_Click(object sender, EventArgs e)
         {
             FormAgMascotas formAgClientes = new FormAgMascotas(cnx);
