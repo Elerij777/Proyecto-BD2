@@ -71,15 +71,13 @@ namespace Clinica_Veterinaria
 
                 cnx.Open();
                 cmd.ExecuteNonQuery();
-                cnx.Close();
-
                 MessageBox.Show("Hospedaje insertado correctamente.");
             }
             catch (SqlException ex)
             {
-                cnx.Close();
+
                 MessageBox.Show("Error al insertar hospedaje: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }finally { cnx.Close();}
         }
 
 

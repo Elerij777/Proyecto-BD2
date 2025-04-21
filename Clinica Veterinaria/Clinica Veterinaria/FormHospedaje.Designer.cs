@@ -32,6 +32,7 @@
             labelPrincipal = new Label();
             button1 = new Button();
             dgvHospedaje = new DataGridView();
+            btnSalida = new Button();
             panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvHospedaje).BeginInit();
             SuspendLayout();
@@ -58,28 +59,39 @@
             // 
             // button1
             // 
-            button1.Location = new Point(354, 394);
+            button1.Location = new Point(200, 398);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(166, 29);
             button1.TabIndex = 4;
-            button1.Text = "button1";
+            button1.Text = "Registrar LLegada";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // dgvHospedaje
             // 
             dgvHospedaje.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvHospedaje.Location = new Point(73, 147);
+            dgvHospedaje.Location = new Point(28, 147);
             dgvHospedaje.Name = "dgvHospedaje";
             dgvHospedaje.RowHeadersWidth = 51;
-            dgvHospedaje.Size = new Size(665, 229);
+            dgvHospedaje.Size = new Size(725, 229);
             dgvHospedaje.TabIndex = 5;
+            // 
+            // btnSalida
+            // 
+            btnSalida.Location = new Point(453, 398);
+            btnSalida.Name = "btnSalida";
+            btnSalida.Size = new Size(166, 29);
+            btnSalida.TabIndex = 6;
+            btnSalida.Text = "Registrar Salida";
+            btnSalida.UseVisualStyleBackColor = true;
+            btnSalida.Click += btnSalida_Click;
             // 
             // FormHospedaje
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnSalida);
             Controls.Add(dgvHospedaje);
             Controls.Add(button1);
             Controls.Add(panelPrincipal);
@@ -97,5 +109,6 @@
         private Label labelPrincipal;
         private Button button1;
         private DataGridView dgvHospedaje;
+        private Button btnSalida;
     }
 }

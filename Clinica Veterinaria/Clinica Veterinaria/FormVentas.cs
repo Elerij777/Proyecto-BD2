@@ -20,7 +20,11 @@ namespace Clinica_Veterinaria
         public int clienteId = 0;
         string input = "";
         double numero = 0;
+<<<<<<< HEAD
         private int DocumentoId; // Almacena el ID de la factura o cotización
+=======
+        int facturaid=0;
+>>>>>>> 941fca8 (Finalmente hospedaje)
         public FormVentas(SqlConnection cnx)
         {
             this.cnx = cnx;
@@ -119,6 +123,10 @@ namespace Clinica_Veterinaria
         {
             FormSeleccionarCliente_Ventas formSeleccionarCliente = new FormSeleccionarCliente_Ventas(this, cnx);
             formSeleccionarCliente.Visible = true;
+        }
+        public void CargarFacturasPendientes()
+        {
+            dgvFactura.Rows.Clear();
         }
         public void setTxtCliente(string Nombre)
         {
@@ -268,7 +276,14 @@ namespace Clinica_Veterinaria
                     }
                 }
             }
-            GuardarFactura();
+            if (facturaid == 0)
+            {
+                GuardarFactura();
+            }
+            else
+            {
+
+            }
 
 
 
@@ -480,11 +495,69 @@ namespace Clinica_Veterinaria
                 MessageBox.Show("Error al generar el PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public void CargarFacturasPendientesYAgregarServicio(int clienteId)
+        {
+            dgvFactura.Rows.Clear();
+            facturaid = 0;
+            int idFactura = 0;
+
+            using (SqlCommand cmd = new SqlCommand("sp_CargarFacturasPendientesPorCliente", cnx))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ClienteId", clienteId);
+
+                try
+                {
+                    cnx.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (!reader.HasRows)
+                        {
+                            MessageBox.Show("El cliente no tiene facturas pendientes.");
+                            return;
+                        }
+
+                        while (reader.Read())
+                        {
+                            if (idFactura == 0)
+                                idFactura = Convert.ToInt32(reader["Facturas_id"]);
+
+                            int servicioId = Convert.ToInt32(reader["Servicio_id"]);
+                            string descripcion = reader["ServicioNombre"].ToString();
+                            int cantidad = Convert.ToInt32(reader["Cantidad"]);
+                            decimal costo = Convert.ToDecimal(reader["Costo_unitario"]);
+                            decimal impuesto = Convert.ToDecimal(reader["Impuesto"]);
+                            object empleadoId = reader["Empleado_id"] == DBNull.Value ? null : reader["Empleado_id"];
+                            decimal total = Math.Round(Convert.ToDecimal(reader["Total"]), 2);
+
+                            dgvFactura.Rows.Add(servicioId, "Servicio", descripcion, cantidad, costo, impuesto, empleadoId, total);
+                        }
+                        if (dgvFactura.Rows.Count > 0 && !dgvFactura.Rows[dgvFactura.Rows.Count - 1].IsNewRow)
+                        {
+                            facturaid = Convert.ToInt32(dgvFactura.Rows[0].Cells["FacturaId"].Value);
+
+                        }
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar la factura pendiente: " + ex.Message);
+                    return;
+                }
+                finally
+                {
+                    cnx.Close();
+                }
+                
+            }
+        }
 
 
         private void LimpiarControles()
         {
-
+            facturaid = 0;
             foreach (Control control in this.Controls)
             {
                 if (control is TextBox textBox)

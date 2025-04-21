@@ -168,7 +168,8 @@ namespace Clinica_Veterinaria
 
         private void btnHospedaje_Click(object sender, EventArgs e)
         {
-
+            FormHospedaje formHospedaje = new FormHospedaje(cnx);
+            abrirFormulario(formHospedaje);
         }
 
         private void btn_Empleados_Click(object sender, EventArgs e)
