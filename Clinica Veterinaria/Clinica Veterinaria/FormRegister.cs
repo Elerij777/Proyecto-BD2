@@ -54,7 +54,7 @@ namespace Clinica_Veterinaria
                 cmd.Parameters.AddWithValue("@nombre", nombre);
                 cmd.Parameters.AddWithValue("@apellido", apellido);
                 cmd.Parameters.AddWithValue("@rol", rol);
-                password = nombre[0].ToString().ToUpper() + apellido[0].ToString().ToUpper() + rol + "Rintintin";
+                password = nombre[0].ToString().ToUpper() + apellido[0].ToString().ToUpper() + rol[0].ToString().ToUpper() + "Rintintin";
                 cmd.Parameters.AddWithValue("@password", Encriptar.GetSHA256(password));
                 cmd.ExecuteNonQuery();
                 SqlCommand cmd2 = new SqlCommand("SPUltimoUsuario", cnx);

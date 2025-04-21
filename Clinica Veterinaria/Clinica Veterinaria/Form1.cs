@@ -256,5 +256,11 @@ namespace Clinica_Veterinaria
             FormArqueo formArqueo = new FormArqueo(cnx);
             abrirFormulario(formArqueo);
         }
+
+        private void btn_servicios_Click(object sender, EventArgs e)
+        {
+            FormServicios formServicios = new FormServicios(cnx);
+            abrirFormulario(formServicios);
+        }
     }
 }

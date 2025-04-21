@@ -67,6 +67,7 @@
             btnAgregar.BackColor = Color.FromArgb(207, 226, 243);
             btnAgregar.FlatStyle = FlatStyle.Flat;
             btnAgregar.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAgregar.Image = Properties.Resources.add__1_;
             btnAgregar.Location = new Point(451, 408);
             btnAgregar.Margin = new Padding(4, 3, 4, 3);
             btnAgregar.Name = "btnAgregar";

@@ -235,6 +235,7 @@ namespace Clinica_Veterinaria
             btn_servicios.Text = "       Servicios";
             btn_servicios.TextAlign = ContentAlignment.MiddleLeft;
             btn_servicios.UseVisualStyleBackColor = false;
+            btn_servicios.Click += btn_servicios_Click;
             // 
             // btn_Compras
             // 
