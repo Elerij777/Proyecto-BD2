@@ -84,7 +84,7 @@ namespace Clinica_Veterinaria
                 string genero = filaSeleccionada.Cells["Genero"].Value.ToString() == "M" ? "Masculino" : "Femenino";
                 string raza = filaSeleccionada.Cells["Raza"].Value.ToString();
                 string nacimiento = DateTime.Parse(filaSeleccionada.Cells["Fecha_Nacimiento"].Value.ToString()).ToString("dd/MM/yyyy");
-                string domicilio = "Dirección del cliente";
+                string domicilio = ObtenerDireccionClienteDesdeBD(duenio);
 
                 //convertidor de la imagen
                 byte[] fotoMascota = ObtenerFotoMascotaDesdeBD(mascotaId);
@@ -194,6 +194,38 @@ namespace Clinica_Veterinaria
             catch (Exception ex)
             {
                 MessageBox.Show("Error al obtener la foto de la mascota: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (cnx.State == ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
+            }
+
+            return null;
+        }
+        private string ObtenerDireccionClienteDesdeBD(string nombreCliente)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT dbo.fnObtenerDireccionPorNombreCliente(@NombreCliente)", cnx))
+                {
+                    cmd.Parameters.AddWithValue("@NombreCliente", nombreCliente);
+
+                    cnx.Open();
+                    object resultado = cmd.ExecuteScalar();
+                    cnx.Close();
+
+                    if (resultado != DBNull.Value)
+                    {
+                        return resultado.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener la dirección del cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
