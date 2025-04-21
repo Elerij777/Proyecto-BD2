@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
+using System.Diagnostics;
+
 
 namespace Clinica_Veterinaria
 {
@@ -21,6 +25,7 @@ namespace Clinica_Veterinaria
         {
             InitializeComponent();
             this.cnx = cnx;
+            dataGridView1.AllowUserToDeleteRows = true;
             ConfigurarDataAdapter();
             CargarProductos("");
         }
@@ -89,6 +94,7 @@ namespace Clinica_Veterinaria
             }
         }
 
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -121,46 +127,123 @@ namespace Clinica_Veterinaria
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.CurrentRow != null && !dataGridView1.CurrentRow.IsNewRow)
-            {
-                if (MessageBox.Show("¿Estás seguro que deseas eliminar este registro?", "Confirmar eliminación",
-                                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                {
-                    try
-                    {
-                        dtProductos.Rows[dataGridView1.CurrentRow.Index].Delete();
-
-                        int registrosAfectados = adpProductos.Update(dtProductos);
-
-                        if (registrosAfectados > 0)
-                        {
-                            dtProductos.Clear();
-                            adpProductos.Fill(dtProductos);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al eliminar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        dtProductos.RejectChanges();
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("No hay una fila seleccionada válida para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
         private void txtBuscador_TextChanged(object sender, EventArgs e)
         {
             CargarProductos(txtBuscador.Text.Trim());
         }
 
-        private void labelPrincipal_Click(object sender, EventArgs e)
-        {
 
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PdfDocument documento = new PdfDocument();
+                documento.Info.Title = "Inventario";
+
+                int productosPorPagina = 20; // Máximo de productos por página
+                int totalProductos = dtProductos.Rows.Count;
+                int paginas = (int)Math.Ceiling((double)totalProductos / productosPorPagina);
+
+                for (int paginaActual = 0; paginaActual < paginas; paginaActual++)
+                {
+                    PdfPage pagina = documento.AddPage();
+                    pagina.Orientation = PdfSharp.PageOrientation.Portrait;
+
+                    XGraphics gfx = XGraphics.FromPdfPage(pagina);
+
+                    // Carga la imagen base de la plantilla
+                    if (Properties.Resources.plantillaInventario != null)
+                    {
+                        using (var stream = new System.IO.MemoryStream())
+                        {
+                            Properties.Resources.plantillaInventario.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                            XImage imagenFondo = XImage.FromStream(stream);
+                            gfx.DrawImage(imagenFondo, 0, 0, pagina.Width, pagina.Height);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("La imagen de plantilla no está disponible en los recursos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Fuentes
+                    XFont fuenteSubtitulo = new XFont("Arial", 20, XFontStyleEx.Bold);
+                    XFont fuenteTexto = new XFont("Arial", 12, XFontStyleEx.Regular);
+
+                    // Fecha actual
+                    string fechaActual = DateTime.Now.ToString("dd/MM/yyyy");
+                    gfx.DrawString($"Fecha: {fechaActual}", fuenteTexto, XBrushes.SteelBlue, new XPoint(60, 110));
+
+                    // Subtítulo
+                    gfx.DrawString("Listado de Productos", fuenteSubtitulo, XBrushes.SteelBlue, new XPoint(60, 170));
+
+                    // Cantidad de productos
+                    gfx.DrawString($"Cantidad de productos: {totalProductos}", fuenteTexto, XBrushes.SteelBlue, new XPoint(60, 190));
+
+                    // Coordenadas iniciales para la tabla
+                    double xInicio = 50;
+                    double yInicio = 220;
+                    double anchoColumnaNombre = 200; // Más ancho para "Nombre"
+                    double anchoColumnaPequena = 70; // Más estrecho para "Costo" y "Precio"
+                    double altoFila = 20;
+
+                    // Dibujar encabezados de la tabla
+                    string[] encabezados = { "Nombre", "Existencias", "Costo", "Precio", "Caducidad" };
+                    double[] anchosColumnas = { anchoColumnaNombre, anchoColumnaPequena, anchoColumnaPequena, anchoColumnaPequena, anchoColumnaPequena + 30 };
+
+                    double xActual = xInicio;
+                    for (int i = 0; i < encabezados.Length; i++)
+                    {
+                        gfx.DrawRectangle(XPens.Black, XBrushes.SkyBlue, xActual, yInicio, anchosColumnas[i], altoFila);
+                        gfx.DrawString(encabezados[i], fuenteTexto, XBrushes.Black, new XRect(xActual, yInicio, anchosColumnas[i], altoFila), XStringFormats.Center);
+                        xActual += anchosColumnas[i];
+                    }
+
+                    // Dibujar filas de la tabla
+                    yInicio += altoFila; // Mover hacia abajo para las filas
+                    int inicio = paginaActual * productosPorPagina;
+                    int fin = Math.Min(inicio + productosPorPagina, totalProductos);
+
+                    for (int i = inicio; i < fin; i++)
+                    {
+                        DataRow row = dtProductos.Rows[i];
+                        xActual = xInicio;
+                        for (int j = 0; j < encabezados.Length; j++)
+                        {
+                            string valor = j switch
+                            {
+                                0 => row["Nombre"].ToString(),
+                                1 => row["Existencias"].ToString(),
+                                2 => string.Format("{0:C2}", row["Costo"]),
+                                3 => string.Format("{0:C2}", row["Precio"]),
+                                4 => Convert.ToDateTime(row["Fecha_caducidad"]).ToString("dd/MM/yyyy"),
+                                _ => ""
+                            };
+
+                            gfx.DrawRectangle(XPens.Black, xActual, yInicio, anchosColumnas[j], altoFila);
+                            gfx.DrawString(valor, fuenteTexto, XBrushes.Black, new XRect(xActual, yInicio, anchosColumnas[j], altoFila), XStringFormats.Center);
+                            xActual += anchosColumnas[j];
+                        }
+                        yInicio += altoFila;
+                    }
+                }
+
+                // Guardar el PDF en una ruta temporal
+                string rutaTemporal = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Inventario.pdf");
+                documento.Save(rutaTemporal);
+
+                // Abrir el PDF
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = rutaTemporal,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -65,8 +65,9 @@ namespace Clinica_Veterinaria
                     {
                         MessageBox.Show(ModoEdicion ? "Cliente actualizado con éxito." : "Cliente registrado con éxito.",
                                       "✅ Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        LimpiarCampos(); // Llama al método para limpiar los campos
                         this.DialogResult = DialogResult.OK;
-                        this.Close();
                     }
                     else
                     {
@@ -79,23 +80,11 @@ namespace Clinica_Veterinaria
                 MessageBox.Show("Error al procesar el cliente: " + ex.Message, "❌ Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        // Agrega estas propiedades al FormAgHumanos
-        public string Nombre
+        private void LimpiarCampos()
         {
-            get { return txtNombre.Text; }
-            set { txtNombre.Text = value; }
-        }
-
-        public string Telefono
-        {
-            get { return txtTelefono.Text; }
-            set { txtTelefono.Text = value; }
-        }
-
-        public string Direccion
-        {
-            get { return txtDireccion.Text; }
-            set { txtDireccion.Text = value; }
+            txtNombre.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
         }
     }
 }

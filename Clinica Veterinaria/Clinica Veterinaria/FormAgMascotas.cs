@@ -21,7 +21,7 @@ namespace Clinica_Veterinaria
     public partial class FormAgMascotas : Form
     {
         SqlConnection cnx;
-        private Dictionary<string, int> clientesDict = new Dictionary<string, int>();
+        public int clienteId = 0; // ID del cliente seleccionado
 
         public FormAgMascotas(SqlConnection cnx)
         {
@@ -32,8 +32,6 @@ namespace Clinica_Veterinaria
             cbxGenero.Items.Add("Hembra");
             cbxRaza.Items.Add("Comun Europeo");
 
-            // Cargar clientes al combobox
-            CargarClientes();
             CargarEspecies();
         }
 
@@ -41,48 +39,44 @@ namespace Clinica_Veterinaria
         {
             InitializeComponent();
         }
+
         public void CargarEspecies()
         {
             try
             {
-
+                if (cnx.State != ConnectionState.Open)
                 {
-                    if (cnx.State != ConnectionState.Open)
-                    {
-                        cnx.Open();
-                    }
-
-                    SqlCommand cmd = new SqlCommand("Sp_Leer_Razas", cnx);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-
-
-                    DataTable uniqueSpecies = dt.DefaultView.ToTable(true, "especie");
-
-                    cbxEspecie.DataSource = uniqueSpecies;
-                    cbxEspecie.DisplayMember = "especie";
-                    cbxEspecie.ValueMember = "especie";
-
-                    int index = cbxEspecie.FindStringExact("Gato");
-                    cbxEspecie.SelectedIndex = index >= 0 ? index : 0;
-                    cnx.Close();
+                    cnx.Open();
                 }
+
+                SqlCommand cmd = new SqlCommand("Sp_Leer_Razas", cnx);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                DataTable uniqueSpecies = dt.DefaultView.ToTable(true, "especie");
+
+                cbxEspecie.DataSource = uniqueSpecies;
+                cbxEspecie.DisplayMember = "especie";
+                cbxEspecie.ValueMember = "especie";
+
+                int index = cbxEspecie.FindStringExact("Gato");
+                cbxEspecie.SelectedIndex = index >= 0 ? index : 0;
+                cnx.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar especies: " + ex.Message);
             }
         }
+
         private void cbxEspecie_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (cbxEspecie.SelectedItem != null)
             {
                 string especieSeleccionada = cbxEspecie.Text.ToString();
-
                 CargarRazasPorEspecie(especieSeleccionada);
             }
         }
@@ -144,7 +138,6 @@ namespace Clinica_Veterinaria
             }
         }
 
-
         private void PlayAnimalSound(string animalType)
         {
             try
@@ -153,7 +146,7 @@ namespace Clinica_Veterinaria
                 if (File.Exists(path))
                 {
                     SoundPlayer player = new SoundPlayer(path);
-                    player.Play(); 
+                    player.Play();
                 }
                 else
                 {
@@ -165,50 +158,6 @@ namespace Clinica_Veterinaria
                 MessageBox.Show("Error playing sound: " + ex.Message);
             }
         }
-
-
-
-        private void CargarClientes()
-        {
-            try
-            {
-                clientesDict.Clear();
-                cbxClientes.Items.Clear();
-
-                using (SqlCommand cmd = new SqlCommand("SELECT  Cliente_id, Nombre FROM Clientes ORDER BY Nombre", cnx))
-                {
-                    if (cnx.State != ConnectionState.Open)
-                    {
-                        cnx.Open();
-                    }
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int id = Convert.ToInt32(reader["Cliente_id"]);
-                            string nombre = reader["Nombre"].ToString();
-
-                            // Guardar la relación nombre-id en el diccionario
-                            clientesDict[nombre] = id;
-
-                            // Agregar el nombre al combobox
-                            cbxClientes.Items.Add(nombre);
-                        }
-                    }
-                    cnx.Close();
-                }
-
-                cbxClientes.SelectedIndex = -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar los clientes: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        
-
-
 
         private void btnSeleccionarFoto_Click(object sender, EventArgs e)
         {
@@ -233,16 +182,20 @@ namespace Clinica_Veterinaria
             {
                 btnAgregar.Enabled = false;
 
-                // Validar que todos los campos estén llenos
+                if (clienteId == 0)
+                {
+                    MessageBox.Show("Debe seleccionar un cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                     cbxEspecie.SelectedItem == null ||
                     cbxRaza.SelectedItem == null ||
                     string.IsNullOrWhiteSpace(txtPeso.Text) ||
                     cbxGenero.SelectedItem == null ||
-                    pictureBoxImagen.Image == null ||
-                    cbxClientes.SelectedItem == null)
+                    pictureBoxImagen.Image == null)
                 {
-                    MessageBox.Show("Por favor, complete todos los campos y seleccione una imagen y un cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Por favor, complete todos los campos y seleccione una imagen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -252,7 +205,6 @@ namespace Clinica_Veterinaria
                 decimal peso = Convert.ToDecimal(txtPeso.Text);
                 string genero = cbxGenero.SelectedItem.ToString() == "Macho" ? "M" : "F";
                 DateTime fechaNacimiento = dtpFechaNacimiento.SelectionStart;
-                int clienteId = clientesDict[cbxClientes.SelectedItem.ToString()];
 
                 byte[] imagenBytes = null;
                 using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
@@ -286,8 +238,6 @@ namespace Clinica_Veterinaria
 
                 MessageBox.Show("Mascota agregada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                PlayAnimalSound(especie);
-
                 // Limpiar controles
                 txtNombre.Clear();
                 cbxEspecie.SelectedIndex = -1;
@@ -296,7 +246,8 @@ namespace Clinica_Veterinaria
                 cbxGenero.SelectedIndex = -1;
                 dtpFechaNacimiento.SelectionStart = DateTime.Now;
                 pictureBoxImagen.Image = null;
-                cbxClientes.SelectedIndex = -1;
+                txtCliente.Clear();
+                clienteId = 0;
             }
             catch (Exception ex)
             {
@@ -308,7 +259,16 @@ namespace Clinica_Veterinaria
             }
         }
 
+        private void BtnElegirCliente_Click(object sender, EventArgs e)
+        {
+            FormSeleccionarCliente_Mascotas formSeleccionarCliente = new FormSeleccionarCliente_Mascotas(this, cnx);
+            formSeleccionarCliente.ShowDialog();
+        }
 
-
+        public void SetClienteSeleccionado(int id, string nombre)
+        {
+            clienteId = id; // Guardar el ID del cliente seleccionado
+            txtCliente.Text = nombre; // Mostrar el nombre del cliente en el TextBox
+        }
     }
 }
