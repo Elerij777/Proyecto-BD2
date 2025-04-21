@@ -30,7 +30,10 @@
         {
             panelPrincipal = new Panel();
             labelPrincipal = new Label();
+            button1 = new Button();
+            dgvHospedaje = new DataGridView();
             panelPrincipal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvHospedaje).BeginInit();
             SuspendLayout();
             // 
             // panelPrincipal
@@ -47,22 +50,44 @@
             // 
             labelPrincipal.AutoSize = true;
             labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(236, 35);
+            labelPrincipal.Location = new Point(343, 46);
             labelPrincipal.Name = "labelPrincipal";
             labelPrincipal.Size = new Size(208, 43);
             labelPrincipal.TabIndex = 0;
             labelPrincipal.Text = "Hospedaje";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(354, 394);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 4;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // dgvHospedaje
+            // 
+            dgvHospedaje.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvHospedaje.Location = new Point(73, 147);
+            dgvHospedaje.Name = "dgvHospedaje";
+            dgvHospedaje.RowHeadersWidth = 51;
+            dgvHospedaje.Size = new Size(665, 229);
+            dgvHospedaje.TabIndex = 5;
             // 
             // FormHospedaje
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(dgvHospedaje);
+            Controls.Add(button1);
             Controls.Add(panelPrincipal);
             Name = "FormHospedaje";
             Text = "FormHospedaje";
             panelPrincipal.ResumeLayout(false);
             panelPrincipal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvHospedaje).EndInit();
             ResumeLayout(false);
         }
 
@@ -70,5 +95,7 @@
 
         private Panel panelPrincipal;
         private Label labelPrincipal;
+        private Button button1;
+        private DataGridView dgvHospedaje;
     }
 }

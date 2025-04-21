@@ -60,18 +60,17 @@
             panelPrincipal.Controls.Add(labelPrincipal);
             panelPrincipal.Dock = DockStyle.Top;
             panelPrincipal.Location = new Point(0, 0);
-            panelPrincipal.Margin = new Padding(3, 2, 3, 2);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(803, 94);
+            panelPrincipal.Size = new Size(962, 125);
             panelPrincipal.TabIndex = 4;
             // 
             // labelPrincipal
             // 
             labelPrincipal.AutoSize = true;
             labelPrincipal.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(206, 26);
+            labelPrincipal.Location = new Point(235, 35);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(247, 31);
+            labelPrincipal.Size = new Size(311, 39);
             labelPrincipal.TabIndex = 0;
             labelPrincipal.Text = "Agregar Hospedaje";
             // 
@@ -79,9 +78,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.5F);
-            label1.Location = new Point(12, 126);
+            label1.Location = new Point(14, 168);
             label1.Name = "label1";
-            label1.Size = new Size(124, 25);
+            label1.Size = new Size(158, 31);
             label1.TabIndex = 5;
             label1.Text = "Habitacion ID:";
             // 
@@ -89,9 +88,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 13.5F);
-            label2.Location = new Point(12, 190);
+            label2.Location = new Point(14, 253);
             label2.Name = "label2";
-            label2.Size = new Size(126, 25);
+            label2.Size = new Size(160, 31);
             label2.TabIndex = 6;
             label2.Text = "Fecha Ingreso:";
             // 
@@ -99,9 +98,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 13.5F);
-            label3.Location = new Point(12, 240);
+            label3.Location = new Point(14, 320);
             label3.Name = "label3";
-            label3.Size = new Size(113, 25);
+            label3.Size = new Size(146, 31);
             label3.TabIndex = 7;
             label3.Text = "Fecha Salida:";
             // 
@@ -109,9 +108,9 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 13.5F);
-            label4.Location = new Point(463, 126);
+            label4.Location = new Point(545, 168);
             label4.Name = "label4";
-            label4.Size = new Size(83, 25);
+            label4.Size = new Size(106, 31);
             label4.TabIndex = 8;
             label4.Text = "Mascota:";
             // 
@@ -121,10 +120,9 @@
             btnAgregar.FlatStyle = FlatStyle.Flat;
             btnAgregar.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAgregar.Image = Properties.Resources.add__1_;
-            btnAgregar.Location = new Point(681, 401);
-            btnAgregar.Margin = new Padding(3, 2, 3, 2);
+            btnAgregar.Location = new Point(778, 535);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(100, 44);
+            btnAgregar.Size = new Size(114, 59);
             btnAgregar.TabIndex = 9;
             btnAgregar.Text = " Agregar";
             btnAgregar.TextAlign = ContentAlignment.MiddleLeft;
@@ -136,9 +134,9 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 13.5F);
-            label5.Location = new Point(463, 165);
+            label5.Location = new Point(545, 220);
             label5.Name = "label5";
-            label5.Size = new Size(88, 25);
+            label5.Size = new Size(112, 31);
             label5.TabIndex = 10;
             label5.Text = "Alimento:";
             // 
@@ -146,9 +144,9 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 13.5F);
-            label6.Location = new Point(463, 218);
+            label6.Location = new Point(545, 291);
             label6.Name = "label6";
-            label6.Size = new Size(113, 25);
+            label6.Size = new Size(146, 31);
             label6.TabIndex = 11;
             label6.Text = "Indicaciones:";
             // 
@@ -158,28 +156,28 @@
             txtHabitacion.BorderStyle = BorderStyle.None;
             txtHabitacion.Enabled = false;
             txtHabitacion.Font = new Font("Segoe UI", 13.5F);
-            txtHabitacion.Location = new Point(138, 126);
-            txtHabitacion.Margin = new Padding(3, 2, 0, 2);
+            txtHabitacion.Location = new Point(176, 168);
+            txtHabitacion.Margin = new Padding(3, 3, 0, 3);
             txtHabitacion.Name = "txtHabitacion";
-            txtHabitacion.Size = new Size(139, 24);
+            txtHabitacion.Size = new Size(159, 30);
             txtHabitacion.TabIndex = 12;
             // 
             // dateIngreso
             // 
             dateIngreso.Font = new Font("Segoe UI", 13.5F);
-            dateIngreso.Location = new Point(138, 190);
-            dateIngreso.Margin = new Padding(2);
+            dateIngreso.Location = new Point(172, 253);
+            dateIngreso.Margin = new Padding(2, 3, 2, 3);
             dateIngreso.Name = "dateIngreso";
-            dateIngreso.Size = new Size(301, 31);
+            dateIngreso.Size = new Size(343, 37);
             dateIngreso.TabIndex = 15;
             // 
             // dateSalida
             // 
             dateSalida.Font = new Font("Segoe UI", 13.5F);
-            dateSalida.Location = new Point(138, 240);
-            dateSalida.Margin = new Padding(2);
+            dateSalida.Location = new Point(172, 320);
+            dateSalida.Margin = new Padding(2, 3, 2, 3);
             dateSalida.Name = "dateSalida";
-            dateSalida.Size = new Size(301, 31);
+            dateSalida.Size = new Size(343, 37);
             dateSalida.TabIndex = 16;
             // 
             // txtMascota
@@ -188,10 +186,10 @@
             txtMascota.BorderStyle = BorderStyle.None;
             txtMascota.Enabled = false;
             txtMascota.Font = new Font("Segoe UI", 13.5F);
-            txtMascota.Location = new Point(565, 126);
-            txtMascota.Margin = new Padding(3, 2, 0, 2);
+            txtMascota.Location = new Point(662, 168);
+            txtMascota.Margin = new Padding(3, 3, 0, 3);
             txtMascota.Name = "txtMascota";
-            txtMascota.Size = new Size(202, 24);
+            txtMascota.Size = new Size(231, 30);
             txtMascota.TabIndex = 17;
             // 
             // txtAlimento
@@ -200,10 +198,10 @@
             txtAlimento.BorderStyle = BorderStyle.None;
             txtAlimento.Enabled = false;
             txtAlimento.Font = new Font("Segoe UI", 13.5F);
-            txtAlimento.Location = new Point(565, 166);
-            txtAlimento.Margin = new Padding(3, 2, 0, 2);
+            txtAlimento.Location = new Point(662, 221);
+            txtAlimento.Margin = new Padding(3, 3, 0, 3);
             txtAlimento.Name = "txtAlimento";
-            txtAlimento.Size = new Size(202, 24);
+            txtAlimento.Size = new Size(231, 30);
             txtAlimento.TabIndex = 18;
             txtAlimento.TextChanged += txtAlimento_TextChanged;
             // 
@@ -212,11 +210,10 @@
             txtIndicaciones.BackColor = Color.FromArgb(182, 207, 250);
             txtIndicaciones.BorderStyle = BorderStyle.None;
             txtIndicaciones.Font = new Font("Segoe UI", 13.5F);
-            txtIndicaciones.Location = new Point(563, 245);
-            txtIndicaciones.Margin = new Padding(3, 2, 3, 2);
+            txtIndicaciones.Location = new Point(659, 327);
             txtIndicaciones.Multiline = true;
             txtIndicaciones.Name = "txtIndicaciones";
-            txtIndicaciones.Size = new Size(218, 136);
+            txtIndicaciones.Size = new Size(249, 181);
             txtIndicaciones.TabIndex = 19;
             txtIndicaciones.TextChanged += txtIndicaciones_TextChanged;
             // 
@@ -226,10 +223,10 @@
             BtnElegirMascota.FlatStyle = FlatStyle.Flat;
             BtnElegirMascota.ForeColor = Color.FromArgb(182, 207, 250);
             BtnElegirMascota.Image = Properties.Resources.lupa2;
-            BtnElegirMascota.Location = new Point(767, 126);
+            BtnElegirMascota.Location = new Point(893, 168);
             BtnElegirMascota.Margin = new Padding(0);
             BtnElegirMascota.Name = "BtnElegirMascota";
-            BtnElegirMascota.Size = new Size(25, 24);
+            BtnElegirMascota.Size = new Size(29, 32);
             BtnElegirMascota.TabIndex = 20;
             BtnElegirMascota.UseVisualStyleBackColor = false;
             BtnElegirMascota.Click += BtnElegirMascota_Click;
@@ -240,10 +237,10 @@
             BtnElegirHabitacion.FlatStyle = FlatStyle.Flat;
             BtnElegirHabitacion.ForeColor = Color.FromArgb(182, 207, 250);
             BtnElegirHabitacion.Image = Properties.Resources.lupa2;
-            BtnElegirHabitacion.Location = new Point(277, 126);
+            BtnElegirHabitacion.Location = new Point(335, 168);
             BtnElegirHabitacion.Margin = new Padding(0);
             BtnElegirHabitacion.Name = "BtnElegirHabitacion";
-            BtnElegirHabitacion.Size = new Size(24, 24);
+            BtnElegirHabitacion.Size = new Size(27, 32);
             BtnElegirHabitacion.TabIndex = 21;
             BtnElegirHabitacion.UseVisualStyleBackColor = false;
             BtnElegirHabitacion.Click += BtnElegirHabitacion_Click;
@@ -252,9 +249,9 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 13.5F);
-            label7.Location = new Point(12, 304);
+            label7.Location = new Point(14, 405);
             label7.Name = "label7";
-            label7.Size = new Size(70, 25);
+            label7.Size = new Size(88, 31);
             label7.TabIndex = 22;
             label7.Text = "Estado:";
             // 
@@ -263,10 +260,9 @@
             cmbEstado.BackColor = Color.FromArgb(182, 207, 250);
             cmbEstado.Font = new Font("Segoe UI", 13.5F);
             cmbEstado.FormattingEnabled = true;
-            cmbEstado.Location = new Point(138, 301);
-            cmbEstado.Margin = new Padding(3, 2, 3, 2);
+            cmbEstado.Location = new Point(158, 401);
             cmbEstado.Name = "cmbEstado";
-            cmbEstado.Size = new Size(133, 33);
+            cmbEstado.Size = new Size(151, 38);
             cmbEstado.TabIndex = 23;
             // 
             // button1
@@ -275,10 +271,10 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = Color.FromArgb(182, 207, 250);
             button1.Image = Properties.Resources.lupa2;
-            button1.Location = new Point(767, 166);
+            button1.Location = new Point(893, 221);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
-            button1.Size = new Size(25, 24);
+            button1.Size = new Size(29, 32);
             button1.TabIndex = 26;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click_1;
@@ -286,35 +282,38 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(38, 40, 64);
-            panel2.Location = new Point(138, 153);
+            panel2.Location = new Point(176, 204);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(139, 2);
+            panel2.Size = new Size(159, 3);
             panel2.TabIndex = 27;
             panel2.Paint += panel2_Paint;
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(38, 40, 64);
-            panel1.Location = new Point(565, 153);
+            panel1.Location = new Point(662, 204);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(202, 2);
+            panel1.Size = new Size(231, 3);
             panel1.TabIndex = 28;
             // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(38, 40, 64);
-            panel3.Location = new Point(565, 190);
+            panel3.Location = new Point(662, 253);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(202, 2);
+            panel3.Size = new Size(231, 3);
             panel3.TabIndex = 29;
             // 
             // FormAgHospedaje
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(182, 207, 230);
             BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(803, 446);
+            ClientSize = new Size(962, 595);
             Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(panel2);
@@ -337,7 +336,6 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(panelPrincipal);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "FormAgHospedaje";
             Text = "Form2";
             Load += FormAgHospedaje_Load;
