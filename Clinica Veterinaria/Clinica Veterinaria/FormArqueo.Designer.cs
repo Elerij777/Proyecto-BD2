@@ -49,6 +49,10 @@
             label9 = new Label();
             txtcajaTotal = new TextBox();
             label10 = new Label();
+            txtCajaAnterior = new TextBox();
+            label11 = new Label();
+            txtDeposito = new TextBox();
+            label12 = new Label();
             panelPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -74,11 +78,11 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(242, 449);
+            btnGuardar.Location = new Point(446, 453);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(94, 29);
             btnGuardar.TabIndex = 11;
-            btnGuardar.Text = "button1";
+            btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
@@ -135,7 +139,7 @@
             // 
             // txtTotal
             // 
-            txtTotal.Location = new Point(490, 203);
+            txtTotal.Location = new Point(329, 195);
             txtTotal.Name = "txtTotal";
             txtTotal.ReadOnly = true;
             txtTotal.Size = new Size(125, 27);
@@ -144,7 +148,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(370, 210);
+            label4.Location = new Point(209, 202);
             label4.Name = "label4";
             label4.Size = new Size(95, 20);
             label4.TabIndex = 18;
@@ -156,6 +160,7 @@
             txtCajaTarjeta.Name = "txtCajaTarjeta";
             txtCajaTarjeta.Size = new Size(125, 27);
             txtCajaTarjeta.TabIndex = 25;
+            txtCajaTarjeta.Text = "0.00";
             txtCajaTarjeta.TextChanged += txtCajaTarjeta_TextChanged;
             // 
             // label5
@@ -173,6 +178,7 @@
             txtCajaCheques.Name = "txtCajaCheques";
             txtCajaCheques.Size = new Size(125, 27);
             txtCajaCheques.TabIndex = 23;
+            txtCajaCheques.Text = "0.00";
             txtCajaCheques.TextChanged += txtCajaCheques_TextChanged;
             // 
             // label6
@@ -190,6 +196,7 @@
             txtCajaEfectivo.Name = "txtCajaEfectivo";
             txtCajaEfectivo.Size = new Size(125, 27);
             txtCajaEfectivo.TabIndex = 21;
+            txtCajaEfectivo.Text = "0.00";
             txtCajaEfectivo.TextChanged += txtCajaEfectivo_TextChanged;
             // 
             // label7
@@ -223,7 +230,7 @@
             // 
             // txtcajaTotal
             // 
-            txtcajaTotal.Location = new Point(481, 386);
+            txtcajaTotal.Location = new Point(197, 396);
             txtcajaTotal.Name = "txtcajaTotal";
             txtcajaTotal.ReadOnly = true;
             txtcajaTotal.Size = new Size(125, 27);
@@ -232,17 +239,55 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(361, 393);
+            label10.Location = new Point(96, 399);
             label10.Name = "label10";
             label10.Size = new Size(95, 20);
             label10.TabIndex = 27;
             label10.Text = "Total del dia:";
+            // 
+            // txtCajaAnterior
+            // 
+            txtCajaAnterior.Location = new Point(626, 195);
+            txtCajaAnterior.Name = "txtCajaAnterior";
+            txtCajaAnterior.ReadOnly = true;
+            txtCajaAnterior.Size = new Size(125, 27);
+            txtCajaAnterior.TabIndex = 30;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(506, 202);
+            label11.Name = "label11";
+            label11.Size = new Size(108, 20);
+            label11.TabIndex = 29;
+            label11.Text = "Dinero en caja:";
+            // 
+            // txtDeposito
+            // 
+            txtDeposito.Location = new Point(648, 396);
+            txtDeposito.Name = "txtDeposito";
+            txtDeposito.Size = new Size(125, 27);
+            txtDeposito.TabIndex = 32;
+            txtDeposito.Text = "0";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(506, 399);
+            label12.Name = "label12";
+            label12.Size = new Size(136, 20);
+            label12.TabIndex = 31;
+            label12.Text = "Dinero a depositar:";
             // 
             // FormArqueo
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(943, 507);
+            Controls.Add(txtDeposito);
+            Controls.Add(label12);
+            Controls.Add(txtCajaAnterior);
+            Controls.Add(label11);
             Controls.Add(txtcajaTotal);
             Controls.Add(label10);
             Controls.Add(label9);
@@ -265,6 +310,7 @@
             Controls.Add(panelPrincipal);
             Name = "FormArqueo";
             Text = "FormArqueo";
+            Load += FormArqueo_Load;
             panelPrincipal.ResumeLayout(false);
             panelPrincipal.PerformLayout();
             ResumeLayout(false);
@@ -294,5 +340,9 @@
         private Label label9;
         private TextBox txtcajaTotal;
         private Label label10;
+        private TextBox txtCajaAnterior;
+        private Label label11;
+        private TextBox txtDeposito;
+        private Label label12;
     }
 }
