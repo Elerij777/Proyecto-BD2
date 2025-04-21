@@ -84,7 +84,6 @@
             label1.Size = new Size(124, 25);
             label1.TabIndex = 5;
             label1.Text = "Habitacion ID:";
-            label1.Click += this.label1_Click;
             // 
             // label2
             // 
@@ -95,7 +94,6 @@
             label2.Size = new Size(126, 25);
             label2.TabIndex = 6;
             label2.Text = "Fecha Ingreso:";
-            label2.Click += this.label2_Click;
             // 
             // label3
             // 
@@ -106,7 +104,6 @@
             label3.Size = new Size(113, 25);
             label3.TabIndex = 7;
             label3.Text = "Fecha Salida:";
-            label3.Click += this.label3_Click;
             // 
             // label4
             // 
@@ -117,7 +114,6 @@
             label4.Size = new Size(83, 25);
             label4.TabIndex = 8;
             label4.Text = "Mascota:";
-            label4.Click += this.label4_Click;
             // 
             // btnAgregar
             // 
@@ -145,7 +141,6 @@
             label5.Size = new Size(88, 25);
             label5.TabIndex = 10;
             label5.Text = "Alimento:";
-            label5.Click += this.label5_Click;
             // 
             // label6
             // 
@@ -168,7 +163,6 @@
             txtHabitacion.Name = "txtHabitacion";
             txtHabitacion.Size = new Size(139, 24);
             txtHabitacion.TabIndex = 12;
-            txtHabitacion.TextChanged += this.txtHabitacion_TextChanged;
             // 
             // dateIngreso
             // 
@@ -178,7 +172,6 @@
             dateIngreso.Name = "dateIngreso";
             dateIngreso.Size = new Size(301, 31);
             dateIngreso.TabIndex = 15;
-            dateIngreso.ValueChanged += this.dateIngreso_ValueChanged;
             // 
             // dateSalida
             // 
@@ -188,7 +181,6 @@
             dateSalida.Name = "dateSalida";
             dateSalida.Size = new Size(301, 31);
             dateSalida.TabIndex = 16;
-            dateSalida.ValueChanged += this.dateSalida_ValueChanged;
             // 
             // txtMascota
             // 
@@ -201,7 +193,6 @@
             txtMascota.Name = "txtMascota";
             txtMascota.Size = new Size(202, 24);
             txtMascota.TabIndex = 17;
-            txtMascota.TextChanged += this.txtMascota_TextChanged;
             // 
             // txtAlimento
             // 
@@ -266,7 +257,6 @@
             label7.Size = new Size(70, 25);
             label7.TabIndex = 22;
             label7.Text = "Estado:";
-            label7.Click += this.label7_Click;
             // 
             // cmbEstado
             // 
@@ -278,7 +268,6 @@
             cmbEstado.Name = "cmbEstado";
             cmbEstado.Size = new Size(133, 33);
             cmbEstado.TabIndex = 23;
-            cmbEstado.SelectedIndexChanged += this.cmbEstado_SelectedIndexChanged;
             // 
             // button1
             // 

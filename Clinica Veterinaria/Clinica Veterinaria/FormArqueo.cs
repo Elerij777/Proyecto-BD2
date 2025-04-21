@@ -20,10 +20,10 @@ namespace Clinica_Veterinaria
         decimal totalTarjeta = 0;
         decimal diaAnterior = 0;
 
-        SqlConnection cnx;
+        private SqlConnection cnx;
         public FormArqueo(SqlConnection cnx)
         {
-            
+
             this.cnx = cnx;
             InitializeComponent();
             ObtenerArqueoDeHoy();
@@ -108,46 +108,43 @@ namespace Clinica_Veterinaria
 
         public void ObtenerArqueoDeHoy()
         {
-            cnx.Open();
-
-            string query = @"
-                SELECT *
-                FROM vw_ArqueoDiario
-                WHERE Fecha = CAST(GETDATE() AS DATE);
-            ";
-
-            using (cnx)
+            try
             {
+                if (cnx.State == ConnectionState.Closed)
+                    cnx.Open();
+
+                string query = @"
+                    SELECT *
+                    FROM vw_ArqueoDiario
+                    WHERE Fecha = CAST(GETDATE() AS DATE);
+                ";
+
                 SqlCommand command = new SqlCommand(query, cnx);
-                try
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
                 {
-                    SqlDataReader reader = command.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        totalDelDia = reader.GetDecimal(reader.GetOrdinal("TotalDelDia"));
-                        totalEfectivo = reader.GetDecimal(reader.GetOrdinal("TotalEfectivo"));
-                        totalCheque = reader.GetDecimal(reader.GetOrdinal("TotalCheque"));
-                        totalTarjeta = reader.GetDecimal(reader.GetOrdinal("TotalTarjeta"));
-                        if (reader.GetDecimal(reader.GetOrdinal("CajaDiaAnterior")) != null)
-                        {
-                            diaAnterior = reader.GetDecimal(reader.GetOrdinal("CajaDiaAnterior"));
-                        }
-
-                    }
-
-                    cnx.Close();
+                    totalDelDia = reader.GetDecimal(reader.GetOrdinal("TotalDelDia"));
+                    totalEfectivo = reader.GetDecimal(reader.GetOrdinal("TotalEfectivo"));
+                    totalCheque = reader.GetDecimal(reader.GetOrdinal("TotalCheque"));
+                    totalTarjeta = reader.GetDecimal(reader.GetOrdinal("TotalTarjeta"));
+                    diaAnterior = reader.GetDecimal(reader.GetOrdinal("CajaDiaAnterior"));
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error al obtener el arqueo: " + ex.Message);
-                    cnx.Close();
-                }
+                reader.Close();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener el arqueo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (cnx.State == ConnectionState.Open)
+                    cnx.Close();
+            }
+
             txtCajaAnterior.Text = diaAnterior.ToString("F2");
             txtCheques.Text = totalCheque.ToString("F2");
             txtTarjeta.Text = totalTarjeta.ToString("F2");
             txtEfectivo.Text = totalEfectivo.ToString("F2");
-            txtCheques.Text = totalCheque.ToString("F2");
             txtTotal.Text = totalDelDia.ToString("F2");
         }
 
@@ -169,7 +166,7 @@ namespace Clinica_Veterinaria
         {
             decimal efectivo, cheques, tarjeta;
 
-            if (!decimal.TryParse(txtCajaEfectivo.Text.Trim(), out efectivo) && txtCajaEfectivo.Text.Trim().ToString()!="" )
+            if (!decimal.TryParse(txtCajaEfectivo.Text.Trim(), out efectivo) && txtCajaEfectivo.Text.Trim().ToString() != "")
             {
                 MessageBox.Show("Por favor, ingrese un número válido en Caja Efectivo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
