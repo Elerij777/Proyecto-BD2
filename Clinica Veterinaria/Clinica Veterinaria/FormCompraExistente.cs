@@ -83,7 +83,6 @@ namespace Clinica_Veterinaria
                     }
                     reader.Close();
 
-                    // Clear form fields after successful insertion
                     LimpiarFormulario();
                 }
             }

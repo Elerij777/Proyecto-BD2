@@ -35,11 +35,9 @@ namespace Clinica_Veterinaria
         {
             adpCompras = new SqlDataAdapter();
 
-            // Configurar el SelectCommand
             adpCompras.SelectCommand = new SqlCommand("spListarCompras", cnx);
             adpCompras.SelectCommand.CommandType = CommandType.StoredProcedure;
 
-            // Configurar el InsertCommand
             adpCompras.InsertCommand = new SqlCommand("spInsertarCompra", cnx);
             adpCompras.InsertCommand.CommandType = CommandType.StoredProcedure;
             adpCompras.InsertCommand.Parameters.Add("@Proveedor_id", SqlDbType.Int, 4, "Proveedor_id");
@@ -50,7 +48,6 @@ namespace Clinica_Veterinaria
             adpCompras.InsertCommand.Parameters.Add("@Precio", SqlDbType.Decimal, 8, "Precio");
             adpCompras.InsertCommand.Parameters.Add("@Detalle", SqlDbType.VarChar, 200, "Detalle");
 
-            // Configurar el UpdateCommand
             adpCompras.UpdateCommand = new SqlCommand("spActualizarCompra", cnx);
             adpCompras.UpdateCommand.CommandType = CommandType.StoredProcedure;
             adpCompras.UpdateCommand.Parameters.Add("@Compra_id", SqlDbType.Int, 4, "Compra_id");
@@ -59,7 +56,6 @@ namespace Clinica_Veterinaria
             adpCompras.UpdateCommand.Parameters.Add("@Precio", SqlDbType.Decimal, 8, "Precio");
             adpCompras.UpdateCommand.Parameters.Add("@Detalle", SqlDbType.VarChar, 200, "Detalle");
 
-            // Configurar el DeleteCommand
             adpCompras.DeleteCommand = new SqlCommand("spEliminarCompra", cnx);
             adpCompras.DeleteCommand.CommandType = CommandType.StoredProcedure;
             adpCompras.DeleteCommand.Parameters.Add("@Compra_id", SqlDbType.Int, 4, "Compra_id");
@@ -219,7 +215,6 @@ namespace Clinica_Veterinaria
                     }
                     reader.Close();
 
-                    // Clear form fields after successful insertion
                     LimpiarFormulario();
                     CargarDatos();
                 }
