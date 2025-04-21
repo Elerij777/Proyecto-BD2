@@ -20,6 +20,7 @@ namespace Clinica_Veterinaria
         public int clienteId = 0;
         string input = "";
         double numero = 0;
+        private int DocumentoId; // Almacena el ID de la factura o cotización
         public FormVentas(SqlConnection cnx)
         {
             this.cnx = cnx;
@@ -269,7 +270,7 @@ namespace Clinica_Veterinaria
             }
             GuardarFactura();
 
-            
+
 
         }
         private void GuardarFactura()
@@ -340,52 +341,77 @@ namespace Clinica_Veterinaria
             }
             finally
             {
-                cnx.Close(); 
-                GenerarPDF();
-                LimpiarControles(); 
+                cnx.Close();
+                GenerarPDF("plantillaFactura");
+                LimpiarControles();
             }
         }
-        private void GenerarPDF()
+        private void GenerarPDF(string plantilla)
         {
             try
             {
+                // Determinar el texto del documento según la plantilla
+                string documentoTexto;
+                if (plantilla == "plantillaCotizacion")
+                {
+                    documentoTexto = "Cotización";
+                }
+                else if (plantilla == "plantillaFactura")
+                {
+                    // Recuperar el Factura_id de la última factura
+                    using (SqlCommand cmd = new SqlCommand("SELECT dbo.ObtenerUltimaFacturaId()", cnx))
+                    {
+                        cnx.Open();
+                        DocumentoId = (int)cmd.ExecuteScalar();
+                        cnx.Close();
+                    }
+                    documentoTexto = $"Factura N: {DocumentoId}";
+                }
+                else
+                {
+                    documentoTexto = "Documento";
+                }
+
+                // Crear el documento PDF
                 var documento = new PdfSharp.Pdf.PdfDocument();
-                documento.Info.Title = "Factura";
+                documento.Info.Title = "Documento";
 
                 var pagina = documento.AddPage();
                 pagina.Orientation = PdfSharp.PageOrientation.Portrait;
 
                 var gfx = PdfSharp.Drawing.XGraphics.FromPdfPage(pagina);
 
-                if (Properties.Resources.plantillaFactura != null)
+                // Cargar la imagen de la plantilla desde los recursos
+                if (Properties.Resources.ResourceManager.GetObject(plantilla) is Bitmap plantillaImagen)
                 {
                     using (var stream = new System.IO.MemoryStream())
                     {
-                        Properties.Resources.plantillaFactura.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                        plantillaImagen.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
                         var imagen = PdfSharp.Drawing.XImage.FromStream(stream);
                         gfx.DrawImage(imagen, 0, 0, pagina.Width, pagina.Height);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("La imagen de la plantilla no está disponible.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"La imagen de la plantilla '{plantilla}' no está disponible.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 var fontRegular = new PdfSharp.Drawing.XFont("Arial", 10, XFontStyleEx.Regular);
                 var fontBold = new PdfSharp.Drawing.XFont("Arial", 10, XFontStyleEx.Bold);
-                var fontTitle = new PdfSharp.Drawing.XFont("Arial", 14, XFontStyleEx.Bold);
 
-
+                // Información del cliente
                 gfx.DrawString($"Cliente:", fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(50, 180));
-                gfx.DrawString(txtCliente.Text, fontRegular, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(120, 180));
+                gfx.DrawString(txtCliente.Text, fontRegular, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(100, 180));
 
                 gfx.DrawString($"Fecha:", fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(50, 200));
-                gfx.DrawString(txtFecha.Text, fontRegular, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(120, 200));
+                gfx.DrawString(txtFecha.Text, fontRegular, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(100, 200));
 
-                gfx.DrawString("Factura No.:", fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(400, 130));
-                gfx.DrawString("1234", fontRegular, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(480, 130));
+                // Mostrar el texto del documento (Factura N o Cotización)
+                gfx.DrawString("Documento:", fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(400, 180));
+                gfx.DrawString(documentoTexto, fontRegular, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(480, 180));
 
+                // Configuración de la tabla
                 int startX = 50;
                 int startY = 250;
                 int rowHeight = 25;
@@ -396,7 +422,7 @@ namespace Clinica_Veterinaria
                 int currentX = startX;
                 for (int i = 0; i < headers.Length; i++)
                 {
-                    gfx.DrawRectangle(PdfSharp.Drawing.XBrushes.LightGray, currentX, startY, colWidths[i], rowHeight);
+                    gfx.DrawRectangle(PdfSharp.Drawing.XBrushes.LightSkyBlue, currentX, startY, colWidths[i], rowHeight);
                     gfx.DrawRectangle(PdfSharp.Drawing.XPens.Black, currentX, startY, colWidths[i], rowHeight);
                     gfx.DrawString(headers[i], fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(currentX + 5, startY + 16));
                     currentX += colWidths[i];
@@ -410,12 +436,12 @@ namespace Clinica_Veterinaria
                         currentX = startX;
 
                         string[] valores = {
-                    fila.Cells["Descripcion"].Value.ToString(),
-                    fila.Cells["Cantidad"].Value.ToString(),
-                    fila.Cells["CostoUnitario"].Value.ToString(),
-                    fila.Cells["Impuesto"].Value.ToString(),
-                    fila.Cells["Importe"].Value.ToString()
-                };
+                            fila.Cells["Descripcion"].Value.ToString(),
+                            fila.Cells["Cantidad"].Value.ToString(),
+                            fila.Cells["CostoUnitario"].Value.ToString(),
+                            fila.Cells["Impuesto"].Value.ToString(),
+                            fila.Cells["Importe"].Value.ToString()
+                        };
 
                         for (int i = 0; i < valores.Length; i++)
                         {
@@ -440,11 +466,9 @@ namespace Clinica_Veterinaria
                 gfx.DrawString("Total:", fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(400, totalStartY + 40));
                 gfx.DrawString(txtTotal.Text, fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(500, totalStartY + 40));
 
-              
-                string rutaPDF = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Factura.pdf");
+                string rutaPDF = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Documento.pdf");
                 documento.Save(rutaPDF);
 
-              
                 System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
                 {
                     FileName = rutaPDF,
@@ -456,6 +480,7 @@ namespace Clinica_Veterinaria
                 MessageBox.Show("Error al generar el PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void LimpiarControles()
         {
@@ -478,13 +503,18 @@ namespace Clinica_Veterinaria
 
             dgvFactura.Rows.Clear();
 
-     
+
             clienteId = 0;
 
-      
+
             txtFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
+        private void BtnCotizacion_Click(object sender, EventArgs e)
+        {
+            GenerarPDF("plantillaCotizacion");
+            LimpiarControles();
+        }
     }
 
 }

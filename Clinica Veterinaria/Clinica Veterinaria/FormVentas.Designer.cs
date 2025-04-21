@@ -188,6 +188,7 @@
             BtnCotizacion.TabIndex = 34;
             BtnCotizacion.Text = "Cotizacion";
             BtnCotizacion.UseVisualStyleBackColor = true;
+            BtnCotizacion.Click += BtnCotizacion_Click;
             // 
             // txtSubTotal
             // 
