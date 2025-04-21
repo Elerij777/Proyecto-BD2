@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic;
+using PdfSharp.Drawing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -279,8 +280,6 @@ namespace Clinica_Veterinaria
                 return;
             }
 
-            cnx.Open();
-
             decimal total = 0;
             decimal.TryParse(txtTotal.Text, System.Globalization.NumberStyles.Currency, null, out total);
             string metodoPago = cbMetodoPago.SelectedItem?.ToString() ?? "Efectivo";
@@ -306,7 +305,6 @@ namespace Clinica_Veterinaria
                     }
                     else if (tipo == "Servicio")
                     {
-                        // Suponiendo que tienes columna EmpleadoId
                         int empleadoId = Convert.ToInt32(fila.Cells["Empleado"].Value);
                         serviciosXml += $"<Service Id='{id}' Cantidad='{cantidad}' CostoUnitario='{costoUnitario}' Impuesto='{impuesto}' EmpleadoId='{empleadoId}' />";
                     }
@@ -318,6 +316,8 @@ namespace Clinica_Veterinaria
 
             try
             {
+                cnx.Open();
+
                 using (SqlCommand cmd = new SqlCommand("SPGuardarFactura", cnx))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -340,8 +340,149 @@ namespace Clinica_Veterinaria
             }
             finally
             {
-                cnx.Close();
+                cnx.Close(); 
+                GenerarPDF();
+                LimpiarControles(); 
             }
+        }
+        private void GenerarPDF()
+        {
+            try
+            {
+                var documento = new PdfSharp.Pdf.PdfDocument();
+                documento.Info.Title = "Factura";
+
+                var pagina = documento.AddPage();
+                pagina.Orientation = PdfSharp.PageOrientation.Portrait;
+
+                var gfx = PdfSharp.Drawing.XGraphics.FromPdfPage(pagina);
+
+                if (Properties.Resources.plantillaFactura != null)
+                {
+                    using (var stream = new System.IO.MemoryStream())
+                    {
+                        Properties.Resources.plantillaFactura.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                        var imagen = PdfSharp.Drawing.XImage.FromStream(stream);
+                        gfx.DrawImage(imagen, 0, 0, pagina.Width, pagina.Height);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La imagen de la plantilla no está disponible.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var fontRegular = new PdfSharp.Drawing.XFont("Arial", 10, XFontStyleEx.Regular);
+                var fontBold = new PdfSharp.Drawing.XFont("Arial", 10, XFontStyleEx.Bold);
+                var fontTitle = new PdfSharp.Drawing.XFont("Arial", 14, XFontStyleEx.Bold);
+
+
+                gfx.DrawString($"Cliente:", fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(50, 180));
+                gfx.DrawString(txtCliente.Text, fontRegular, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(120, 180));
+
+                gfx.DrawString($"Fecha:", fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(50, 200));
+                gfx.DrawString(txtFecha.Text, fontRegular, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(120, 200));
+
+                gfx.DrawString("Factura No.:", fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(400, 130));
+                gfx.DrawString("1234", fontRegular, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(480, 130));
+
+                int startX = 50;
+                int startY = 250;
+                int rowHeight = 25;
+                int[] colWidths = { 180, 70, 70, 60, 80 };
+
+                string[] headers = { "PRODUCTO / SERVICIO", "CANTIDAD", "PRECIO", "IVA", "TOTAL" };
+
+                int currentX = startX;
+                for (int i = 0; i < headers.Length; i++)
+                {
+                    gfx.DrawRectangle(PdfSharp.Drawing.XBrushes.LightGray, currentX, startY, colWidths[i], rowHeight);
+                    gfx.DrawRectangle(PdfSharp.Drawing.XPens.Black, currentX, startY, colWidths[i], rowHeight);
+                    gfx.DrawString(headers[i], fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(currentX + 5, startY + 16));
+                    currentX += colWidths[i];
+                }
+
+                int y = startY + rowHeight;
+                foreach (DataGridViewRow fila in dgvFactura.Rows)
+                {
+                    if (fila.Cells["Descripcion"].Value != null)
+                    {
+                        currentX = startX;
+
+                        string[] valores = {
+                    fila.Cells["Descripcion"].Value.ToString(),
+                    fila.Cells["Cantidad"].Value.ToString(),
+                    fila.Cells["CostoUnitario"].Value.ToString(),
+                    fila.Cells["Impuesto"].Value.ToString(),
+                    fila.Cells["Importe"].Value.ToString()
+                };
+
+                        for (int i = 0; i < valores.Length; i++)
+                        {
+                            gfx.DrawRectangle(PdfSharp.Drawing.XPens.Black, currentX, y, colWidths[i], rowHeight);
+                            gfx.DrawString(valores[i], fontRegular, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(currentX + 5, y + 16));
+                            currentX += colWidths[i];
+                        }
+
+                        y += rowHeight;
+                    }
+                }
+
+                int totalStartY = y + 30;
+                gfx.DrawLine(PdfSharp.Drawing.XPens.Black, 400, totalStartY - 10, 580, totalStartY - 10);
+
+                gfx.DrawString("Subtotal:", fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(400, totalStartY));
+                gfx.DrawString(txtSubTotal.Text, fontRegular, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(500, totalStartY));
+
+                gfx.DrawString("IVA (15%):", fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(400, totalStartY + 20));
+                gfx.DrawString(txtImpuesto.Text, fontRegular, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(500, totalStartY + 20));
+
+                gfx.DrawString("Total:", fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(400, totalStartY + 40));
+                gfx.DrawString(txtTotal.Text, fontBold, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XPoint(500, totalStartY + 40));
+
+              
+                string rutaPDF = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Factura.pdf");
+                documento.Save(rutaPDF);
+
+              
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = rutaPDF,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LimpiarControles()
+        {
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    textBox.Clear();
+                }
+            }
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is ComboBox comboBox)
+                {
+                    comboBox.SelectedIndex = -1;
+                }
+            }
+
+            dgvFactura.Rows.Clear();
+
+     
+            clienteId = 0;
+
+      
+            txtFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
     }
