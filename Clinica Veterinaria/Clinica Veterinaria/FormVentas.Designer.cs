@@ -55,205 +55,249 @@
             // 
             // panelPrincipal
             // 
-            panelPrincipal.BackColor = SystemColors.ActiveCaption;
+            panelPrincipal.BackColor = Color.FromArgb(207, 226, 243);
             panelPrincipal.Controls.Add(labelPrincipal);
             panelPrincipal.Dock = DockStyle.Top;
             panelPrincipal.Location = new Point(0, 0);
+            panelPrincipal.Margin = new Padding(3, 2, 3, 2);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(990, 125);
+            panelPrincipal.Size = new Size(866, 94);
             panelPrincipal.TabIndex = 5;
             // 
             // labelPrincipal
             // 
             labelPrincipal.AutoSize = true;
-            labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(466, 38);
+            labelPrincipal.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelPrincipal.Location = new Point(333, 23);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(143, 43);
+            labelPrincipal.Size = new Size(99, 31);
             labelPrincipal.TabIndex = 0;
             labelPrincipal.Text = "Ventas";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(38, 172);
+            label1.Location = new Point(33, 129);
             label1.Name = "label1";
-            label1.Size = new Size(58, 20);
+            label1.Size = new Size(47, 15);
             label1.TabIndex = 6;
             label1.Text = "Cliente:";
             // 
             // txtCliente
             // 
+            txtCliente.BackColor = Color.FromArgb(182, 207, 250);
+            txtCliente.BorderStyle = BorderStyle.None;
             txtCliente.Enabled = false;
-            txtCliente.Location = new Point(114, 169);
+            txtCliente.Location = new Point(100, 127);
+            txtCliente.Margin = new Padding(3, 2, 3, 2);
             txtCliente.Name = "txtCliente";
-            txtCliente.Size = new Size(125, 27);
+            txtCliente.Size = new Size(110, 16);
             txtCliente.TabIndex = 7;
             // 
             // BtnElegirCliente
             // 
-            BtnElegirCliente.Image = Properties.Resources.lupa1;
-            BtnElegirCliente.Location = new Point(257, 164);
+            BtnElegirCliente.BackColor = Color.FromArgb(182, 207, 230);
+            BtnElegirCliente.FlatStyle = FlatStyle.Flat;
+            BtnElegirCliente.ForeColor = Color.FromArgb(182, 207, 230);
+            BtnElegirCliente.Image = Properties.Resources.lupa2;
+            BtnElegirCliente.Location = new Point(225, 123);
+            BtnElegirCliente.Margin = new Padding(3, 2, 3, 2);
             BtnElegirCliente.Name = "BtnElegirCliente";
-            BtnElegirCliente.Size = new Size(39, 37);
+            BtnElegirCliente.Size = new Size(24, 24);
             BtnElegirCliente.TabIndex = 22;
-            BtnElegirCliente.UseVisualStyleBackColor = true;
+            BtnElegirCliente.UseVisualStyleBackColor = false;
             BtnElegirCliente.Click += BtnElegirCliente_Click;
             // 
             // txtFecha
             // 
+            txtFecha.BackColor = Color.FromArgb(182, 207, 250);
+            txtFecha.BorderStyle = BorderStyle.None;
             txtFecha.Enabled = false;
-            txtFecha.Location = new Point(114, 215);
+            txtFecha.Location = new Point(100, 161);
+            txtFecha.Margin = new Padding(3, 2, 3, 2);
             txtFecha.Name = "txtFecha";
-            txtFecha.Size = new Size(125, 27);
+            txtFecha.Size = new Size(110, 16);
             txtFecha.TabIndex = 24;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(46, 218);
+            label2.Location = new Point(40, 164);
             label2.Name = "label2";
-            label2.Size = new Size(50, 20);
+            label2.Size = new Size(41, 15);
             label2.TabIndex = 23;
             label2.Text = "Fecha:";
             // 
             // dgvFactura
             // 
             dgvFactura.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFactura.Location = new Point(23, 283);
+            dgvFactura.Location = new Point(20, 212);
+            dgvFactura.Margin = new Padding(3, 2, 3, 2);
             dgvFactura.Name = "dgvFactura";
             dgvFactura.RowHeadersWidth = 51;
-            dgvFactura.Size = new Size(827, 314);
+            dgvFactura.Size = new Size(724, 236);
             dgvFactura.TabIndex = 25;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(337, 172);
+            label4.Location = new Point(295, 129);
             label4.Name = "label4";
-            label4.Size = new Size(127, 20);
+            label4.Size = new Size(99, 15);
             label4.TabIndex = 27;
             label4.Text = "Metodo De pago:";
             // 
             // BtnAgregarProducto
             // 
+            BtnAgregarProducto.BackColor = Color.FromArgb(207, 226, 243);
+            BtnAgregarProducto.FlatStyle = FlatStyle.Flat;
             BtnAgregarProducto.Image = Properties.Resources.add__1_;
             BtnAgregarProducto.ImageAlign = ContentAlignment.MiddleRight;
-            BtnAgregarProducto.Location = new Point(683, 155);
+            BtnAgregarProducto.Location = new Point(598, 116);
+            BtnAgregarProducto.Margin = new Padding(3, 2, 3, 2);
             BtnAgregarProducto.Name = "BtnAgregarProducto";
-            BtnAgregarProducto.Size = new Size(167, 43);
+            BtnAgregarProducto.Size = new Size(146, 44);
             BtnAgregarProducto.TabIndex = 30;
             BtnAgregarProducto.Text = "Agregar Producto";
             BtnAgregarProducto.TextAlign = ContentAlignment.MiddleLeft;
-            BtnAgregarProducto.UseVisualStyleBackColor = true;
+            BtnAgregarProducto.TextImageRelation = TextImageRelation.ImageBeforeText;
+            BtnAgregarProducto.UseVisualStyleBackColor = false;
             BtnAgregarProducto.Click += BtnAgregarProducto_Click;
             // 
             // btnAgregarServivcio
             // 
+            btnAgregarServivcio.BackColor = Color.FromArgb(207, 226, 243);
+            btnAgregarServivcio.FlatStyle = FlatStyle.Flat;
             btnAgregarServivcio.Image = Properties.Resources.add__1_;
             btnAgregarServivcio.ImageAlign = ContentAlignment.MiddleRight;
-            btnAgregarServivcio.Location = new Point(683, 210);
+            btnAgregarServivcio.Location = new Point(598, 164);
+            btnAgregarServivcio.Margin = new Padding(3, 2, 3, 2);
             btnAgregarServivcio.Name = "btnAgregarServivcio";
-            btnAgregarServivcio.Size = new Size(167, 41);
+            btnAgregarServivcio.Size = new Size(146, 44);
             btnAgregarServivcio.TabIndex = 31;
             btnAgregarServivcio.Text = "Agregar Servicio";
             btnAgregarServivcio.TextAlign = ContentAlignment.MiddleLeft;
-            btnAgregarServivcio.UseVisualStyleBackColor = true;
+            btnAgregarServivcio.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnAgregarServivcio.UseVisualStyleBackColor = false;
             btnAgregarServivcio.Click += btnAgregarServivcio_Click_1;
             // 
             // BtnCancelar
             // 
-            BtnCancelar.Location = new Point(871, 568);
+            BtnCancelar.BackColor = Color.FromArgb(207, 226, 243);
+            BtnCancelar.FlatStyle = FlatStyle.Flat;
+            BtnCancelar.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            BtnCancelar.Location = new Point(762, 404);
+            BtnCancelar.Margin = new Padding(3, 2, 3, 2);
             BtnCancelar.Name = "BtnCancelar";
-            BtnCancelar.Size = new Size(94, 29);
+            BtnCancelar.Size = new Size(90, 44);
             BtnCancelar.TabIndex = 32;
             BtnCancelar.Text = "Cancelar";
-            BtnCancelar.UseVisualStyleBackColor = true;
+            BtnCancelar.UseVisualStyleBackColor = false;
             // 
             // BtnGuardarFactura
             // 
-            BtnGuardarFactura.Location = new Point(871, 283);
+            BtnGuardarFactura.BackColor = Color.FromArgb(207, 226, 243);
+            BtnGuardarFactura.FlatStyle = FlatStyle.Flat;
+            BtnGuardarFactura.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            BtnGuardarFactura.Location = new Point(762, 212);
+            BtnGuardarFactura.Margin = new Padding(3, 2, 3, 2);
             BtnGuardarFactura.Name = "BtnGuardarFactura";
-            BtnGuardarFactura.Size = new Size(94, 29);
+            BtnGuardarFactura.Size = new Size(90, 44);
             BtnGuardarFactura.TabIndex = 33;
             BtnGuardarFactura.Text = "Guardar";
-            BtnGuardarFactura.UseVisualStyleBackColor = true;
+            BtnGuardarFactura.UseVisualStyleBackColor = false;
             BtnGuardarFactura.Click += BtnGuardarFactura_Click;
             // 
             // BtnCotizacion
             // 
-            BtnCotizacion.Location = new Point(871, 318);
+            BtnCotizacion.BackColor = Color.FromArgb(207, 226, 243);
+            BtnCotizacion.FlatStyle = FlatStyle.Flat;
+            BtnCotizacion.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            BtnCotizacion.Location = new Point(762, 260);
+            BtnCotizacion.Margin = new Padding(3, 2, 3, 2);
             BtnCotizacion.Name = "BtnCotizacion";
-            BtnCotizacion.Size = new Size(94, 29);
+            BtnCotizacion.Size = new Size(90, 44);
             BtnCotizacion.TabIndex = 34;
             BtnCotizacion.Text = "Cotizacion";
-            BtnCotizacion.UseVisualStyleBackColor = true;
+            BtnCotizacion.UseVisualStyleBackColor = false;
             BtnCotizacion.Click += BtnCotizacion_Click;
             // 
             // txtSubTotal
             // 
+            txtSubTotal.BackColor = Color.FromArgb(182, 207, 250);
+            txtSubTotal.BorderStyle = BorderStyle.None;
             txtSubTotal.Enabled = false;
-            txtSubTotal.Location = new Point(114, 611);
+            txtSubTotal.Location = new Point(100, 458);
+            txtSubTotal.Margin = new Padding(3, 2, 3, 2);
             txtSubTotal.Name = "txtSubTotal";
-            txtSubTotal.Size = new Size(125, 27);
+            txtSubTotal.Size = new Size(110, 16);
             txtSubTotal.TabIndex = 36;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(38, 614);
+            label5.Location = new Point(33, 460);
             label5.Name = "label5";
-            label5.Size = new Size(70, 20);
+            label5.Size = new Size(55, 15);
             label5.TabIndex = 35;
             label5.Text = "SubTotal:";
             // 
             // txtImpuesto
             // 
+            txtImpuesto.BackColor = Color.FromArgb(182, 207, 250);
+            txtImpuesto.BorderStyle = BorderStyle.None;
             txtImpuesto.Enabled = false;
-            txtImpuesto.Location = new Point(368, 611);
+            txtImpuesto.Location = new Point(322, 458);
+            txtImpuesto.Margin = new Padding(3, 2, 3, 2);
             txtImpuesto.Name = "txtImpuesto";
-            txtImpuesto.Size = new Size(125, 27);
+            txtImpuesto.Size = new Size(110, 16);
             txtImpuesto.TabIndex = 38;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(292, 614);
+            label6.Location = new Point(256, 460);
             label6.Name = "label6";
-            label6.Size = new Size(74, 20);
+            label6.Size = new Size(60, 15);
             label6.TabIndex = 37;
             label6.Text = "Impuesto:";
             // 
             // txtTotal
             // 
+            txtTotal.BackColor = Color.FromArgb(182, 207, 250);
+            txtTotal.BorderStyle = BorderStyle.None;
             txtTotal.Enabled = false;
-            txtTotal.Location = new Point(632, 615);
+            txtTotal.Location = new Point(553, 461);
+            txtTotal.Margin = new Padding(3, 2, 3, 2);
             txtTotal.Name = "txtTotal";
-            txtTotal.Size = new Size(125, 27);
+            txtTotal.Size = new Size(110, 16);
             txtTotal.TabIndex = 40;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(556, 618);
+            label7.Location = new Point(486, 464);
             label7.Name = "label7";
-            label7.Size = new Size(45, 20);
+            label7.Size = new Size(35, 15);
             label7.TabIndex = 39;
             label7.Text = "Total:";
             // 
             // cbMetodoPago
             // 
+            cbMetodoPago.BackColor = Color.FromArgb(182, 207, 250);
             cbMetodoPago.FormattingEnabled = true;
-            cbMetodoPago.Location = new Point(479, 164);
+            cbMetodoPago.Location = new Point(419, 123);
+            cbMetodoPago.Margin = new Padding(3, 2, 3, 2);
             cbMetodoPago.Name = "cbMetodoPago";
-            cbMetodoPago.Size = new Size(151, 28);
+            cbMetodoPago.Size = new Size(133, 23);
             cbMetodoPago.TabIndex = 29;
             // 
             // FormVentas
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(990, 652);
+            BackColor = Color.FromArgb(182, 207, 230);
+            ClientSize = new Size(866, 495);
             Controls.Add(txtTotal);
             Controls.Add(label7);
             Controls.Add(txtImpuesto);
@@ -274,6 +318,7 @@
             Controls.Add(txtCliente);
             Controls.Add(label1);
             Controls.Add(panelPrincipal);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormVentas";
             Text = "FormVentas";
             panelPrincipal.ResumeLayout(false);

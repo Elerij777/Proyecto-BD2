@@ -44,105 +44,126 @@
             // 
             // panelPrincipal
             // 
-            panelPrincipal.BackColor = SystemColors.ActiveCaption;
+            panelPrincipal.BackColor = Color.FromArgb(207, 226, 243);
             panelPrincipal.Controls.Add(labelPrincipal);
             panelPrincipal.Dock = DockStyle.Top;
             panelPrincipal.Location = new Point(0, 0);
-            panelPrincipal.Margin = new Padding(4);
+            panelPrincipal.Margin = new Padding(3, 2, 3, 2);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(1000, 156);
+            panelPrincipal.Size = new Size(700, 94);
             panelPrincipal.TabIndex = 4;
             // 
             // labelPrincipal
             // 
+            labelPrincipal.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             labelPrincipal.AutoSize = true;
-            labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(280, 55);
-            labelPrincipal.Margin = new Padding(4, 0, 4, 0);
+            labelPrincipal.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelPrincipal.Location = new Point(196, 33);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(488, 50);
+            labelPrincipal.Size = new Size(271, 31);
             labelPrincipal.TabIndex = 0;
             labelPrincipal.Text = "Agregar Proveedores";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(96, 206);
+            label1.Location = new Point(67, 124);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(82, 25);
+            label1.Size = new Size(54, 15);
             label1.TabIndex = 5;
             label1.Text = "Nombre:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(96, 271);
+            label2.Location = new Point(67, 163);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(83, 25);
+            label2.Size = new Size(55, 15);
             label2.TabIndex = 6;
             label2.Text = "Telefono:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(96, 334);
+            label3.Location = new Point(67, 200);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(89, 25);
+            label3.Size = new Size(60, 15);
             label3.TabIndex = 7;
             label3.Text = "Direccion:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(108, 397);
+            label4.Location = new Point(76, 238);
+            label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(70, 25);
+            label4.Size = new Size(46, 15);
             label4.TabIndex = 8;
             label4.Text = "Correo:";
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(219, 200);
+            txtNombre.BackColor = Color.FromArgb(182, 207, 250);
+            txtNombre.BorderStyle = BorderStyle.None;
+            txtNombre.Location = new Point(153, 124);
+            txtNombre.Margin = new Padding(2, 2, 2, 2);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(310, 31);
+            txtNombre.Size = new Size(218, 16);
             txtNombre.TabIndex = 9;
             // 
             // txtTelefono
             // 
-            txtTelefono.Location = new Point(219, 265);
+            txtTelefono.BackColor = Color.FromArgb(182, 207, 250);
+            txtTelefono.BorderStyle = BorderStyle.None;
+            txtTelefono.Location = new Point(153, 163);
+            txtTelefono.Margin = new Padding(2, 2, 2, 2);
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(310, 31);
+            txtTelefono.Size = new Size(218, 16);
             txtTelefono.TabIndex = 10;
             // 
             // txtDireccion
             // 
-            txtDireccion.Location = new Point(219, 328);
+            txtDireccion.BackColor = Color.FromArgb(182, 207, 250);
+            txtDireccion.BorderStyle = BorderStyle.None;
+            txtDireccion.Location = new Point(153, 201);
+            txtDireccion.Margin = new Padding(2, 2, 2, 2);
             txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(310, 31);
+            txtDireccion.Size = new Size(218, 16);
             txtDireccion.TabIndex = 11;
             // 
             // txtCorreo
             // 
-            txtCorreo.Location = new Point(219, 391);
+            txtCorreo.BackColor = Color.FromArgb(182, 207, 250);
+            txtCorreo.BorderStyle = BorderStyle.None;
+            txtCorreo.Location = new Point(153, 239);
+            txtCorreo.Margin = new Padding(2, 2, 2, 2);
             txtCorreo.Name = "txtCorreo";
-            txtCorreo.Size = new Size(310, 31);
+            txtCorreo.Size = new Size(218, 16);
             txtCorreo.TabIndex = 12;
             // 
             // btn_Guardar
             // 
-            btn_Guardar.Location = new Point(119, 488);
+            btn_Guardar.BackColor = Color.FromArgb(207, 226, 243);
+            btn_Guardar.FlatStyle = FlatStyle.Flat;
+            btn_Guardar.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            btn_Guardar.Location = new Point(283, 282);
+            btn_Guardar.Margin = new Padding(2, 2, 2, 2);
             btn_Guardar.Name = "btn_Guardar";
-            btn_Guardar.Size = new Size(112, 34);
+            btn_Guardar.Size = new Size(88, 44);
             btn_Guardar.TabIndex = 13;
             btn_Guardar.Text = "Guardar";
-            btn_Guardar.UseVisualStyleBackColor = true;
+            btn_Guardar.UseVisualStyleBackColor = false;
             btn_Guardar.Click += btn_Guardar_Click;
             // 
             // FormAgProveedores
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1000, 562);
+            BackColor = Color.FromArgb(182, 207, 230);
+            ClientSize = new Size(700, 337);
             Controls.Add(btn_Guardar);
             Controls.Add(txtCorreo);
             Controls.Add(txtDireccion);
@@ -153,6 +174,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(panelPrincipal);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "FormAgProveedores";
             Text = "FormAgProveedores";
             panelPrincipal.ResumeLayout(false);

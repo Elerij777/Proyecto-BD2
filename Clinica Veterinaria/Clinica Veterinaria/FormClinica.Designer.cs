@@ -50,157 +50,192 @@
             // 
             // panelPrincipal
             // 
-            panelPrincipal.BackColor = SystemColors.ActiveCaption;
+            panelPrincipal.BackColor = Color.FromArgb(207, 226, 243);
             panelPrincipal.Controls.Add(labelPrincipal);
             panelPrincipal.Dock = DockStyle.Top;
             panelPrincipal.Location = new Point(0, 0);
+            panelPrincipal.Margin = new Padding(2, 2, 2, 2);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(1000, 116);
+            panelPrincipal.Size = new Size(700, 70);
             panelPrincipal.TabIndex = 0;
             // 
             // labelPrincipal
             // 
             labelPrincipal.AutoSize = true;
-            labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(423, 35);
+            labelPrincipal.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelPrincipal.Location = new Point(296, 21);
+            labelPrincipal.Margin = new Padding(2, 0, 2, 0);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(169, 50);
+            labelPrincipal.Size = new Size(96, 31);
             labelPrincipal.TabIndex = 0;
             labelPrincipal.Text = "Clinica";
             // 
             // labelMascota
             // 
             labelMascota.AutoSize = true;
-            labelMascota.Location = new Point(45, 145);
+            labelMascota.Location = new Point(32, 87);
+            labelMascota.Margin = new Padding(2, 0, 2, 0);
             labelMascota.Name = "labelMascota";
-            labelMascota.Size = new Size(79, 25);
+            labelMascota.Size = new Size(52, 15);
             labelMascota.TabIndex = 1;
             labelMascota.Text = "Mascota";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(45, 225);
+            label1.Location = new Point(32, 135);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(104, 25);
+            label1.Size = new Size(69, 15);
             label1.TabIndex = 3;
             label1.Text = "Descripcion";
             // 
             // tbDescripcion
             // 
-            tbDescripcion.Location = new Point(248, 219);
+            tbDescripcion.BackColor = Color.FromArgb(182, 207, 250);
+            tbDescripcion.BorderStyle = BorderStyle.None;
+            tbDescripcion.Location = new Point(174, 131);
+            tbDescripcion.Margin = new Padding(2, 2, 2, 2);
             tbDescripcion.Name = "tbDescripcion";
-            tbDescripcion.Size = new Size(182, 31);
+            tbDescripcion.Size = new Size(129, 16);
             tbDescripcion.TabIndex = 4;
             // 
             // tbDiagnostico
             // 
-            tbDiagnostico.Location = new Point(248, 303);
+            tbDiagnostico.BackColor = Color.FromArgb(182, 207, 250);
+            tbDiagnostico.BorderStyle = BorderStyle.None;
+            tbDiagnostico.Location = new Point(174, 182);
+            tbDiagnostico.Margin = new Padding(2, 2, 2, 2);
             tbDiagnostico.Name = "tbDiagnostico";
-            tbDiagnostico.Size = new Size(182, 31);
+            tbDiagnostico.Size = new Size(129, 16);
             tbDiagnostico.TabIndex = 5;
             // 
             // tbTratamiento
             // 
-            tbTratamiento.Location = new Point(248, 384);
+            tbTratamiento.BackColor = Color.FromArgb(182, 207, 250);
+            tbTratamiento.BorderStyle = BorderStyle.None;
+            tbTratamiento.Location = new Point(174, 230);
+            tbTratamiento.Margin = new Padding(2, 2, 2, 2);
             tbTratamiento.Name = "tbTratamiento";
-            tbTratamiento.Size = new Size(182, 31);
+            tbTratamiento.Size = new Size(129, 16);
             tbTratamiento.TabIndex = 6;
             // 
             // labelDiagnostico
             // 
             labelDiagnostico.AutoSize = true;
-            labelDiagnostico.Location = new Point(42, 309);
+            labelDiagnostico.Location = new Point(29, 185);
+            labelDiagnostico.Margin = new Padding(2, 0, 2, 0);
             labelDiagnostico.Name = "labelDiagnostico";
-            labelDiagnostico.Size = new Size(107, 25);
+            labelDiagnostico.Size = new Size(70, 15);
             labelDiagnostico.TabIndex = 8;
             labelDiagnostico.Text = "Diagnostico";
             // 
             // labelTratamiento
             // 
             labelTratamiento.AutoSize = true;
-            labelTratamiento.Location = new Point(42, 390);
+            labelTratamiento.Location = new Point(29, 234);
+            labelTratamiento.Margin = new Padding(2, 0, 2, 0);
             labelTratamiento.Name = "labelTratamiento";
-            labelTratamiento.Size = new Size(105, 25);
+            labelTratamiento.Size = new Size(70, 15);
             labelTratamiento.TabIndex = 9;
             labelTratamiento.Text = "Tratamiento";
             // 
             // labelEmpleado
             // 
             labelEmpleado.AutoSize = true;
-            labelEmpleado.Location = new Point(45, 465);
+            labelEmpleado.Location = new Point(29, 271);
+            labelEmpleado.Margin = new Padding(2, 0, 2, 0);
             labelEmpleado.Name = "labelEmpleado";
-            labelEmpleado.Size = new Size(92, 25);
+            labelEmpleado.Size = new Size(60, 15);
             labelEmpleado.TabIndex = 10;
             labelEmpleado.Text = "Empleado";
             // 
             // labelFecha
             // 
             labelFecha.AutoSize = true;
-            labelFecha.Location = new Point(590, 145);
+            labelFecha.Location = new Point(436, 87);
+            labelFecha.Margin = new Padding(2, 0, 2, 0);
             labelFecha.Name = "labelFecha";
-            labelFecha.Size = new Size(57, 25);
+            labelFecha.Size = new Size(38, 15);
             labelFecha.TabIndex = 11;
             labelFecha.Text = "Fecha";
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(741, 480);
+            btnAgregar.BackColor = Color.FromArgb(207, 226, 243);
+            btnAgregar.FlatStyle = FlatStyle.Flat;
+            btnAgregar.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            btnAgregar.Location = new Point(585, 256);
+            btnAgregar.Margin = new Padding(2, 2, 2, 2);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(149, 34);
+            btnAgregar.Size = new Size(104, 44);
             btnAgregar.TabIndex = 13;
             btnAgregar.Text = "Agregar";
-            btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.UseVisualStyleBackColor = false;
             btnAgregar.Click += btnAgregar_Click;
             // 
             // dtpCita
             // 
-            dtpCita.Location = new Point(677, 145);
+            dtpCita.Location = new Point(478, 81);
+            dtpCita.Margin = new Padding(2, 2, 2, 2);
             dtpCita.Name = "dtpCita";
-            dtpCita.Size = new Size(300, 31);
+            dtpCita.Size = new Size(211, 23);
             dtpCita.TabIndex = 14;
             // 
             // btn_AgregarMascota
             // 
-            btn_AgregarMascota.Location = new Point(366, 145);
+            btn_AgregarMascota.BackColor = Color.FromArgb(207, 226, 243);
+            btn_AgregarMascota.FlatStyle = FlatStyle.Flat;
+            btn_AgregarMascota.Location = new Point(245, 82);
+            btn_AgregarMascota.Margin = new Padding(2, 2, 2, 2);
             btn_AgregarMascota.Name = "btn_AgregarMascota";
-            btn_AgregarMascota.Size = new Size(190, 33);
+            btn_AgregarMascota.Size = new Size(133, 24);
             btn_AgregarMascota.TabIndex = 15;
             btn_AgregarMascota.Text = "Seleccionar Mascota";
-            btn_AgregarMascota.UseVisualStyleBackColor = true;
+            btn_AgregarMascota.UseVisualStyleBackColor = false;
             btn_AgregarMascota.Click += btn_AgregarMascota_Click;
             // 
             // txtMascota
             // 
+            txtMascota.BackColor = Color.FromArgb(182, 207, 250);
+            txtMascota.BorderStyle = BorderStyle.None;
             txtMascota.Enabled = false;
-            txtMascota.Location = new Point(248, 147);
+            txtMascota.Location = new Point(174, 88);
+            txtMascota.Margin = new Padding(2, 2, 2, 2);
             txtMascota.Name = "txtMascota";
-            txtMascota.Size = new Size(94, 31);
+            txtMascota.Size = new Size(67, 16);
             txtMascota.TabIndex = 16;
             // 
             // txtEmpleado
             // 
+            txtEmpleado.BackColor = Color.FromArgb(182, 207, 250);
+            txtEmpleado.BorderStyle = BorderStyle.None;
             txtEmpleado.Enabled = false;
-            txtEmpleado.Location = new Point(253, 456);
+            txtEmpleado.Location = new Point(174, 271);
+            txtEmpleado.Margin = new Padding(2, 2, 2, 2);
             txtEmpleado.Name = "txtEmpleado";
-            txtEmpleado.Size = new Size(89, 31);
+            txtEmpleado.Size = new Size(64, 16);
             txtEmpleado.TabIndex = 17;
             // 
             // btn_Empleado
             // 
-            btn_Empleado.Location = new Point(366, 456);
+            btn_Empleado.BackColor = Color.FromArgb(207, 226, 243);
+            btn_Empleado.FlatStyle = FlatStyle.Flat;
+            btn_Empleado.Location = new Point(242, 266);
+            btn_Empleado.Margin = new Padding(2, 2, 2, 2);
             btn_Empleado.Name = "btn_Empleado";
-            btn_Empleado.Size = new Size(205, 33);
+            btn_Empleado.Size = new Size(144, 24);
             btn_Empleado.TabIndex = 18;
             btn_Empleado.Text = "Seleccionar Empleado";
-            btn_Empleado.UseVisualStyleBackColor = true;
+            btn_Empleado.UseVisualStyleBackColor = false;
             btn_Empleado.Click += btn_Empleado_Click;
             // 
             // FormClinica
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1000, 562);
+            BackColor = Color.FromArgb(182, 207, 230);
+            ClientSize = new Size(700, 337);
             Controls.Add(btn_Empleado);
             Controls.Add(txtEmpleado);
             Controls.Add(txtMascota);
@@ -217,9 +252,9 @@
             Controls.Add(label1);
             Controls.Add(labelMascota);
             Controls.Add(panelPrincipal);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "FormClinica";
             Text = "FormClinica";
-            Load += FormClinica_Load;
             panelPrincipal.ResumeLayout(false);
             panelPrincipal.PerformLayout();
             ResumeLayout(false);

@@ -20,8 +20,8 @@ namespace Clinica_Veterinaria
         public int clienteId = 0;
         string input = "";
         double numero = 0;
-        private int DocumentoId; 
-        int facturaid=0;
+        private int DocumentoId;
+        int facturaid = 0;
 
         public FormVentas(SqlConnection cnx)
         {
@@ -513,7 +513,7 @@ namespace Clinica_Veterinaria
 
                         while (reader.Read())
                         {
-                            if (facturaid == 0) 
+                            if (facturaid == 0)
                             {
                                 facturaid = Convert.ToInt32(reader["Facturas_id"]);
                                 MessageBox.Show("Factura id: " + facturaid);
@@ -524,7 +524,7 @@ namespace Clinica_Veterinaria
                             int cantidad = Convert.ToInt32(reader["Cantidad"]);
                             decimal costo = Convert.ToDecimal(reader["Costo_unitario"]);
                             decimal impuesto = Convert.ToDecimal(reader["Impuesto"]);
-                            decimal total =costo* cantidad*(1+impuesto);
+                            decimal total = costo * cantidad * (1 + impuesto);
 
                             dgvFactura.Rows.Add(servicioId, "Servicio", descripcion, cantidad, costo, impuesto, null, total);
                         }
@@ -546,7 +546,7 @@ namespace Clinica_Veterinaria
                 {
                     cnx.Close();
                 }
-                
+
             }
         }
 
@@ -645,7 +645,7 @@ namespace Clinica_Veterinaria
                     cmd.Parameters.AddWithValue("@FacturaId", facturaid);
                     cmd.Parameters.AddWithValue("@ClienteId", clienteId);
                     cmd.Parameters.AddWithValue("@Fecha", fechaFactura);
-                    cmd.Parameters.AddWithValue("@Estado", "Finalizado"); 
+                    cmd.Parameters.AddWithValue("@Estado", "Finalizado");
                     cmd.Parameters.AddWithValue("@Metodo_pago", metodoPago);
                     cmd.Parameters.AddWithValue("@Abonado", total);
                     cmd.Parameters.AddWithValue("@ProductosXml", productosXml);
@@ -667,7 +667,6 @@ namespace Clinica_Veterinaria
                 LimpiarControles();
             }
         }
-
     }
 
 }

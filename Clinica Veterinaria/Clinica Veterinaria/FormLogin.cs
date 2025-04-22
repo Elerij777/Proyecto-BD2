@@ -20,7 +20,35 @@ namespace Clinica_Veterinaria
             InitializeComponent();
             String url = "Server=3.128.144.165,1433;Database=DB20212021280;User Id=erick.turcios;Password=ET20212021280;TrustServerCertificate=True;";
             cnx = new SqlConnection(url);
+            //SetPlaceholder(txtUsuario, "Usuario");
+            //SetPlaceholder(txtPassword, "Contraseña");
         }
+
+        private void SetPlaceholder(TextBox textbox, string placeholder)
+        {
+            textbox.Text = placeholder;
+            textbox.ForeColor = Color.Gray;
+
+            textbox.Enter += (sender, e) =>
+            {
+                if (textbox.Text == placeholder)
+                {
+                    textbox.Text = "";
+                    textbox.ForeColor = Color.Black;
+                }
+            };
+
+            textbox.Leave += (sender, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textbox.Text))
+                {
+                    textbox.Text = placeholder;
+                    textbox.ForeColor = Color.Gray;
+                }
+            };
+        }
+
+
 
         private void btnInicioSesion_Click(object sender, EventArgs e)
         {

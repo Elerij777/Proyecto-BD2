@@ -86,11 +86,6 @@ namespace Clinica_Veterinaria
             dtpCita.Value = DateTime.Now;
         }
 
-        private void FormClinica_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_AgregarMascota_Click(object sender, EventArgs e)
         {
             FormSeleccionarMascota formSeleccionarMascota = new FormSeleccionarMascota(cnx, this);
