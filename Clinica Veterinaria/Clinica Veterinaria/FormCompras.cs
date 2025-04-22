@@ -17,7 +17,7 @@ namespace Clinica_Veterinaria
         SqlDataAdapter adpCompras;
         public int ProveedorId = 0;
         public int ProductoId = 0;
-        private DataTable tabCompras;
+        private DataTable tabCompra;
 
         public FormCompras(SqlConnection cnx)
         {
@@ -64,9 +64,9 @@ namespace Clinica_Veterinaria
         {
             try
             {
-                tabCompras = new DataTable();
-                adpCompras.Fill(tabCompras);
-                dgvCompras.DataSource = tabCompras;
+                tabCompra = new DataTable();
+                adpCompras.Fill(tabCompra);
+                dgvCompras.DataSource = tabCompra;
                 ConfigurarDataGridView();
             }
             catch (Exception ex)
@@ -264,11 +264,80 @@ namespace Clinica_Veterinaria
         {
             FormCompraExistente formCompraExistente = new FormCompraExistente(cnx);
             formCompraExistente.ShowDialog();
+            CargarDatos();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-           
+            try
+            {
+                // Verificar si hay una fila seleccionada
+                if (dgvCompras.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Por favor, seleccione una compra para editar.");
+                    return;
+                }
+
+                int compraId = Convert.ToInt32(dgvCompras.SelectedRows[0].Cells["Compra_id"].Value);
+
+                FormCompraExistente formCompraExistente = new FormCompraExistente(cnx);
+
+                formCompraExistente.ModoEdicion = true;
+                formCompraExistente.CompraId = compraId;
+
+                CargarDatosCompra(compraId, formCompraExistente);
+
+                // Mostrar el formulario
+                formCompraExistente.ShowDialog();
+
+                CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al editar la compra: " + ex.Message);
+            }
         }
+        private void CargarDatosCompra(int compraId, FormCompraExistente formCompraExistente)
+        {
+            try
+            {
+                if (cnx.State != ConnectionState.Open)
+                {
+                    cnx.Open();
+                }
+
+                using (SqlCommand cmd = new SqlCommand("spObtenerDetallesCompra", cnx))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Compra_id", compraId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Establecer los valores del formulario
+                            formCompraExistente.CompraId = compraId;
+                            formCompraExistente.ProductoId = Convert.ToInt32(reader["Producto_id"]);
+                            formCompraExistente.ProveedorId = Convert.ToInt32(reader["Proveedor_id"]);
+                            formCompraExistente.txtProveedorSetText(reader["NombreProveedor"].ToString());
+                            formCompraExistente.txtProductoSetText(reader["NombreProducto"].ToString());
+                            formCompraExistente.txtCantidadSetText(reader["Cantidad"].ToString());
+                            formCompraExistente.txtPrecioSetText(reader["Precio"].ToString());
+                            formCompraExistente.txtDetalleSetText(reader["Detalle"].ToString());
+                            formCompraExistente.dateTimePicker1SetValue(Convert.ToDateTime(reader["Fecha"]));
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontraron datos para la compra seleccionada.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos de la compra: " + ex.Message);
+            }
+        }
+        
     }
 }
