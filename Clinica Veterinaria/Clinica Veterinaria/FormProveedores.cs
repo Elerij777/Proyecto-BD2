@@ -13,121 +13,121 @@ namespace Clinica_Veterinaria
 {
     public partial class FormProveedores : Form
     {
-        SqlConnection cnx;
-        SqlDataAdapter adpProveedores;
-        DataTable tabProveedores;
+        private SqlConnection cnx;
+        private DataTable dtProveedores;
+        private SqlDataAdapter adpProveedores;
 
         public FormProveedores(SqlConnection cnx)
         {
             InitializeComponent();
             this.cnx = cnx;
+            dataGridView1.AllowUserToDeleteRows = true;
+            ConfigurarDataAdapter();
+            CargarProveedores("");
+        }
 
+        private void ConfigurarDataAdapter()
+        {
+            try
+            {
+                adpProveedores = new SqlDataAdapter("ObtenerProveedores", cnx);
+                adpProveedores.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                // Comando INSERT
+                adpProveedores.InsertCommand = new SqlCommand("InsertarProveedor", cnx);
+                adpProveedores.InsertCommand.CommandType = CommandType.StoredProcedure;
+                adpProveedores.InsertCommand.Parameters.Add("@Nombre", SqlDbType.VarChar, 50, "Nombre");
+                adpProveedores.InsertCommand.Parameters.Add("@Telefono", SqlDbType.VarChar, 20, "Telefono");
+                adpProveedores.InsertCommand.Parameters.Add("@Direccion", SqlDbType.VarChar, 200, "Direccion");
+                adpProveedores.InsertCommand.Parameters.Add("@Correo", SqlDbType.VarChar, 100, "Correo");
+
+                // Comando UPDATE
+                adpProveedores.UpdateCommand = new SqlCommand("ActualizarProveedor", cnx);
+                adpProveedores.UpdateCommand.CommandType = CommandType.StoredProcedure;
+                adpProveedores.UpdateCommand.Parameters.Add("@Proveedor_id", SqlDbType.Int, 4, "Proveedor_id");
+                adpProveedores.UpdateCommand.Parameters.Add("@Nombre", SqlDbType.VarChar, 50, "Nombre");
+                adpProveedores.UpdateCommand.Parameters.Add("@Telefono", SqlDbType.VarChar, 20, "Telefono");
+                adpProveedores.UpdateCommand.Parameters.Add("@Direccion", SqlDbType.VarChar, 200, "Direccion");
+                adpProveedores.UpdateCommand.Parameters.Add("@Correo", SqlDbType.VarChar, 100, "Correo");
+
+                // Comando DELETE
+                adpProveedores.DeleteCommand = new SqlCommand("EliminarProveedor", cnx);
+                adpProveedores.DeleteCommand.CommandType = CommandType.StoredProcedure;
+                adpProveedores.DeleteCommand.Parameters.Add("@Proveedor_id", SqlDbType.Int, 4, "Proveedor_id");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al configurar el DataAdapter: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CargarProveedores(string nombre)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("spObtenerProveedoresPorNombre", cnx))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Nombre", nombre);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    dtProveedores = new DataTable();
+                    adapter.Fill(dtProveedores);
+
+                    dataGridView1.DataSource = dtProveedores;
+
+                    if (dataGridView1.Columns.Contains("Proveedor_id"))
+                    {
+                        dataGridView1.Columns["Proveedor_id"].Visible = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los proveedores: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataRow row in dtProveedores.Rows)
+                {
+                    if (row.RowState == DataRowState.Deleted) continue;
+
+                    if (string.IsNullOrWhiteSpace(row["Nombre"]?.ToString()))
+                    {
+                        MessageBox.Show("El nombre no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+
+                int registrosAfectados = adpProveedores.Update(dtProveedores);
+                dtProveedores.Clear();
+                adpProveedores.Fill(dtProveedores);
+                MessageBox.Show($"Se guardaron {registrosAfectados} cambios correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtBuscador_TextChanged(object sender, EventArgs e)
+        {
+            CargarProveedores(txtBuscar.Text.Trim());
         }
 
         private void FormProveedores_Load(object sender, EventArgs e)
         {
-            CargarProveedores();
-        }
-        private void CargarProveedores()
-        {
-            try
-            {
-                if (cnx.State != ConnectionState.Open)
-                {
-                    cnx.Open();
-                }
-
-                adpProveedores = new SqlDataAdapter("ObtenerProveedores", cnx);
-                adpProveedores.SelectCommand.CommandType = CommandType.StoredProcedure;
-
-                tabProveedores = new DataTable();
-                adpProveedores.Fill(tabProveedores);
-                dataGridView1.DataSource = tabProveedores;
-
-                dataGridView1.Columns["Proveedor_id"].Width = 128;
-                dataGridView1.Columns["Nombre"].Width = 150;
-                dataGridView1.Columns["Telefono"].Width = 100;
-                dataGridView1.Columns["Direccion"].Width = 200;
-                dataGridView1.Columns["Correo"].Width = 150;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar proveedores: " + ex.Message);
-            }
-            finally
-            {
-                if (cnx.State == ConnectionState.Open)
-                {
-                    cnx.Close();
-                }
-            }
-
+            CargarProveedores("");
         }
 
-        private void btn_Agregar_Click(object sender, EventArgs e)
+        private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
-            FormAgProveedores registro = new FormAgProveedores(cnx);
-            if (registro.ShowDialog() == DialogResult.OK)
-            {
-                CargarProveedores();
-            }
-        }
-
-        private void btn_Modificar_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.CurrentRow != null)
-            {
-                DataRowView fila = (DataRowView)dataGridView1.CurrentRow.DataBoundItem;
-                FormAgProveedores formEdit = new FormAgProveedores(cnx, fila);
-
-                if (formEdit.ShowDialog() == DialogResult.OK)
-                {
-                    CargarProveedores();
-                }
-            }
-        }
-
-        private void btn_Eliminar_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.CurrentRow != null)
-            {
-                int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Proveedor_id"].Value);
-                DialogResult result = MessageBox.Show("¿Estás seguro de eliminar este proveedor?", "Confirmar", MessageBoxButtons.YesNo);
-
-                if (result == DialogResult.Yes)
-                {
-                    try
-                    {
-                        // Asegurarse de que la conexión esté abierta
-                        if (cnx.State != ConnectionState.Open)
-                        {
-                            cnx.Open();
-                        }
-
-                        using (SqlCommand cmd = new SqlCommand("EliminarProveedor", cnx))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Proveedor_id", id);
-                            cmd.ExecuteNonQuery();
-
-                            //MessageBox.Show("Proveedor eliminado correctamente.");
-                            CargarProveedores();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al eliminar proveedor: " + ex.Message);
-                    }
-                    finally
-                    {
-                        // Cerrar la conexión si ya no se necesita
-                        if (cnx.State == ConnectionState.Open)
-                        {
-                            cnx.Close();
-                        }
-                    }
-                }
-            }
+            MessageBox.Show("Error al procesar los datos: " + e.Exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            e.ThrowException = false;
         }
     }
 }

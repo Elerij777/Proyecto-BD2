@@ -123,11 +123,25 @@ namespace Clinica_Veterinaria
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    totalDelDia = reader.GetDecimal(reader.GetOrdinal("TotalDelDia"));
-                    totalEfectivo = reader.GetDecimal(reader.GetOrdinal("TotalEfectivo"));
-                    totalCheque = reader.GetDecimal(reader.GetOrdinal("TotalCheque"));
-                    totalTarjeta = reader.GetDecimal(reader.GetOrdinal("TotalTarjeta"));
-                    diaAnterior = reader.GetDecimal(reader.GetOrdinal("CajaDiaAnterior"));
+                    totalDelDia = !reader.IsDBNull(reader.GetOrdinal("TotalDelDia"))
+                        ? reader.GetDecimal(reader.GetOrdinal("TotalDelDia"))
+                        : 0;
+
+                    totalEfectivo = !reader.IsDBNull(reader.GetOrdinal("TotalEfectivo"))
+                        ? reader.GetDecimal(reader.GetOrdinal("TotalEfectivo"))
+                        : 0;
+
+                    totalCheque = !reader.IsDBNull(reader.GetOrdinal("TotalCheque"))
+                        ? reader.GetDecimal(reader.GetOrdinal("TotalCheque"))
+                        : 0;
+
+                    totalTarjeta = !reader.IsDBNull(reader.GetOrdinal("TotalTarjeta"))
+                        ? reader.GetDecimal(reader.GetOrdinal("TotalTarjeta"))
+                        : 0;
+
+                    diaAnterior = !reader.IsDBNull(reader.GetOrdinal("CajaDiaAnterior"))
+                        ? reader.GetDecimal(reader.GetOrdinal("CajaDiaAnterior"))
+                        : 0;
                 }
                 reader.Close();
             }
