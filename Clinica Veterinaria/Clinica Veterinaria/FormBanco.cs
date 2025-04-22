@@ -71,6 +71,8 @@ namespace Clinica_Veterinaria
 
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     dtBancos = new DataTable();
+                    dgvBancos.AllowUserToDeleteRows = true;
+                    dgvBancos.DataError += dgvBancos_DataError;
                     adapter.Fill(dtBancos);
 
                     dgvBancos.DataSource = dtBancos;
@@ -97,35 +99,40 @@ namespace Clinica_Veterinaria
             {
                 foreach (DataRow row in dtBancos.Rows)
                 {
-                    if (row.RowState == DataRowState.Deleted) continue;
-
-                    if (string.IsNullOrWhiteSpace(row["Nombre"]?.ToString()))
+                    if (row.RowState == DataRowState.Added || row.RowState == DataRowState.Modified)
                     {
-                        MessageBox.Show("El nombre no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
+                        if (string.IsNullOrWhiteSpace(row["Nombre"]?.ToString()))
+                        {
+                            MessageBox.Show("El nombre es obligatorio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
 
-                    if (string.IsNullOrWhiteSpace(row["Beneficiario"]?.ToString()))
-                    {
-                        MessageBox.Show("El beneficiario no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
+                        if (string.IsNullOrWhiteSpace(row["Beneficiario"]?.ToString()))
+                        {
+                            MessageBox.Show("El beneficiario es obligatorio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
 
-                    if (row["NumeroCuenta"] == DBNull.Value || Convert.ToInt32(row["NumeroCuenta"]) <= 0)
-                    {
-                        MessageBox.Show("El número de cuenta debe ser mayor a 0.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        if (row["NumeroCuenta"] == DBNull.Value || Convert.ToInt32(row["NumeroCuenta"]) <= 0)
+                        {
+                            MessageBox.Show("El número de cuenta debe ser mayor a 0.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                     }
                 }
 
+                // Guardar los cambios en la base de datos
                 int registrosAfectados = adpBanco.Update(dtBancos);
+
+                // Recargar los datos para reflejar los cambios
                 dtBancos.Clear();
                 adpBanco.Fill(dtBancos);
+
+                MessageBox.Show($"Se guardaron {registrosAfectados} cambios correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar: " + ex.Message,
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al guardar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -159,6 +166,11 @@ namespace Clinica_Veterinaria
             {
                 MessageBox.Show("No hay una fila seleccionada válida para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+        private void dgvBancos_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("Error al procesar los datos: " + e.Exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            e.ThrowException = false;
         }
     }
 }

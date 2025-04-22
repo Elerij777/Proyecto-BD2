@@ -128,6 +128,36 @@ namespace Clinica_Veterinaria
                 MessageBox.Show($"Error al guardar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void CargarEmpleados(string nombre)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("spBuscarEmpleadosPorNombre", cnx))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Nombre", nombre);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    tabEmpleados = new DataTable();
+                    adapter.Fill(tabEmpleados);
+
+                    dgvEmpleados.DataSource = tabEmpleados;
+
+                    if (dgvEmpleados.Columns.Contains("Empleado_id"))
+                    {
+                        dgvEmpleados.Columns["Empleado_id"].Visible = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los empleados: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void txtBuscador_TextChanged(object sender, EventArgs e)
+        {
+            CargarEmpleados(txtBuscador.Text.Trim());
+        }
 
     }
 }

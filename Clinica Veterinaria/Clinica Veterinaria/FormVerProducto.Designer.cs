@@ -75,9 +75,9 @@
             txtBuscador.BackColor = Color.FromArgb(182, 207, 250);
             txtBuscador.BorderStyle = BorderStyle.None;
             txtBuscador.Font = new Font("Segoe UI", 13.5F);
-            txtBuscador.Location = new Point(517, 145);
+            txtBuscador.Location = new Point(528, 145);
             txtBuscador.Name = "txtBuscador";
-            txtBuscador.Size = new Size(241, 30);
+            txtBuscador.Size = new Size(230, 30);
             txtBuscador.TabIndex = 5;
             txtBuscador.TextChanged += txtBuscador_TextChanged;
             // 

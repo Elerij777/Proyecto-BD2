@@ -149,15 +149,47 @@ namespace Clinica_Veterinaria
                     }
                 }
 
+                // Guardar los cambios en la base de datos
                 int cambios = adpServicios.Update(tabServicios);
                 MessageBox.Show($"Se guardaron {cambios} cambios correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Recargar los datos
                 CargarDatos();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al guardar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void CargarServicios(string nombre)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("spBuscarServiciosPorNombre", cnx))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Nombre", nombre);
 
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    tabServicios = new DataTable();
+                    adapter.Fill(tabServicios);
+
+                    dgvServicios.DataSource = tabServicios;
+
+                    if (dgvServicios.Columns.Contains("Servicio_id"))
+                    {
+                        dgvServicios.Columns["Servicio_id"].Visible = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los servicios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void txtBuscador_TextChanged(object sender, EventArgs e)
+        {
+            CargarServicios(txtBuscador.Text.Trim());
         }
 
     }

@@ -33,7 +33,6 @@
             label1 = new Label();
             txtBuscar = new TextBox();
             dgvBancos = new DataGridView();
-            btnEliminar = new Button();
             btnGuardar = new Button();
             panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBancos).BeginInit();
@@ -46,7 +45,7 @@
             panelPrincipal.Dock = DockStyle.Top;
             panelPrincipal.Location = new Point(0, 0);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(800, 73);
+            panelPrincipal.Size = new Size(803, 73);
             panelPrincipal.TabIndex = 4;
             // 
             // labelPrincipal
@@ -85,21 +84,11 @@
             dgvBancos.Size = new Size(776, 222);
             dgvBancos.TabIndex = 7;
             // 
-            // btnEliminar
-            // 
-            btnEliminar.Location = new Point(517, 391);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(149, 34);
-            btnEliminar.TabIndex = 8;
-            btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = true;
-            btnEliminar.Click += btnEliminar_Click;
-            // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(187, 391);
+            btnGuardar.Location = new Point(636, 375);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(149, 34);
+            btnGuardar.Size = new Size(152, 57);
             btnGuardar.TabIndex = 9;
             btnGuardar.Text = "Guardar Cambios";
             btnGuardar.UseVisualStyleBackColor = true;
@@ -109,9 +98,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(803, 465);
             Controls.Add(btnGuardar);
-            Controls.Add(btnEliminar);
             Controls.Add(dgvBancos);
             Controls.Add(txtBuscar);
             Controls.Add(label1);
@@ -132,7 +120,6 @@
         private Label label1;
         private TextBox txtBuscar;
         private DataGridView dgvBancos;
-        private Button btnEliminar;
         private Button btnGuardar;
     }
 }
