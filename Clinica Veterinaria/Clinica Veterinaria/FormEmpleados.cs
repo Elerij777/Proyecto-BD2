@@ -158,6 +158,5 @@ namespace Clinica_Veterinaria
         {
             CargarEmpleados(txtBuscador.Text.Trim());
         }
-
     }
 }

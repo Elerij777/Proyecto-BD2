@@ -34,57 +34,64 @@
             btnSeleccionar = new Button();
             label1 = new Label();
             txtBuscar = new TextBox();
+            pictureBox1 = new PictureBox();
             panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMascotas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panelPrincipal
             // 
-            panelPrincipal.BackColor = SystemColors.ActiveCaption;
+            panelPrincipal.BackColor = Color.FromArgb(207, 226, 243);
             panelPrincipal.Controls.Add(labelPrincipal);
             panelPrincipal.Dock = DockStyle.Top;
             panelPrincipal.Location = new Point(0, 0);
-            panelPrincipal.Margin = new Padding(4);
+            panelPrincipal.Margin = new Padding(3, 2, 3, 2);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(1000, 156);
+            panelPrincipal.Size = new Size(700, 94);
             panelPrincipal.TabIndex = 5;
             // 
             // labelPrincipal
             // 
+            labelPrincipal.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             labelPrincipal.AutoSize = true;
-            labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(250, 52);
-            labelPrincipal.Margin = new Padding(4, 0, 4, 0);
+            labelPrincipal.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelPrincipal.Location = new Point(175, 31);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(465, 50);
+            labelPrincipal.Size = new Size(266, 31);
             labelPrincipal.TabIndex = 0;
             labelPrincipal.Text = "Seleccionar Mascota";
             // 
             // dgvMascotas
             // 
             dgvMascotas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMascotas.Location = new Point(26, 235);
-            dgvMascotas.Margin = new Padding(4);
+            dgvMascotas.Location = new Point(18, 141);
+            dgvMascotas.Margin = new Padding(3, 2, 3, 2);
             dgvMascotas.Name = "dgvMascotas";
             dgvMascotas.RowHeadersWidth = 51;
-            dgvMascotas.Size = new Size(935, 296);
+            dgvMascotas.Size = new Size(654, 178);
             dgvMascotas.TabIndex = 6;
             // 
             // btnSeleccionar
             // 
-            btnSeleccionar.Location = new Point(26, 561);
-            btnSeleccionar.Margin = new Padding(4);
+            btnSeleccionar.BackColor = Color.FromArgb(207, 226, 243);
+            btnSeleccionar.FlatStyle = FlatStyle.Flat;
+            btnSeleccionar.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            btnSeleccionar.Location = new Point(572, 323);
+            btnSeleccionar.Margin = new Padding(3, 2, 3, 2);
             btnSeleccionar.Name = "btnSeleccionar";
-            btnSeleccionar.Size = new Size(118, 36);
+            btnSeleccionar.Size = new Size(100, 44);
             btnSeleccionar.TabIndex = 7;
             btnSeleccionar.Text = "Seleccionar";
-            btnSeleccionar.UseVisualStyleBackColor = true;
+            btnSeleccionar.UseVisualStyleBackColor = false;
             btnSeleccionar.Click += btnSeleccionar_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(57, 188);
+            label1.Font = new Font("Segoe UI", 13.5F);
+            label1.Location = new Point(208, 106);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(63, 25);
             label1.TabIndex = 8;
@@ -92,28 +99,47 @@
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(162, 182);
+            txtBuscar.BackColor = Color.FromArgb(182, 207, 250);
+            txtBuscar.BorderStyle = BorderStyle.None;
+            txtBuscar.Font = new Font("Segoe UI", 13.5F);
+            txtBuscar.Location = new Point(275, 106);
+            txtBuscar.Margin = new Padding(2, 2, 2, 2);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(278, 31);
+            txtBuscar.Size = new Size(196, 24);
             txtBuscar.TabIndex = 9;
             txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.FromArgb(182, 207, 250);
+            pictureBox1.BackgroundImage = Properties.Resources.lupa2;
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Location = new Point(473, 106);
+            pictureBox1.Margin = new Padding(0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(24, 24);
+            pictureBox1.TabIndex = 16;
+            pictureBox1.TabStop = false;
+            // 
             // FormSeleccionarMascota
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1000, 612);
+            BackColor = Color.FromArgb(182, 207, 230);
+            ClientSize = new Size(700, 367);
+            Controls.Add(pictureBox1);
             Controls.Add(txtBuscar);
             Controls.Add(label1);
             Controls.Add(btnSeleccionar);
             Controls.Add(dgvMascotas);
             Controls.Add(panelPrincipal);
-            Margin = new Padding(4);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormSeleccionarMascota";
             Text = "FormSeleccionarMascota";
             panelPrincipal.ResumeLayout(false);
             panelPrincipal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMascotas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -126,5 +152,6 @@
         private Button btnSeleccionar;
         private Label label1;
         private TextBox txtBuscar;
+        private PictureBox pictureBox1;
     }
 }

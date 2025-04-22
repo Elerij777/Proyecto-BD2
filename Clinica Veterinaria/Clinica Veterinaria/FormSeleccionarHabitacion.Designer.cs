@@ -39,50 +39,60 @@
             // dgvHabitaciones
             // 
             dgvHabitaciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvHabitaciones.Location = new Point(21, 157);
+            dgvHabitaciones.Location = new Point(24, 118);
+            dgvHabitaciones.Margin = new Padding(3, 2, 3, 2);
             dgvHabitaciones.Name = "dgvHabitaciones";
             dgvHabitaciones.RowHeadersWidth = 51;
-            dgvHabitaciones.Size = new Size(748, 281);
+            dgvHabitaciones.Size = new Size(654, 211);
             dgvHabitaciones.TabIndex = 8;
             // 
             // panelPrincipal
             // 
-            panelPrincipal.BackColor = SystemColors.ActiveCaption;
+            panelPrincipal.BackColor = Color.FromArgb(207, 226, 243);
             panelPrincipal.Controls.Add(labelPrincipal);
             panelPrincipal.Dock = DockStyle.Top;
             panelPrincipal.Location = new Point(0, 0);
+            panelPrincipal.Margin = new Padding(3, 2, 3, 2);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(800, 125);
+            panelPrincipal.Size = new Size(700, 94);
             panelPrincipal.TabIndex = 7;
             // 
             // labelPrincipal
             // 
+            labelPrincipal.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             labelPrincipal.AutoSize = true;
-            labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(170, 41);
+            labelPrincipal.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelPrincipal.Location = new Point(197, 28);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(448, 43);
+            labelPrincipal.Size = new Size(292, 31);
             labelPrincipal.TabIndex = 0;
             labelPrincipal.Text = "Seleccionar Habitacion";
+            labelPrincipal.Click += labelPrincipal_Click;
             // 
             // btnSeleccionar
             // 
-            btnSeleccionar.Location = new Point(58, 444);
+            btnSeleccionar.BackColor = Color.FromArgb(207, 226, 243);
+            btnSeleccionar.FlatStyle = FlatStyle.Flat;
+            btnSeleccionar.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            btnSeleccionar.Location = new Point(293, 333);
+            btnSeleccionar.Margin = new Padding(3, 2, 3, 2);
             btnSeleccionar.Name = "btnSeleccionar";
-            btnSeleccionar.Size = new Size(94, 29);
+            btnSeleccionar.Size = new Size(100, 44);
             btnSeleccionar.TabIndex = 9;
             btnSeleccionar.Text = "Seleccionar";
-            btnSeleccionar.UseVisualStyleBackColor = true;
+            btnSeleccionar.UseVisualStyleBackColor = false;
             btnSeleccionar.Click += btnSeleccionar_Click;
             // 
             // FormSeleccionarHabitacion
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 492);
+            BackColor = Color.FromArgb(182, 207, 230);
+            ClientSize = new Size(700, 385);
             Controls.Add(btnSeleccionar);
             Controls.Add(dgvHabitaciones);
             Controls.Add(panelPrincipal);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormSeleccionarHabitacion";
             Text = "Seleccionar Habitacion ";
             ((System.ComponentModel.ISupportInitialize)dgvHabitaciones).EndInit();

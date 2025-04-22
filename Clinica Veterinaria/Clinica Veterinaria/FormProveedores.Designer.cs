@@ -48,28 +48,28 @@
             panelPrincipal.Location = new Point(0, 0);
             panelPrincipal.Margin = new Padding(2);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(850, 93);
+            panelPrincipal.Size = new Size(744, 70);
             panelPrincipal.TabIndex = 1;
             // 
             // labelPrincipal
             // 
             labelPrincipal.AutoSize = true;
-            labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(281, 29);
+            labelPrincipal.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelPrincipal.Location = new Point(246, 22);
             labelPrincipal.Margin = new Padding(2, 0, 2, 0);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(257, 43);
+            labelPrincipal.Size = new Size(168, 31);
             labelPrincipal.TabIndex = 0;
             labelPrincipal.Text = "Proveedores";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(26, 174);
+            dataGridView1.Location = new Point(23, 130);
             dataGridView1.Margin = new Padding(2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(780, 308);
+            dataGridView1.Size = new Size(682, 231);
             dataGridView1.TabIndex = 2;
             // 
             // btnGuardar
@@ -77,10 +77,10 @@
             btnGuardar.BackColor = Color.FromArgb(207, 226, 243);
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnGuardar.Location = new Point(657, 495);
+            btnGuardar.Location = new Point(575, 369);
             btnGuardar.Margin = new Padding(1);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(149, 59);
+            btnGuardar.Size = new Size(130, 44);
             btnGuardar.TabIndex = 8;
             btnGuardar.Text = "Guardar Cambios";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -90,10 +90,10 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.5F);
-            label1.Location = new Point(440, 119);
+            label1.Location = new Point(385, 89);
             label1.Margin = new Padding(1, 0, 1, 0);
             label1.Name = "label1";
-            label1.Size = new Size(86, 31);
+            label1.Size = new Size(67, 25);
             label1.TabIndex = 9;
             label1.Text = "Buscar:";
             // 
@@ -102,10 +102,10 @@
             txtBuscar.BackColor = Color.FromArgb(182, 207, 250);
             txtBuscar.BorderStyle = BorderStyle.None;
             txtBuscar.Font = new Font("Segoe UI", 13.5F);
-            txtBuscar.Location = new Point(527, 120);
+            txtBuscar.Location = new Point(461, 90);
             txtBuscar.Margin = new Padding(0);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(241, 30);
+            txtBuscar.Size = new Size(211, 24);
             txtBuscar.TabIndex = 10;
             txtBuscar.TextChanged += txtBuscador_TextChanged;
             // 
@@ -114,18 +114,19 @@
             pictureBox1.BackColor = Color.FromArgb(182, 207, 250);
             pictureBox1.BackgroundImage = Properties.Resources.lupa2;
             pictureBox1.BackgroundImageLayout = ImageLayout.None;
-            pictureBox1.Location = new Point(779, 120);
+            pictureBox1.Location = new Point(672, 90);
             pictureBox1.Margin = new Padding(0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(27, 32);
+            pictureBox1.Size = new Size(24, 24);
             pictureBox1.TabIndex = 13;
             pictureBox1.TabStop = false;
             // 
             // FormProveedores
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(850, 564);
+            BackColor = Color.FromArgb(182, 207, 230);
+            ClientSize = new Size(744, 423);
             Controls.Add(pictureBox1);
             Controls.Add(txtBuscar);
             Controls.Add(label1);

@@ -69,12 +69,13 @@ namespace Clinica_Veterinaria
                     formClinica.EmpleadoId = idEmpleado;
                     formClinica.txtEmpleadoSetText(nombreEmpleado);
                 }
-                else if(formOrigen is FormGrooming formGrooming){
+                else if (formOrigen is FormGrooming formGrooming)
+                {
                     formGrooming.EmpleadoId = idEmpleado;
                     formGrooming.txtEmpleadoSetText(nombreEmpleado);
                 }
 
-                    this.Close();
+                this.Close();
             }
             else
             {

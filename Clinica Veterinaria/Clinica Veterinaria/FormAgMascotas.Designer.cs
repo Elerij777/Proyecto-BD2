@@ -59,17 +59,18 @@
             panelPrincipal.Controls.Add(labelPrincipal);
             panelPrincipal.Dock = DockStyle.Top;
             panelPrincipal.Location = new Point(0, 0);
+            panelPrincipal.Margin = new Padding(3, 2, 3, 2);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(906, 125);
+            panelPrincipal.Size = new Size(793, 94);
             panelPrincipal.TabIndex = 2;
             // 
             // labelPrincipal
             // 
             labelPrincipal.AutoSize = true;
             labelPrincipal.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(235, 35);
+            labelPrincipal.Location = new Point(206, 26);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(309, 39);
+            labelPrincipal.Size = new Size(249, 31);
             labelPrincipal.TabIndex = 0;
             labelPrincipal.Text = "Registrar Mascotas";
             // 
@@ -77,35 +78,36 @@
             // 
             txtNombre.BackColor = Color.FromArgb(182, 207, 250);
             txtNombre.BorderStyle = BorderStyle.FixedSingle;
-            txtNombre.Location = new Point(182, 159);
+            txtNombre.Location = new Point(159, 119);
+            txtNombre.Margin = new Padding(3, 2, 3, 2);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(152, 27);
+            txtNombre.Size = new Size(133, 23);
             txtNombre.TabIndex = 9;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(109, 159);
+            label1.Location = new Point(95, 119);
             label1.Name = "label1";
-            label1.Size = new Size(67, 20);
+            label1.Size = new Size(54, 15);
             label1.TabIndex = 8;
             label1.Text = "Nombre:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(114, 253);
+            label2.Location = new Point(100, 190);
             label2.Name = "label2";
-            label2.Size = new Size(62, 20);
+            label2.Size = new Size(49, 15);
             label2.TabIndex = 10;
             label2.Text = "Especie:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(114, 299);
+            label3.Location = new Point(100, 224);
             label3.Name = "label3";
-            label3.Size = new Size(44, 20);
+            label3.Size = new Size(34, 15);
             label3.TabIndex = 11;
             label3.Text = "Raza:";
             // 
@@ -113,58 +115,61 @@
             // 
             txtPeso.BackColor = Color.FromArgb(182, 207, 250);
             txtPeso.BorderStyle = BorderStyle.FixedSingle;
-            txtPeso.Location = new Point(526, 207);
+            txtPeso.Location = new Point(460, 155);
+            txtPeso.Margin = new Padding(3, 2, 3, 2);
             txtPeso.Name = "txtPeso";
-            txtPeso.Size = new Size(152, 27);
+            txtPeso.Size = new Size(133, 23);
             txtPeso.TabIndex = 14;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(437, 159);
+            label4.Location = new Point(382, 119);
             label4.Name = "label4";
-            label4.Size = new Size(60, 20);
+            label4.Size = new Size(48, 15);
             label4.TabIndex = 13;
             label4.Text = "Genero:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(437, 207);
+            label5.Location = new Point(382, 155);
             label5.Name = "label5";
-            label5.Size = new Size(42, 20);
+            label5.Size = new Size(35, 15);
             label5.TabIndex = 15;
             label5.Text = "Peso:";
             // 
             // dtpFechaNacimiento
             // 
-            dtpFechaNacimiento.Location = new Point(526, 251);
+            dtpFechaNacimiento.Location = new Point(460, 188);
+            dtpFechaNacimiento.Margin = new Padding(8, 7, 8, 7);
             dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             dtpFechaNacimiento.TabIndex = 16;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(437, 253);
+            label6.Location = new Point(382, 190);
             label6.Name = "label6";
-            label6.Size = new Size(50, 20);
+            label6.Size = new Size(41, 15);
             label6.TabIndex = 17;
             label6.Text = "Fecha:";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(114, 345);
+            label7.Location = new Point(100, 259);
             label7.Name = "label7";
-            label7.Size = new Size(42, 20);
+            label7.Size = new Size(34, 15);
             label7.TabIndex = 18;
             label7.Text = "Foto:";
             // 
             // btnSeleccionarFoto
             // 
-            btnSeleccionarFoto.Location = new Point(182, 336);
+            btnSeleccionarFoto.Location = new Point(159, 252);
+            btnSeleccionarFoto.Margin = new Padding(3, 2, 3, 2);
             btnSeleccionarFoto.Name = "btnSeleccionarFoto";
-            btnSeleccionarFoto.Size = new Size(125, 29);
+            btnSeleccionarFoto.Size = new Size(109, 22);
             btnSeleccionarFoto.TabIndex = 19;
             btnSeleccionarFoto.Text = "Seleccionar foto";
             btnSeleccionarFoto.UseVisualStyleBackColor = true;
@@ -177,9 +182,10 @@
             btnAgregar.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAgregar.Image = Properties.Resources.add__1_;
             btnAgregar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAgregar.Location = new Point(671, 509);
+            btnAgregar.Location = new Point(587, 382);
+            btnAgregar.Margin = new Padding(3, 2, 3, 2);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(114, 59);
+            btnAgregar.Size = new Size(100, 44);
             btnAgregar.TabIndex = 20;
             btnAgregar.Text = " Agregar";
             btnAgregar.TextAlign = ContentAlignment.MiddleLeft;
@@ -189,9 +195,10 @@
             // 
             // pictureBoxImagen
             // 
-            pictureBoxImagen.Location = new Point(114, 387);
+            pictureBoxImagen.Location = new Point(100, 290);
+            pictureBoxImagen.Margin = new Padding(3, 2, 3, 2);
             pictureBoxImagen.Name = "pictureBoxImagen";
-            pictureBoxImagen.Size = new Size(229, 181);
+            pictureBoxImagen.Size = new Size(200, 136);
             pictureBoxImagen.TabIndex = 21;
             pictureBoxImagen.TabStop = false;
             // 
@@ -199,18 +206,20 @@
             // 
             cbxGenero.BackColor = Color.FromArgb(182, 207, 250);
             cbxGenero.FormattingEnabled = true;
-            cbxGenero.Location = new Point(526, 159);
+            cbxGenero.Location = new Point(460, 119);
+            cbxGenero.Margin = new Padding(3, 2, 3, 2);
             cbxGenero.Name = "cbxGenero";
-            cbxGenero.Size = new Size(151, 28);
+            cbxGenero.Size = new Size(133, 23);
             cbxGenero.TabIndex = 22;
             // 
             // cbxEspecie
             // 
             cbxEspecie.BackColor = Color.FromArgb(182, 207, 250);
             cbxEspecie.FormattingEnabled = true;
-            cbxEspecie.Location = new Point(182, 249);
+            cbxEspecie.Location = new Point(159, 187);
+            cbxEspecie.Margin = new Padding(3, 2, 3, 2);
             cbxEspecie.Name = "cbxEspecie";
-            cbxEspecie.Size = new Size(151, 28);
+            cbxEspecie.Size = new Size(133, 23);
             cbxEspecie.TabIndex = 23;
             cbxEspecie.SelectedIndexChanged += cbxEspecie_SelectedIndexChanged;
             // 
@@ -218,26 +227,30 @@
             // 
             cbxRaza.BackColor = Color.FromArgb(182, 207, 250);
             cbxRaza.FormattingEnabled = true;
-            cbxRaza.Location = new Point(182, 295);
+            cbxRaza.Location = new Point(159, 221);
+            cbxRaza.Margin = new Padding(3, 2, 3, 2);
             cbxRaza.Name = "cbxRaza";
-            cbxRaza.Size = new Size(151, 28);
+            cbxRaza.Size = new Size(133, 23);
             cbxRaza.TabIndex = 24;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(114, 207);
+            label8.Location = new Point(100, 155);
             label8.Name = "label8";
-            label8.Size = new Size(58, 20);
+            label8.Size = new Size(47, 15);
             label8.TabIndex = 25;
             label8.Text = "Cliente:";
             // 
             // BtnElegirCliente
             // 
-            BtnElegirCliente.Image = Properties.Resources.lupa1;
-            BtnElegirCliente.Location = new Point(339, 197);
+            BtnElegirCliente.FlatStyle = FlatStyle.Flat;
+            BtnElegirCliente.ForeColor = Color.FromArgb(182, 207, 230);
+            BtnElegirCliente.Image = Properties.Resources.lupa2;
+            BtnElegirCliente.Location = new Point(292, 148);
+            BtnElegirCliente.Margin = new Padding(0);
             BtnElegirCliente.Name = "BtnElegirCliente";
-            BtnElegirCliente.Size = new Size(39, 37);
+            BtnElegirCliente.Size = new Size(25, 25);
             BtnElegirCliente.TabIndex = 27;
             BtnElegirCliente.UseVisualStyleBackColor = true;
             BtnElegirCliente.Click += BtnElegirCliente_Click;
@@ -246,17 +259,18 @@
             // 
             txtCliente.BackColor = Color.FromArgb(182, 207, 250);
             txtCliente.BorderStyle = BorderStyle.FixedSingle;
-            txtCliente.Location = new Point(182, 200);
+            txtCliente.Location = new Point(159, 150);
+            txtCliente.Margin = new Padding(3, 2, 0, 2);
             txtCliente.Name = "txtCliente";
-            txtCliente.Size = new Size(152, 27);
+            txtCliente.Size = new Size(133, 23);
             txtCliente.TabIndex = 28;
             // 
             // FormAgMascotas
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(182, 207, 230);
-            ClientSize = new Size(906, 595);
+            ClientSize = new Size(793, 446);
             Controls.Add(txtCliente);
             Controls.Add(BtnElegirCliente);
             Controls.Add(label8);
@@ -277,6 +291,7 @@
             Controls.Add(txtNombre);
             Controls.Add(label1);
             Controls.Add(panelPrincipal);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormAgMascotas";
             Text = "Form3";
             panelPrincipal.ResumeLayout(false);

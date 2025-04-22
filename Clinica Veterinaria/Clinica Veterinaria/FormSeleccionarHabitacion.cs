@@ -69,6 +69,11 @@ namespace Clinica_Veterinaria
                 MessageBox.Show("Debe seleccionar una mascota.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void labelPrincipal_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-    
+
 }

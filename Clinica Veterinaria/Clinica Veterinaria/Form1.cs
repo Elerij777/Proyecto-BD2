@@ -37,7 +37,6 @@ namespace Clinica_Veterinaria
             InitializeComponent();
 
             esconderPaneles();
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
 
             formPrincipal formulario = new formPrincipal();
             abrirFormulario(formulario);

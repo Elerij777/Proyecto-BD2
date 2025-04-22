@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace Clinica_Veterinaria
 {
@@ -19,8 +20,35 @@ namespace Clinica_Veterinaria
             InitializeComponent();
             this.cnx = cnx;
             centrar_label();
+            SetPlaceholder(txtNombre, "Nombre");
+            SetPlaceholder(txtApellido, "Apellido");
 
         }
+
+        private void SetPlaceholder(TextBox textbox, string placeholder)
+        {
+            textbox.Text = placeholder;
+            textbox.ForeColor = Color.Gray;
+
+            textbox.Enter += (sender, e) =>
+            {
+                if (textbox.Text == placeholder)
+                {
+                    textbox.Text = "";
+                    textbox.ForeColor = Color.Black;
+                }
+            };
+
+            textbox.Leave += (sender, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textbox.Text))
+                {
+                    textbox.Text = placeholder;
+                    textbox.ForeColor = Color.Gray;
+                }
+            };
+        }
+
         public void centrar_label()
         {
             labelPrincipal.Left = (this.panelPrincipal.Width - labelPrincipal.Width) / 2;

@@ -34,44 +34,52 @@
             label1 = new Label();
             dgvProductos = new DataGridView();
             btn_Seleccionar = new Button();
+            pictureBox1 = new PictureBox();
             panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panelPrincipal
             // 
-            panelPrincipal.BackColor = SystemColors.ActiveCaption;
+            panelPrincipal.BackColor = Color.FromArgb(207, 226, 243);
             panelPrincipal.Controls.Add(labelPrincipal);
             panelPrincipal.Dock = DockStyle.Top;
             panelPrincipal.Location = new Point(0, 0);
-            panelPrincipal.Margin = new Padding(4);
+            panelPrincipal.Margin = new Padding(3, 2, 3, 2);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(1000, 156);
+            panelPrincipal.Size = new Size(700, 94);
             panelPrincipal.TabIndex = 7;
             // 
             // labelPrincipal
             // 
+            labelPrincipal.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             labelPrincipal.AutoSize = true;
-            labelPrincipal.Font = new Font("Showcard Gothic", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(250, 52);
-            labelPrincipal.Margin = new Padding(4, 0, 4, 0);
+            labelPrincipal.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelPrincipal.Location = new Point(175, 31);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(499, 50);
+            labelPrincipal.Size = new Size(272, 31);
             labelPrincipal.TabIndex = 0;
             labelPrincipal.Text = "Seleccionar Producto";
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(215, 189);
+            txtBuscar.BackColor = Color.FromArgb(182, 207, 250);
+            txtBuscar.BorderStyle = BorderStyle.None;
+            txtBuscar.Font = new Font("Segoe UI", 13.5F);
+            txtBuscar.Location = new Point(242, 119);
+            txtBuscar.Margin = new Padding(2, 2, 2, 2);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(314, 31);
+            txtBuscar.Size = new Size(221, 24);
             txtBuscar.TabIndex = 9;
             txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(70, 192);
+            label1.Font = new Font("Segoe UI", 13.5F);
+            label1.Location = new Point(175, 118);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(63, 25);
             label1.TabIndex = 10;
@@ -80,37 +88,58 @@
             // dgvProductos
             // 
             dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductos.Location = new Point(93, 281);
+            dgvProductos.Location = new Point(65, 169);
+            dgvProductos.Margin = new Padding(2, 2, 2, 2);
             dgvProductos.Name = "dgvProductos";
             dgvProductos.RowHeadersWidth = 62;
-            dgvProductos.Size = new Size(801, 213);
+            dgvProductos.Size = new Size(561, 128);
             dgvProductos.TabIndex = 11;
             // 
             // btn_Seleccionar
             // 
-            btn_Seleccionar.Location = new Point(93, 532);
+            btn_Seleccionar.BackColor = Color.FromArgb(207, 226, 243);
+            btn_Seleccionar.FlatStyle = FlatStyle.Flat;
+            btn_Seleccionar.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            btn_Seleccionar.Location = new Point(526, 312);
+            btn_Seleccionar.Margin = new Padding(2, 2, 2, 2);
             btn_Seleccionar.Name = "btn_Seleccionar";
-            btn_Seleccionar.Size = new Size(112, 34);
+            btn_Seleccionar.Size = new Size(100, 44);
             btn_Seleccionar.TabIndex = 12;
             btn_Seleccionar.Text = "Seleccionar";
-            btn_Seleccionar.UseVisualStyleBackColor = true;
+            btn_Seleccionar.UseVisualStyleBackColor = false;
             btn_Seleccionar.Click += btn_Seleccionar_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.FromArgb(182, 207, 250);
+            pictureBox1.BackgroundImage = Properties.Resources.lupa2;
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Location = new Point(465, 119);
+            pictureBox1.Margin = new Padding(0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(24, 24);
+            pictureBox1.TabIndex = 14;
+            pictureBox1.TabStop = false;
             // 
             // FormSeleccionarProducto
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1000, 612);
+            BackColor = Color.FromArgb(182, 207, 230);
+            ClientSize = new Size(700, 367);
+            Controls.Add(pictureBox1);
             Controls.Add(btn_Seleccionar);
             Controls.Add(dgvProductos);
             Controls.Add(label1);
             Controls.Add(txtBuscar);
             Controls.Add(panelPrincipal);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "FormSeleccionarProducto";
             Text = "FormSeleccionarProducto";
             panelPrincipal.ResumeLayout(false);
             panelPrincipal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -123,5 +152,6 @@
         private Label label1;
         private DataGridView dgvProductos;
         private Button btn_Seleccionar;
+        private PictureBox pictureBox1;
     }
 }
