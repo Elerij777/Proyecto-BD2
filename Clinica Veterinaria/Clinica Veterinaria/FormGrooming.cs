@@ -69,19 +69,20 @@ namespace Clinica_Veterinaria
 
                 cnx.Open();
                 int citaId = Convert.ToInt32(cmd.ExecuteScalar());
-                cnx.Close();
 
-                //MessageBox.Show($"Cita de grooming registrada con éxito. ID de cita: {citaId}", "Éxito",
-                  //            MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarFormulario();
             }
             catch (SqlException ex)
             {
-                if (cnx.State == ConnectionState.Open)
-                    cnx.Close();
-
                 MessageBox.Show($"Error al registrar la cita de grooming: {ex.Message}", "Error",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (cnx.State == ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
             }
         }
 

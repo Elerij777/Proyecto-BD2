@@ -62,7 +62,7 @@ namespace Clinica_Veterinaria
             }*/
             try
             {
-                string query = "SELECT * FROM VistaMascotasConClientes";
+                string query = "SELECT * FROM VistaMascotasyClientes";
 
                 if (!string.IsNullOrEmpty(filtro))
                 {

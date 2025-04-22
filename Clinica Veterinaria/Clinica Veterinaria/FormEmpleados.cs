@@ -119,6 +119,7 @@ namespace Clinica_Veterinaria
                     }
                 }
 
+                cnx.Open();
                 int cambios = adpEmpleados.Update(tabEmpleados);
                 MessageBox.Show($"Se guardaron {cambios} cambios correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarDatos();
@@ -127,11 +128,19 @@ namespace Clinica_Veterinaria
             {
                 MessageBox.Show($"Error al guardar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                if (cnx.State == ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
+            }
         }
         private void CargarEmpleados(string nombre)
         {
             try
             {
+                cnx.Open();
                 using (SqlCommand cmd = new SqlCommand("spBuscarEmpleadosPorNombre", cnx))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -152,6 +161,13 @@ namespace Clinica_Veterinaria
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los empleados: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (cnx.State == ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
             }
         }
         private void txtBuscador_TextChanged(object sender, EventArgs e)

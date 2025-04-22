@@ -64,6 +64,7 @@ namespace Clinica_Veterinaria
         {
             try
             {
+                cnx.Open();
                 tabCompra = new DataTable();
                 adpCompras.Fill(tabCompra);
                 dgvCompras.DataSource = tabCompra;
@@ -72,6 +73,13 @@ namespace Clinica_Veterinaria
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar las compras: " + ex.Message);
+            }
+            finally
+            {
+                if (cnx.State == ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
             }
         }
 
@@ -187,11 +195,8 @@ namespace Clinica_Veterinaria
                     MessageBox.Show("El precio debe ser un número mayor a cero.");
                     return;
                 }
-                if (cnx.State != ConnectionState.Open)
-                {
-                    cnx.Open();
-                }
 
+                cnx.Open();
 
                 using (SqlCommand cmd = new SqlCommand("InsertarNuevaCompra", cnx))
                 {
@@ -222,6 +227,13 @@ namespace Clinica_Veterinaria
             catch (Exception ex)
             {
                 MessageBox.Show("Error al insertar la compra: " + ex.Message);
+            }
+            finally
+            {
+                if (cnx.State == ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
             }
         }
         private void CargarTiposProducto()
@@ -301,10 +313,7 @@ namespace Clinica_Veterinaria
         {
             try
             {
-                if (cnx.State != ConnectionState.Open)
-                {
-                    cnx.Open();
-                }
+                cnx.Open();
 
                 using (SqlCommand cmd = new SqlCommand("spObtenerDetallesCompra", cnx))
                 {
@@ -336,6 +345,13 @@ namespace Clinica_Veterinaria
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los datos de la compra: " + ex.Message);
+            }
+            finally
+            {
+                if (cnx.State == ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
             }
         }
         

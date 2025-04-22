@@ -22,6 +22,7 @@ namespace Clinica_Veterinaria
     {
         SqlConnection cnx;
         public int clienteId = 0; // ID del cliente seleccionado
+        public int mascotaId = 0; // ID of the selected pet
 
         public FormAgMascotas(SqlConnection cnx)
         {
@@ -182,12 +183,14 @@ namespace Clinica_Veterinaria
             {
                 btnAgregar.Enabled = false;
 
+                // Validar que un cliente haya sido seleccionado
                 if (clienteId == 0)
                 {
-                    MessageBox.Show("Debe seleccionar un cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Debe seleccionar un cliente válido antes de guardar la mascota.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
+                // Validar que todos los campos estén completos
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                     cbxEspecie.SelectedItem == null ||
                     cbxRaza.SelectedItem == null ||
@@ -209,36 +212,54 @@ namespace Clinica_Veterinaria
                 byte[] imagenBytes = null;
                 using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
                 {
-                    pictureBoxImagen.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    imagenBytes = ms.ToArray();
+                    // Crear una copia de la imagen en memoria para evitar problemas de bloqueo
+                    using (Image imagenCopia = new Bitmap(pictureBoxImagen.Image))
+                    {
+                        imagenCopia.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        imagenBytes = ms.ToArray();
+                    }
                 }
 
+                // Ejecutar el procedimiento almacenado
                 await Task.Run(() =>
                 {
-                    using (SqlCommand cmd = new SqlCommand("spInsertarMascota", cnx))
+                    try
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
+                        using (SqlCommand cmd = new SqlCommand("spInsertarActualizarMascota", cnx))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@Cliente_id", clienteId);
-                        cmd.Parameters.AddWithValue("@Nombre", nombre);
-                        cmd.Parameters.AddWithValue("@Especie", especie);
-                        cmd.Parameters.AddWithValue("@Raza", raza);
-                        cmd.Parameters.AddWithValue("@Peso", peso);
-                        cmd.Parameters.AddWithValue("@Genero", genero);
-                        cmd.Parameters.AddWithValue("@Fecha_nacimiento", fechaNacimiento);
-                        cmd.Parameters.AddWithValue("@Foto", imagenBytes);
+                            // Pasar todos los parámetros necesarios
+                            cmd.Parameters.AddWithValue("@Mascota_id", mascotaId); // ID de la mascota (0 si es nueva)
+                            cmd.Parameters.AddWithValue("@Cliente_id", clienteId); // ID del cliente
+                            cmd.Parameters.AddWithValue("@Nombre", nombre);
+                            cmd.Parameters.AddWithValue("@Especie", especie);
+                            cmd.Parameters.AddWithValue("@Raza", raza);
+                            cmd.Parameters.AddWithValue("@Peso", peso);
+                            cmd.Parameters.AddWithValue("@Genero", genero);
+                            cmd.Parameters.AddWithValue("@Fecha_nacimiento", fechaNacimiento);
+                            cmd.Parameters.AddWithValue("@Foto", imagenBytes);
 
-                        if (cnx.State != ConnectionState.Open)
-                            cnx.Open();
+                            if (cnx.State != ConnectionState.Open)
+                                cnx.Open();
 
-                        cmd.ExecuteNonQuery();
-                        cnx.Close();
+                            cmd.ExecuteNonQuery();
+                            cnx.Close();
+                        }
+                    }
+                    catch (SqlException sqlEx)
+                    {
+                        MessageBox.Show("Error en la base de datos: " + sqlEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al ejecutar el procedimiento almacenado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 });
 
-                MessageBox.Show("Mascota agregada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Mascota guardada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Limpiar controles
+                // Limpiar los controles
                 txtNombre.Clear();
                 cbxEspecie.SelectedIndex = -1;
                 cbxRaza.SelectedIndex = -1;
@@ -247,11 +268,12 @@ namespace Clinica_Veterinaria
                 dtpFechaNacimiento.SelectionStart = DateTime.Now;
                 pictureBoxImagen.Image = null;
                 txtCliente.Clear();
-                clienteId = 0;
+                clienteId = 0; // Reiniciar el ID del cliente
+                mascotaId = 0; // Reiniciar el ID de la mascota
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al agregar la mascota: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al guardar la mascota: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -269,6 +291,50 @@ namespace Clinica_Veterinaria
         {
             clienteId = id; // Guardar el ID del cliente seleccionado
             txtCliente.Text = nombre; // Mostrar el nombre del cliente en el TextBox
+        }
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            // Abrir el formulario para seleccionar la mascota a editar
+            FormSeleccionarMascotaEditar formSeleccionarMascotaEditar = new FormSeleccionarMascotaEditar(cnx, this);
+            formSeleccionarMascotaEditar.ShowDialog();
+
+            // No es necesario cargar datos adicionales, ya que todos los datos se pasan desde FormSeleccionarMascotaEditar
+        }
+
+        // Método para llenar los campos con los datos de la mascota seleccionada
+        public void LlenarCamposMascota(int mascotaId, int clienteId, string nombre, string especie, string raza, decimal peso, string genero, DateTime fechaNacimiento, byte[] foto, string nombreCliente)
+        {
+            this.mascotaId = mascotaId; // Guardar el ID de la mascota seleccionada
+            this.clienteId = clienteId; // Guardar el ID del cliente asociado
+            txtNombre.Text = nombre;
+            cbxEspecie.Text = especie;
+            cbxRaza.Text = raza;
+            txtPeso.Text = peso.ToString();
+            cbxGenero.SelectedItem = genero == "M" ? "Macho" : "Hembra";
+            dtpFechaNacimiento.SelectionStart = fechaNacimiento;
+
+            // Llenar el nombre del cliente en el campo correspondiente
+            txtCliente.Text = nombreCliente;
+
+            if (foto != null && foto.Length > 0)
+            {
+                try
+                {
+                    using (System.IO.MemoryStream ms = new System.IO.MemoryStream(foto))
+                    {
+                        pictureBoxImagen.Image = Image.FromStream(ms);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar la imagen: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    pictureBoxImagen.Image = null; // Limpiar la imagen en caso de error
+                }
+            }
+            else
+            {
+                pictureBoxImagen.Image = null; // Limpiar la imagen si no hay datos disponibles
+            }
         }
     }
 }

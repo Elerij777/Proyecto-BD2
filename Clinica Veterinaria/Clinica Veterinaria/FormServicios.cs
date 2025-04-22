@@ -16,6 +16,7 @@ namespace Clinica_Veterinaria
         SqlConnection cnx;
         SqlDataAdapter adpServicios;
         DataTable tabServicios;
+
         public FormServicios(SqlConnection conexion)
         {
             InitializeComponent();
@@ -31,6 +32,13 @@ namespace Clinica_Veterinaria
                 {
                     MessageBox.Show($"Error al abrir la conexión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
+                }
+                finally
+                {
+                    if (cnx.State == ConnectionState.Open)
+                    {
+                        cnx.Close();
+                    }
                 }
             }
 
@@ -66,6 +74,7 @@ namespace Clinica_Veterinaria
         {
             try
             {
+                cnx.Open();
                 tabServicios = new DataTable();
                 adpServicios.Fill(tabServicios);
 
@@ -80,6 +89,13 @@ namespace Clinica_Veterinaria
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al cargar datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (cnx.State == ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
             }
         }
 
@@ -149,7 +165,7 @@ namespace Clinica_Veterinaria
                     }
                 }
 
-                // Guardar los cambios en la base de datos
+                cnx.Open();
                 int cambios = adpServicios.Update(tabServicios);
                 MessageBox.Show($"Se guardaron {cambios} cambios correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -160,11 +176,20 @@ namespace Clinica_Veterinaria
             {
                 MessageBox.Show($"Error al guardar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                if (cnx.State == ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
+            }
         }
+
         private void CargarServicios(string nombre)
         {
             try
             {
+                cnx.Open();
                 using (SqlCommand cmd = new SqlCommand("spBuscarServiciosPorNombre", cnx))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -186,11 +211,18 @@ namespace Clinica_Veterinaria
             {
                 MessageBox.Show("Error al cargar los servicios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                if (cnx.State == ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
+            }
         }
+
         private void txtBuscador_TextChanged(object sender, EventArgs e)
         {
             CargarServicios(txtBuscador.Text.Trim());
         }
-
     }
 }

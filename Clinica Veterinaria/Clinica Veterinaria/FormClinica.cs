@@ -62,15 +62,20 @@ namespace Clinica_Veterinaria
 
                 cnx.Open();
                 cmd.ExecuteNonQuery();
-                cnx.Close();
 
                 LimpiarFormulario();
             }
             catch (SqlException ex)
             {
-                cnx.Close();
                 MessageBox.Show($"Error al registrar la cita: {ex.Message}", "Error",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (cnx.State == ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
             }
         }
 
