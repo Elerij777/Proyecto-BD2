@@ -20,11 +20,9 @@ namespace Clinica_Veterinaria
         public int clienteId = 0;
         string input = "";
         double numero = 0;
-<<<<<<< HEAD
-        private int DocumentoId; // Almacena el ID de la factura o cotización
-=======
+        private int DocumentoId; 
         int facturaid=0;
->>>>>>> 941fca8 (Finalmente hospedaje)
+
         public FormVentas(SqlConnection cnx)
         {
             this.cnx = cnx;
@@ -123,10 +121,6 @@ namespace Clinica_Veterinaria
         {
             FormSeleccionarCliente_Ventas formSeleccionarCliente = new FormSeleccionarCliente_Ventas(this, cnx);
             formSeleccionarCliente.Visible = true;
-        }
-        public void CargarFacturasPendientes()
-        {
-            dgvFactura.Rows.Clear();
         }
         public void setTxtCliente(string Nombre)
         {
@@ -282,7 +276,7 @@ namespace Clinica_Veterinaria
             }
             else
             {
-
+                PagarFacturaPendiente();
             }
 
 
@@ -519,22 +513,24 @@ namespace Clinica_Veterinaria
 
                         while (reader.Read())
                         {
-                            if (idFactura == 0)
-                                idFactura = Convert.ToInt32(reader["Facturas_id"]);
+                            if (facturaid == 0) 
+                            {
+                                facturaid = Convert.ToInt32(reader["Facturas_id"]);
+                                MessageBox.Show("Factura id: " + facturaid);
+                            }
 
                             int servicioId = Convert.ToInt32(reader["Servicio_id"]);
                             string descripcion = reader["ServicioNombre"].ToString();
                             int cantidad = Convert.ToInt32(reader["Cantidad"]);
                             decimal costo = Convert.ToDecimal(reader["Costo_unitario"]);
                             decimal impuesto = Convert.ToDecimal(reader["Impuesto"]);
-                            object empleadoId = reader["Empleado_id"] == DBNull.Value ? null : reader["Empleado_id"];
-                            decimal total = Math.Round(Convert.ToDecimal(reader["Total"]), 2);
+                            decimal total =costo* cantidad*(1+impuesto);
 
-                            dgvFactura.Rows.Add(servicioId, "Servicio", descripcion, cantidad, costo, impuesto, empleadoId, total);
+                            dgvFactura.Rows.Add(servicioId, "Servicio", descripcion, cantidad, costo, impuesto, null, total);
                         }
                         if (dgvFactura.Rows.Count > 0 && !dgvFactura.Rows[dgvFactura.Rows.Count - 1].IsNewRow)
                         {
-                            facturaid = Convert.ToInt32(dgvFactura.Rows[0].Cells["FacturaId"].Value);
+                            facturaid = Convert.ToInt32(dgvFactura.Rows[0].Cells["Facturas_id"].Value);
 
                         }
 
@@ -543,8 +539,8 @@ namespace Clinica_Veterinaria
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al cargar la factura pendiente: " + ex.Message);
-                    return;
+                    //MessageBox.Show("Error al cargar la factura pendiente: " + ex.Message);
+                    //return;
                 }
                 finally
                 {
@@ -588,6 +584,90 @@ namespace Clinica_Veterinaria
             GenerarPDF("plantillaCotizacion");
             LimpiarControles();
         }
+        private void PagarFacturaPendiente()
+        {
+            if (dgvFactura.Rows.Count == 0)
+            {
+                MessageBox.Show("Debe agregar al menos un producto o servicio a la factura.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obtener el ID de la factura pendiente (debes tenerlo disponible en tu formulario)
+
+
+            if (facturaid == 0)
+            {
+                MessageBox.Show("No se ha seleccionado una factura pendiente para pagar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            decimal total = 0;
+            decimal.TryParse(txtTotal.Text, System.Globalization.NumberStyles.Currency, null, out total);
+            string metodoPago = cbMetodoPago.SelectedItem?.ToString() ?? "Efectivo";
+            DateTime fechaFactura = DateTime.Now;
+
+            // Generar XML para productos y servicios
+            string productosXml = "<Items>";
+            string serviciosXml = "<Items>";
+
+            foreach (DataGridViewRow fila in dgvFactura.Rows)
+            {
+                if (fila.Cells["Importe"].Value != null)
+                {
+                    string tipo = fila.Cells["Tipo"].Value.ToString();
+                    int id = Convert.ToInt32(fila.Cells["Id"].Value);
+                    int cantidad = Convert.ToInt32(fila.Cells["Cantidad"].Value);
+                    decimal costoUnitario = Convert.ToDecimal(fila.Cells["CostoUnitario"].Value);
+                    decimal impuesto = Convert.ToDecimal(fila.Cells["Impuesto"].Value);
+
+                    if (tipo == "Producto")
+                    {
+                        productosXml += $"<Product Id='{id}' Cantidad='{cantidad}' CostoUnitario='{costoUnitario}' Impuesto='{impuesto}' />";
+                    }
+                    else if (tipo == "Servicio")
+                    {
+                        int empleadoId = Convert.ToInt32(fila.Cells["Empleado"].Value);
+                        serviciosXml += $"<Service Id='{id}' Cantidad='{cantidad}' CostoUnitario='{costoUnitario}' Impuesto='{impuesto}' EmpleadoId='{empleadoId}' />";
+                    }
+                }
+            }
+
+            productosXml += "</Items>";
+            serviciosXml += "</Items>";
+
+            try
+            {
+                cnx.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SPPagarFacturaPendiente", cnx))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@FacturaId", facturaid);
+                    cmd.Parameters.AddWithValue("@ClienteId", clienteId);
+                    cmd.Parameters.AddWithValue("@Fecha", fechaFactura);
+                    cmd.Parameters.AddWithValue("@Estado", "Finalizado"); 
+                    cmd.Parameters.AddWithValue("@Metodo_pago", metodoPago);
+                    cmd.Parameters.AddWithValue("@Abonado", total);
+                    cmd.Parameters.AddWithValue("@ProductosXml", productosXml);
+                    cmd.Parameters.AddWithValue("@ServiciosXml", serviciosXml);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Factura pagada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al pagar la factura: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cnx.Close();
+                GenerarPDF("plantillaFactura");
+                LimpiarControles();
+            }
+        }
+
     }
 
 }

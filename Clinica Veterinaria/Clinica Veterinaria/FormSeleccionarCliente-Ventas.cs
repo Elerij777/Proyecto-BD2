@@ -57,6 +57,7 @@ namespace Clinica_Veterinaria
                 string Nombre = dgvCliente.CurrentRow.Cells["Nombre"].Value?.ToString();
                 formVentas.clienteId = id;
                 formVentas.setTxtCliente(Nombre);
+                formVentas.CargarFacturasPendientesYAgregarServicio(id);
                 this.Close();
             }
             else
