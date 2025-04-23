@@ -1,6 +1,6 @@
 ﻿namespace Clinica_Veterinaria
 {
-    partial class FormSeleccionarCliente_Mascotas
+    partial class FormSeleccionarClienteVehiculo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            BtnAcceptar = new Button();
+            dgvCliente = new DataGridView();
             panelPrincipal = new Panel();
             labelPrincipal = new Label();
-            dgvCliente = new DataGridView();
-            BtnAcceptar = new Button();
-            panelPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCliente).BeginInit();
+            panelPrincipal.SuspendLayout();
             SuspendLayout();
+            // 
+            // BtnAcceptar
+            // 
+            BtnAcceptar.FlatStyle = FlatStyle.Flat;
+            BtnAcceptar.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            BtnAcceptar.Location = new Point(344, 394);
+            BtnAcceptar.Name = "BtnAcceptar";
+            BtnAcceptar.Size = new Size(114, 59);
+            BtnAcceptar.TabIndex = 13;
+            BtnAcceptar.Text = "Confirmar";
+            BtnAcceptar.UseVisualStyleBackColor = true;
+            BtnAcceptar.Click += BtnAcceptar_Click;
+            // 
+            // dgvCliente
+            // 
+            dgvCliente.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCliente.Location = new Point(39, 145);
+            dgvCliente.Name = "dgvCliente";
+            dgvCliente.RowHeadersWidth = 51;
+            dgvCliente.Size = new Size(704, 244);
+            dgvCliente.TabIndex = 12;
             // 
             // panelPrincipal
             // 
@@ -43,8 +64,8 @@
             panelPrincipal.Dock = DockStyle.Top;
             panelPrincipal.Location = new Point(0, 0);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(800, 125);
-            panelPrincipal.TabIndex = 7;
+            panelPrincipal.Size = new Size(811, 125);
+            panelPrincipal.TabIndex = 11;
             // 
             // labelPrincipal
             // 
@@ -56,49 +77,28 @@
             labelPrincipal.TabIndex = 0;
             labelPrincipal.Text = "Seleccionar Cliente";
             // 
-            // dgvCliente
-            // 
-            dgvCliente.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCliente.Location = new Point(39, 148);
-            dgvCliente.Name = "dgvCliente";
-            dgvCliente.RowHeadersWidth = 51;
-            dgvCliente.Size = new Size(704, 244);
-            dgvCliente.TabIndex = 9;
-            // 
-            // BtnAcceptar
-            // 
-            BtnAcceptar.FlatStyle = FlatStyle.Flat;
-            BtnAcceptar.Font = new Font("Tahoma", 9F, FontStyle.Bold);
-            BtnAcceptar.Location = new Point(344, 397);
-            BtnAcceptar.Name = "BtnAcceptar";
-            BtnAcceptar.Size = new Size(114, 59);
-            BtnAcceptar.TabIndex = 10;
-            BtnAcceptar.Text = "Confirmar";
-            BtnAcceptar.UseVisualStyleBackColor = true;
-            BtnAcceptar.Click += BtnAceptar_Click;
-            // 
-            // FormSeleccionarCliente_Mascotas
+            // FormSeleccionarClienteVehiculo
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(182, 207, 230);
-            ClientSize = new Size(800, 481);
+            ClientSize = new Size(811, 476);
             Controls.Add(BtnAcceptar);
             Controls.Add(dgvCliente);
             Controls.Add(panelPrincipal);
-            Name = "FormSeleccionarCliente_Mascotas";
-            Text = "FormSeleccionarCliente_Mascotas";
+            Name = "FormSeleccionarClienteVehiculo";
+            Text = "FormSeleccionarClienteVehiculo";
+            ((System.ComponentModel.ISupportInitialize)dgvCliente).EndInit();
             panelPrincipal.ResumeLayout(false);
             panelPrincipal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvCliente).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
+        private Button BtnAcceptar;
+        private DataGridView dgvCliente;
         private Panel panelPrincipal;
         private Label labelPrincipal;
-        private DataGridView dgvCliente;
-        private Button BtnAcceptar;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Clinica_Veterinaria
 {
-    partial class FormSeleccionarCliente_Mascotas
+    partial class FormSeleccionarVehiculosTransporte
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
+            btnSeleccionar = new Button();
+            dtvVehiculos = new DataGridView();
             panelPrincipal = new Panel();
             labelPrincipal = new Label();
-            dgvCliente = new DataGridView();
-            BtnAcceptar = new Button();
+            ((System.ComponentModel.ISupportInitialize)dtvVehiculos).BeginInit();
             panelPrincipal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvCliente).BeginInit();
             SuspendLayout();
+            // 
+            // btnSeleccionar
+            // 
+            btnSeleccionar.BackColor = Color.FromArgb(207, 226, 243);
+            btnSeleccionar.FlatStyle = FlatStyle.Flat;
+            btnSeleccionar.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            btnSeleccionar.Location = new Point(335, 418);
+            btnSeleccionar.Name = "btnSeleccionar";
+            btnSeleccionar.Size = new Size(114, 59);
+            btnSeleccionar.TabIndex = 12;
+            btnSeleccionar.Text = "Seleccionar";
+            btnSeleccionar.UseVisualStyleBackColor = false;
+            btnSeleccionar.Click += btnSeleccionar_Click;
+            // 
+            // dtvVehiculos
+            // 
+            dtvVehiculos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtvVehiculos.Location = new Point(27, 131);
+            dtvVehiculos.Name = "dtvVehiculos";
+            dtvVehiculos.RowHeadersWidth = 51;
+            dtvVehiculos.Size = new Size(747, 281);
+            dtvVehiculos.TabIndex = 11;
             // 
             // panelPrincipal
             // 
@@ -44,61 +66,41 @@
             panelPrincipal.Location = new Point(0, 0);
             panelPrincipal.Name = "panelPrincipal";
             panelPrincipal.Size = new Size(800, 125);
-            panelPrincipal.TabIndex = 7;
+            panelPrincipal.TabIndex = 10;
             // 
             // labelPrincipal
             // 
+            labelPrincipal.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             labelPrincipal.AutoSize = true;
             labelPrincipal.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrincipal.Location = new Point(224, 41);
+            labelPrincipal.Location = new Point(240, 49);
             labelPrincipal.Name = "labelPrincipal";
-            labelPrincipal.Size = new Size(312, 39);
+            labelPrincipal.Size = new Size(337, 39);
             labelPrincipal.TabIndex = 0;
-            labelPrincipal.Text = "Seleccionar Cliente";
+            labelPrincipal.Text = "Seleccionar Vehiculo";
             // 
-            // dgvCliente
-            // 
-            dgvCliente.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCliente.Location = new Point(39, 148);
-            dgvCliente.Name = "dgvCliente";
-            dgvCliente.RowHeadersWidth = 51;
-            dgvCliente.Size = new Size(704, 244);
-            dgvCliente.TabIndex = 9;
-            // 
-            // BtnAcceptar
-            // 
-            BtnAcceptar.FlatStyle = FlatStyle.Flat;
-            BtnAcceptar.Font = new Font("Tahoma", 9F, FontStyle.Bold);
-            BtnAcceptar.Location = new Point(344, 397);
-            BtnAcceptar.Name = "BtnAcceptar";
-            BtnAcceptar.Size = new Size(114, 59);
-            BtnAcceptar.TabIndex = 10;
-            BtnAcceptar.Text = "Confirmar";
-            BtnAcceptar.UseVisualStyleBackColor = true;
-            BtnAcceptar.Click += BtnAceptar_Click;
-            // 
-            // FormSeleccionarCliente_Mascotas
+            // FormSeleccionarVehiculosTransporte
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(182, 207, 230);
-            ClientSize = new Size(800, 481);
-            Controls.Add(BtnAcceptar);
-            Controls.Add(dgvCliente);
+            ClientSize = new Size(800, 476);
+            Controls.Add(btnSeleccionar);
+            Controls.Add(dtvVehiculos);
             Controls.Add(panelPrincipal);
-            Name = "FormSeleccionarCliente_Mascotas";
-            Text = "FormSeleccionarCliente_Mascotas";
+            Name = "FormSeleccionarVehiculosTransporte";
+            Text = "FormSeleccionarVehiculosTransporte";
+            ((System.ComponentModel.ISupportInitialize)dtvVehiculos).EndInit();
             panelPrincipal.ResumeLayout(false);
             panelPrincipal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvCliente).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
+        private Button btnSeleccionar;
+        private DataGridView dtvVehiculos;
         private Panel panelPrincipal;
         private Label labelPrincipal;
-        private DataGridView dgvCliente;
-        private Button BtnAcceptar;
     }
 }
