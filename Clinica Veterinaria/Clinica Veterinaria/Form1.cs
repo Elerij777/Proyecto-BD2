@@ -262,5 +262,11 @@ namespace Clinica_Veterinaria
             FormServicios formServicios = new FormServicios(cnx);
             abrirFormulario(formServicios);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormAgregarVehiculo formAgregarVehiculo = new FormAgregarVehiculo(cnx);
+            abrirFormulario(formAgregarVehiculo);
+        }
     }
 }
